@@ -1,9 +1,7 @@
 {
   "name": "Lizardmen",
-  "units": [
-    {
-      "name": "Skinks",
-      "id": 0,
+  "units": {
+    "Skinks": {
       "type": "Infantry",
       "points": 35,
       "attack": "2/1",
@@ -12,11 +10,9 @@
       "size": 3,
       "range": "15cm",
       "min": 2,
-      "standsRef": [0]
+      "extraStands": ["Salamanders"]
     },
-    {
-      "name": "Saurus",
-      "id": 1,
+    "Saurus": {
       "type": "Infantry",
       "points": 75,
       "attack": "4",
@@ -25,9 +21,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Temple Guard",
-      "id": 2,
+    "Temple Guard": {
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -36,9 +30,7 @@
       "size": 4,
       "max": 1
     },
-    {
-      "name": "Kroxigor",
-      "id": 4,
+    "Kroxigor": {
       "type": "Infantry",
       "points": 135,
       "attack": "5",
@@ -47,9 +39,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Cold One Riders",
-      "id": 5,
+    "Cold One Riders": {
       "type": "Cavalry",
       "points": 140,
       "attack": "4",
@@ -58,9 +48,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Terradons",
-      "id": 6,
+    "Terradons": {
       "type": "Monster",
       "points": 85,
       "attack": "2/1",
@@ -70,9 +58,7 @@
       "range": "15cm",
       "max": 1
     },
-    {
-      "name": "Stegadon",
-      "id": 7,
+    "Stegadon": {
       "type": "Monster",
       "points": 225,
       "attack": "10/3",
@@ -82,21 +68,25 @@
       "range": "15cm",
       "max": 1
     },
-    {
-      "name": "Slann Mage Palanquin",
-      "id": 8,
+    "Slann Mage Palanquin": {
       "type": "General",
       "points": 95,
       "attack": "+2",
       "size": 1,
       "command": 0,
       "armyMax": 1,
-      "upgradeRef": [0],
-      "magicItemRef": [13, 14, 15, 16, 17]
+      "customItems": [
+        "Ring of Magic",
+        "Staff of Spellbinding",
+        "Scroll of Dispelling",
+        "Wand of Power",
+        "Rod of Repetition"
+      ],
+      "upgrades": [
+        "Stegadon Mount"
+      ]
     },
-    {
-      "name": "Saurus Hero",
-      "id": 9,
+    "Saurus Hero": {
       "type": "Hero",
       "points": 45,
       "attack": "+2",
@@ -104,20 +94,18 @@
       "command": 6,
       "max": 1
     },
-    {
-      "name": "Skink Hero",
-      "id": 10,
+    "Skink Hero": {
       "type": "Hero",
       "points": 70,
       "attack": "+0",
       "size": 1,
       "command": 8,
       "max": 3,
-      "upgradeRef": [1]
+      "upgrades": [
+        "Carnosaur"
+      ]
     },
-    {
-      "name": "Skink Shaman",
-      "id": 11,
+    "Skink Shaman": {
       "type": "Wizard",
       "points": 30,
       "attack": "+0",
@@ -125,29 +113,23 @@
       "command": 6,
       "max": 1
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Stegadon Mount",
+  },
+  "upgrades": {
+    "Stegadon Mount": {
       "type": "Monstrous Mount",
-      "attackModify": "+5",
-      "pointsModify": 90,
-      "unitMax": 1
+      "attack": "+5",
+      "cost": 90,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Carnosaur",
+    "Carnosaur": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 65,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 65,
+      "max": 1
     }
-  ],
-  "stands": [
-    {
-      "name": "Salamanders",
-      "id": 0,
+  },
+  "stands": {
+    "Salamanders": {
       "type": "Infantry",
       "points": 25,
       "attack": "2/2",
@@ -157,5 +139,5 @@
       "range": "15cm",
       "max": 2
     }
-  ]
+  }
 }

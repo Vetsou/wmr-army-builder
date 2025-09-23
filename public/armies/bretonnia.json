@@ -1,9 +1,7 @@
 {
   "name": "Bretonnia",
-  "units": [
-    {
-      "name": "Bowmen",
-      "id": 0,
+  "units": {
+    "Bowmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -12,9 +10,7 @@
       "size": 3,
       "range": "30cm"
     },
-    {
-      "name": "Men-at-arms",
-      "id": 1,
+    "Men-at-arms": {
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -23,21 +19,19 @@
       "size": 3,
       "min": 1
     },
-    {
-      "name": "Peasants",
-      "id": 2,
+    "Peasants": {
       "type": "Infantry",
       "points": 30,
       "attack": "3",
       "armor": "-",
       "hits": 3,
       "size": 3,
-      "max": 4, 
-      "upgradeRef": [3]
+      "max": 4,
+      "upgrades": [
+        "Grail Reliquae"
+      ]
     },
-    {
-      "name": "Knights",
-      "id": 4,
+    "Knights": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -46,9 +40,7 @@
       "size": 3,
       "min": 1
     },
-    {
-      "name": "Grail Knights",
-      "id": 5,
+    "Grail Knights": {
       "type": "Cavalry",
       "points": 120,
       "attack": "3",
@@ -57,9 +49,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Pegasus Knights",
-      "id": 6,
+    "Pegasus Knights": {
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -68,9 +58,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Trebuchet",
-      "id": 7,
+    "Trebuchet": {
       "type": "Artillery",
       "points": 100,
       "attack": "1/4",
@@ -80,71 +68,65 @@
       "range": "80cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 8,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [1, 2]
+      "upgrades": [
+        "Pegasus",
+        "Hippogriff"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 9,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [1]
+      "upgrades": [
+        "Pegasus"
+      ]
     },
-    {
-      "name": "Enchantress",
-      "id": 10,
+    "Enchantress": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [1, 2]
+      "upgrades": [
+        "Unicorn",
+        "Hippogriff"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Unicorn",
+  },
+  "upgrades": {
+    "Unicorn": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 15,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Pegasus",
+    "Pegasus": {
       "type": "Monstrous Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 15,
+      "max": 1
     },
-    {
-      "id": 2,
-      "name": "Hippogriff",
+    "Hippogriff": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     },
-    {
-      "id": 3,
-      "name": "Grail Reliquae",
+    "Grail Reliquae": {
       "type": "Special",
-      "pointsModify": 60,
+      "cost": 60,
       "armyMax": 1
     }
-  ]
+  }
 }

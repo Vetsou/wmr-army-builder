@@ -1,9 +1,7 @@
 {
   "name": "High Elves",
-  "units": [
-    {
-      "name": "Spearmen",
-      "id": 0,
+  "units": {
+    "Spearmen": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Archers",
-      "id": 1,
+    "Archers": {
       "type": "Infantry",
       "points": 75,
       "attack": "3/1",
@@ -24,9 +20,7 @@
       "range": "30cm",
       "min": 1
     },
-    {
-      "name": "Silver Helms",
-      "id": 2,
+    "Silver Helms": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -34,9 +28,7 @@
       "hits": 3,
       "size": 3
     },
-    {
-      "name": "Reavers",
-      "id": 3,
+    "Reavers": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3/1",
@@ -46,9 +38,7 @@
       "range": "30cm",
       "max": 3
     },
-    {
-      "name": "Chariots",
-      "id": 4,
+    "Chariots": {
       "type": "Chariot",
       "points": 95,
       "attack": "3",
@@ -57,9 +47,7 @@
       "size": 3,
       "max": 3
     },
-    {
-      "name": "Giant Eagles",
-      "id": 5,
+    "Giant Eagles": {
       "type": "Monster",
       "points": 70,
       "attack": "2",
@@ -68,9 +56,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Dragon Rider",
-      "id": 6,
+    "Dragon Rider": {
       "type": "Monster",
       "points": 270,
       "attack": "6/3",
@@ -80,9 +66,7 @@
       "range": "20cm",
       "max": 1
     },
-    {
-      "name": "Elven Bolt Thrower",
-      "id": 7,
+    "Elven Bolt Thrower": {
       "type": "Artillery",
       "points": 55,
       "attack": "1/3",
@@ -92,65 +76,55 @@
       "range": "40cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 8,
+    "General": {
       "type": "General",
       "points": 180,
       "attack": "+2",
       "size": 1,
       "command": 10,
       "armyMax": 1,
-      "upgradeRef": [0, 1, 2]
+      "upgrades": [
+        "Giant Eagle",
+        "Dragon",
+        "Chariot"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 9,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
-      "max": 1,
-      "upgradeRef": [0, 1, 2]
+      "max": 1
     },
-    {
-      "name": "Wizard",
-      "id": 10,
+    "Wizard": {
       "type": "Wizard",
       "points": 90,
       "attack": "+0",
       "size": 1,
       "command": 8,
-      "max": 1,
-      "upgradeRef": [0, 1, 2]
+      "max": 1
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Giant Eagle",
+  },
+  "upgrades": {
+    "Giant Eagle": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 20,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 20,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Dragon",
+    "Dragon": {
       "type": "Monstrous Mount",
-      "attackModify": "+3/+3",
+      "attack": "+3/+3",
       "range": "20cm",
-      "pointsModify": 100,
-      "unitMax": 1
+      "cost": 100,
+      "max": 1
     },
-    {
-      "id": 2,
-      "name": "Chariot",
+    "Chariot": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     }
-  ]  
+  }
 }

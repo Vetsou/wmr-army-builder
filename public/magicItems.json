@@ -1,21 +1,17 @@
-[
-  {
-    "id": 0,
-    "name": "Battle Banner",
+{
+  "Battle Banner": {
     "type": "Magic Standard",
-    "pointsChange": 30,
+    "cost": 30,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
       "Chariot"
     ]
   },
-  {
-    "id": 1,
-    "name": "Banner of Shielding",
+  "Banner of Shielding": {
     "type": "Magic Standard",
-    "compareStat": "armor",
-    "pointsChange": {
+    "stat": "armor",
+    "cost": {
       "4+": 50,
       "5+": 30,
       "6+": 15,
@@ -27,12 +23,10 @@
       "Chariot"
     ]
   },
-  {
-    "id": 2,
-    "name": "Banner of Fortitude",
+  "Banner of Fortitude": {
     "type": "Magic Standard",
-    "compareStat": "hits",
-    "pointsChange": {
+    "stat": "hits",
+    "cost": {
       "4": 50,
       "3": 30,
       "2": 30
@@ -43,12 +37,10 @@
       "Chariot"
     ]
   },
-  {
-    "id": 3,
-    "name": "Banner of Steadfastness",
+  "Banner of Steadfastness": {
     "type": "Magic Standard",
-    "compareStat": "armor",
-    "pointsChange": {
+    "stat": "armor",
+    "cost": {
       "4+": 20,
       "5+": 15,
       "6+": 10,
@@ -60,22 +52,18 @@
       "Chariot"
     ]
   },
-  {
-    "id": 4,
-    "name": "Banner of Fortune",
+  "Banner of Fortune": {
     "type": "Magic Standard",
-    "pointsChange": 15,
+    "cost": 15,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
       "Chariot"
     ]
   },
-  {
-    "id": 5,
-    "name": "Sword of Destruction",
+  "Sword of Destruction": {
     "type": "Magic Weapon",
-    "pointsChange": 10,
+    "cost": 10,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
@@ -85,11 +73,9 @@
       "Wizard"
     ]
   },
-  {
-    "id": 6,
-    "name": "Sword of Fate",
+  "Sword of Fate": {
     "type": "Magic Weapon",
-    "pointsChange": 5,
+    "cost": 5,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
@@ -99,11 +85,9 @@
       "Wizard"
     ]
   },
-  {
-    "id": 7,
-    "name": "Sword of Cleaving",
+  "Sword of Cleaving": {
     "type": "Magic Weapon",
-    "pointsChange": 10,
+    "cost": 10,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
@@ -113,11 +97,9 @@
       "Wizard"
     ]
   },
-  {
-    "id": 8,
-    "name": "Sword of Might",
+  "Sword of Might": {
     "type": "Magic Weapon",
-    "pointsChange": 10,
+    "cost": 10,
     "allowedUnits": [
       "Infantry",
       "Cavalry",
@@ -127,67 +109,67 @@
       "Wizard"
     ]
   },
-  {
-    "id": 9,
-    "name": "Crown of Command",
+  "Crown of Command": {
     "type": "Device of Power",
-    "pointsChange": 70,
-    "allowedUnits": ["General"]
+    "cost": 70,
+    "allowedUnits": [
+      "General"
+    ]
   },
-  {
-    "id": 10,
-    "name": "Helm of Dominion",
+  "Helm of Dominion": {
     "type": "Device of Power",
-    "pointsChange": 40,
-    "allowedUnits": ["General"]
+    "cost": 40,
+    "allowedUnits": [
+      "General"
+    ]
   },
-  {
-    "id": 11,
-    "name": "Orb of Majesty",
+  "Orb of Majesty": {
     "type": "Device of Power",
-    "pointsChange": 30,
-    "allowedUnits": ["General"]
+    "cost": 30,
+    "allowedUnits": [
+      "General"
+    ]
   },
-  {
-    "id": 12,
-    "name": "Sceptre of Sovereignty",
+  "Sceptre of Sovereignty": {
     "type": "Device of Power",
-    "pointsChange": 30,
-    "allowedUnits": ["General"]
+    "cost": 30,
+    "allowedUnits": [
+      "General"
+    ]
   },
-  {
-    "id": 13,
-    "name": "Ring of Magic",
+  "Ring of Magic": {
     "type": "Device of Power",
-    "pointsChange": 30,
-    "allowedUnits": ["Wizard"]
+    "cost": 30,
+    "allowedUnits": [
+      "Wizard"
+    ]
   },
-  {
-    "id": 14,
-    "name": "Staff of Spellbinding",
+  "Staff of Spellbinding": {
     "type": "Device of Power",
-    "pointsChange": 30,
-    "allowedUnits": ["Wizard"]
+    "cost": 30,
+    "allowedUnits": [
+      "Wizard"
+    ]
   },
-  {
-    "id": 15,
-    "name": "Scroll of Dispelling",
+  "Scroll of Dispelling": {
     "type": "Device of Power",
-    "pointsChange": 20,
-    "allowedUnits": ["Wizard"]
+    "cost": 20,
+    "allowedUnits": [
+      "Wizard"
+    ]
   },
-  {
-    "id": 16,
-    "name": "Wand of Power",
+  "Wand of Power": {
     "type": "Device of Power",
-    "pointsChange": 10,
-    "allowedUnits": ["Wizard"]
+    "cost": 10,
+    "allowedUnits": [
+      "Wizard"
+    ]
   },
-  {
-    "id": 17,
-    "name": "Rod of Repetition",
+  "Rod of Repetition": {
     "type": "Device of Power",
-    "pointsChange": 10,
-    "allowedUnits": ["Wizard"]
+    "cost": 10,
+    "allowedUnits": [
+      "Wizard"
+    ]
   }
-]
+}

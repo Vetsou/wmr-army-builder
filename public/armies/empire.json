@@ -1,9 +1,7 @@
 {
   "name": "Empire",
-  "units": [
-    {
-      "name": "Halberdiers",
-      "id": 0,
+  "units": {
+    "Halberdiers": {
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -11,11 +9,9 @@
       "hits": 3,
       "size": 3,
       "min": 2,
-      "standsRef": [0]
+      "extraStands": ["Skirmishers"]
     },
-    {
-      "name": "Handgunners",
-      "id": 1,
+    "Handgunners": {
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -24,11 +20,9 @@
       "size": 3,
       "range": "30cm",
       "max": 3,
-      "standsRef": [0]
+      "extraStands": ["Skirmishers"]
     },
-    {
-      "name": "Crossbowmen",
-      "id": 2,
+    "Crossbowmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -37,11 +31,9 @@
       "size": 3,
       "range": "30cm",
       "min": 2,
-      "standsRef": [0]
+      "extraStands": ["Skirmishers"]
     },
-    {
-      "name": "Flagellants",
-      "id": 3,
+    "Flagellants": {
       "type": "Infantry",
       "points": 70,
       "attack": "5",
@@ -49,11 +41,9 @@
       "hits": 3,
       "size": 3,
       "max": 1,
-      "standsRef": [0]
+      "extraStands": ["Skirmishers"]
     },
-    {
-      "name": "Knights",
-      "id": 5,
+    "Knights": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -61,9 +51,7 @@
       "hits": 3,
       "size": 3
     },
-    {
-      "name": "Pistoliers",
-      "id": 6,
+    "Pistoliers": {
       "type": "Cavalry",
       "points": 95,
       "attack": "3/1",
@@ -73,9 +61,7 @@
       "range": "15cm",
       "max": 4
     },
-    {
-      "name": "Helblaster",
-      "id": 7,
+    "Helblaster": {
       "type": "Artillery",
       "points": 50,
       "attack": "1/8-4-2",
@@ -85,9 +71,7 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "Cannon",
-      "id": 8,
+    "Cannon": {
       "type": "Artillery",
       "points": 85,
       "attack": "1/2+bounce",
@@ -97,9 +81,7 @@
       "range": "60cm",
       "max": 1
     },
-    {
-      "name": "Steam Tank",
-      "id": 9,
+    "Steam Tank": {
       "type": "Machine",
       "points": 130,
       "attack": "3/3",
@@ -109,62 +91,57 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 10,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Griffon"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 11,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Griffon"
+      ]
     },
-    {
-      "name": "Wizard",
-      "id": 12,
+    "Wizard": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Griffon",
+        "War Altar"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Griffon",
+  },
+  "upgrades": {
+    "Griffon": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "War Altar",
+    "War Altar": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
+      "attack": "+1",
+      "cost": 15,
       "armyMax": 1
     }
-  ],
-  "stands": [
-    {
-      "name": "Skirmishers",
-      "id": 0,
+  },
+  "stands": {
+    "Skirmishers": {
       "type": "Infantry",
       "points": 45,
       "attack": "4",
@@ -172,5 +149,5 @@
       "hits": 3,
       "size": 1
     }
-  ]
+  }
 }

@@ -1,9 +1,7 @@
 {
   "name": "Cathay",
-  "units": [
-    {
-      "name": "Bannermen",
-      "id": 0,
+  "units": {
+    "Bannermen": {
       "type": "Infantry",
       "points": 50,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 3
     },
-    {
-      "name": "Crossbows",
-      "id": 1,
+    "Crossbows": {
       "type": "Infantry",
       "points": 40,
       "attack": "2/1",
@@ -24,9 +20,7 @@
       "range": "30cm",
       "min": 1
     },
-    {
-      "name": "Handguns",
-      "id": 2,
+    "Handguns": {
       "type": "Infantry",
       "points": 50,
       "attack": "2/1",
@@ -35,9 +29,7 @@
       "size": 3,
       "range": "30cm"
     },
-    {
-      "name": "Terracotta Warriors",
-      "id": 3,
+    "Terracotta Warriors": {
       "type": "Infantry",
       "points": 30,
       "attack": "2",
@@ -46,9 +38,7 @@
       "size": 3,
       "max": 6
     },
-    {
-      "name": "Maneaters",
-      "id": 4,
+    "Maneaters": {
       "type": "Infantry",
       "points": 140,
       "attack": "4",
@@ -57,9 +47,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Chariots",
-      "id": 5,
+    "Chariots": {
       "type": "Chariot",
       "points": 110,
       "attack": "3/1",
@@ -68,9 +56,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Imperial Cavalry",
-      "id": 6,
+    "Imperial Cavalry": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -79,9 +65,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Hu Cavalry",
-      "id": 7,
+    "Hu Cavalry": {
       "type": "Cavalry",
       "points": 60,
       "attack": "2/1",
@@ -90,9 +74,7 @@
       "size": 3,
       "max": 3
     },
-    {
-      "name": "Rocket Launcher",
-      "id": 8,
+    "Rocket Launcher": {
       "type": "Artillery",
       "points": 55,
       "attack": "1/d6",
@@ -102,9 +84,7 @@
       "range": "40cm",
       "max": 1
     },
-    {
-      "name": "Triple Bows",
-      "id": 9,
+    "Triple Bows": {
       "type": "Artillery",
       "points": 65,
       "attack": "1/2",
@@ -114,72 +94,68 @@
       "range": "40cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 10,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0, 2]
+      "upgrades": [
+        "Chariot",
+        "Tiger"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 11,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0, 2]
+      "upgrades": [
+        "Chariot",
+        "Tiger"
+      ]
     },
-    {
-      "name": "Sorcerer",
-      "id": 12,
+    "Sorcerer": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0, 1, 3]
+      "upgrades": [
+        "Chariot",
+        "Celestial Dragon",
+        "Qilin"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Chariot",
+  },
+  "upgrades": {
+    "Chariot": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Celestial Dragon",
+    "Celestial Dragon": {
       "type": "Monstrous Mount",
-      "attackModify": "+3",
-      "pointsModify": 100,
-      "armyMax": 1
+      "attack": "+3",
+      "cost": 100,
+      "max": 1
     },
-    {
-      "id": 2,
-      "name": "Tiger",
+    "Tiger": {
       "type": "Special Mount",
-      "attackModify": "+2",
-      "pointsModify": 20,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 20,
+      "max": 1
     },
-    {
-      "id": 3,
-      "name": "Qilin",
+    "Qilin": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 15,
+      "max": 1
     }
-  ]
+  }
 }

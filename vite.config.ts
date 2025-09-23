@@ -1,16 +1,16 @@
 /// <reference types="vitest" />
-import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte(), tailwindcss()],
   resolve: {
     alias: {
-      '$root': __dirname,
-      '$components': path.resolve(__dirname, 'src/components'),
-      '$types': path.resolve(__dirname, 'src/types'),
-      '$builder': path.resolve(__dirname, 'src/builder')
+      '$builder': path.resolve(__dirname, 'src/lib/builder'),
+      '$helper': path.resolve(__dirname, 'src/lib/builder/helper'),
+      '$components': path.resolve(__dirname, 'src/lib/components')
     }
   },
   test: {

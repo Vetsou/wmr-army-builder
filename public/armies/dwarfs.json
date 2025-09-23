@@ -1,9 +1,7 @@
 {
   "name": "Dwarfs",
-  "units": [
-    {
-      "name": "Warriors",
-      "id": 0,
+  "units": {
+    "Warriors": {
       "type": "Infantry",
       "points": 110,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Handgunners",
-      "id": 1,
+    "Handgunners": {
       "type": "Infantry",
       "points": 90,
       "attack": "3/1",
@@ -23,9 +19,7 @@
       "size": 3,
       "range": "30cm"
     },
-    {
-      "name": "Rangers",
-      "id": 2,
+    "Rangers": {
       "type": "Infantry",
       "points": 110,
       "attack": "3/1",
@@ -35,9 +29,7 @@
       "range": "30cm",
       "max": 2
     },
-    {
-      "name": "Troll Slayers",
-      "id": 3,
+    "Troll Slayers": {
       "type": "Infantry",
       "points": 80,
       "attack": "5",
@@ -46,9 +38,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Cannon",
-      "id": 4,
+    "Cannon": {
       "type": "Artillery",
       "points": 90,
       "attack": "1/2+bounce",
@@ -58,9 +48,7 @@
       "range": "60cm",
       "max": 1
     },
-    {
-      "name": "Flame Cannon",
-      "id": 5,
+    "Flame Cannon": {
       "type": "Artillery",
       "points": 50,
       "attack": "1/2D6",
@@ -70,9 +58,7 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "Gyrocopter",
-      "id": 6,
+    "Gyrocopter": {
       "type": "Machine",
       "points": 75,
       "attack": "1/3",
@@ -82,9 +68,7 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 7,
+    "General": {
       "type": "General",
       "points": 155,
       "attack": "+2",
@@ -92,9 +76,7 @@
       "command": 10,
       "armyMax": 1
     },
-    {
-      "name": "Hero",
-      "id": 8,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -102,27 +84,28 @@
       "command": 8,
       "max": 1
     },
-    {
-      "name": "Runesmith",
-      "id": 9,
+    "Runesmith": {
       "type": "Hero",
       "points": 90,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0],
-      "magicItemRef": [14, 15]
+      "upgrades": [
+        "Anvil"
+      ],
+      "customItems": [
+        "Staff of Spellbinding",
+        "Scroll of Dispelling"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Anvil",
+  },
+  "upgrades": {
+    "Anvil": {
       "type": "Special",
-      "attackModify": "+1",
-      "pointsModify": 50,
+      "attack": "+1",
+      "cost": 50,
       "armyMax": 1
     }
-  ]
+  }
 }

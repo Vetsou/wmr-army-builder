@@ -1,80 +1,89 @@
-import globals from 'globals';
-import tsLint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import svelteParser from 'svelte-eslint-parser';
+import { defineConfig } from 'eslint/config'
+import globals from 'globals'
+import svelteConfig from './svelte.config.js'
 
-// Eslint config files
-import js from '@eslint/js';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { FlatCompat } from '@eslint/eslintrc';
+import js from '@eslint/js'
+import ts from 'typescript-eslint'
+import svelte from 'eslint-plugin-svelte'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const commonRules = {
+  'no-var': 'error',                // Use let, const
+  'eqeqeq': ['error'],              // Require === and !==
+  'quotes': ['error', 'single'],    // Require '' quotes
+  'curly': ['error', 'multi-line'], // Enforce braces for statements
+  'indent': ['error', 2],           // Require indentation (2 spaces)
+  'no-extra-semi': 'error',         // Disallow unnecessary semicolons
+  'semi': ['error', 'never'],       // Disallow semicolons
+  'prefer-spread': 'error',         // Enforce spread operators (...)
+  'prefer-template': 'error',       // Enforce string templates (`${}`)
+  'dot-notation': 'error',          // Enforce prop.name instead of prop['name']
+  'default-case': 'error',          // Require default case in switch
+  // Use consts when possible
+  'prefer-const': ['error', {
+    destructuring: 'all',
+    ignoreReadBeforeAssign: false
+  }],
+  // Disable unused for _... variables
+  '@typescript-eslint/no-unused-vars': ['error', {
+    argsIgnorePattern: '^_',
+    varsIgnorePattern: '^_',
+    caughtErrorsIgnorePattern: '^_',
+  }],
+  'max-len': ['error', {
+    code: 120,
+    tabWidth: 2,
+    ignoreUrls: true,
+    ignoreStrings: true,
+    ignoreTemplateLiterals: true,
+    ignoreComments: false
+  }]
+}
 
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+export default defineConfig([
+  // GLOBAL
+  { 
+    files: ['./src/**/*.{js,ts,tsx,svelte}'],
+    languageOptions: { globals: globals.browser }
+  },
 
-export default [
-    ...compat.extends(
-        'eslint:recommended',
-        'plugin:svelte/recommended',
-        'plugin:@typescript-eslint/recommended',
-        './config/eslint-style.cjs',
-        './config/eslint-svelte.cjs',
-    ),
-    {
-        plugins: {
-            '@typescript-eslint': tsLint,
-        },
-        languageOptions: {
-            globals: { ...globals.browser },
-            parser: tsParser,
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-            parserOptions: {
-                project: ['./tsconfig.json'],
-                extraFileExtensions: ['.svelte']
-            },
-        },
-    },
-    {
-        files: ['**/*.svelte'],
+  // JS
+  {
+    files: ['src/**/*.js'],
+    plugins: { js },
+    extends: ['js/recommended']
+  },
 
-        languageOptions: {
-            parser: svelteParser,
-            ecmaVersion: 'latest',
-            sourceType: 'module',
-            parserOptions: {
-                parser: tsParser,
-            },
-        },
-    },
-    {
-        ignores: [
-            // Src files
-            'src/app.css',
-            'src/vite-env.d.ts',
-
-            // Build
-            'node_modules',
-            'dist',
-            'dist-ssr',
-
-            // Data
-            'public',
-
-            // Config files
-            'config',
-            'eslint.config.mjs',
-            'postcss.config.js',
-            'svelte.config.js',
-            'tailwind.config.js',
-            'vite.config.ts',
-            'tsconfig.json'
-        ]
+  // TS
+  {
+    files: ['./src/**/*.{ts,tsx}'],
+    plugins: { '@typescript-eslint': ts.plugin },
+    extends: ts.configs.recommended,
+    rules: {
+      ...commonRules
     }
-]
+  },
+
+  // SVELTE
+  {
+    files: ['./src/**/*.svelte'],
+    plugins: {
+      svelte,
+      '@typescript-eslint': ts.plugin
+    },
+    extends: ['svelte/recommended'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        extraFileExtensions: ['.svelte'],
+        project: './tsconfig.json',
+        parser: ts.parser,
+        svelteConfig
+      }
+    },
+    rules: {
+      ...commonRules,
+      'svelte/no-target-blank': 'error',
+      'svelte/no-top-level-browser-globals': 'error'
+    }
+  }
+])

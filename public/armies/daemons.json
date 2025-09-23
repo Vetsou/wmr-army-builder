@@ -1,9 +1,7 @@
 {
   "name": "Daemons",
-  "units": [
-    {
-      "name": "Daemon Hordes",
-      "id": 0,
+  "units": {
+    "Daemon Hordes": {
       "type": "Infantry",
       "points": 75,
       "attack": "4",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 3
     },
-    {
-      "name": "Daemon Swarm",
-      "id": 1,
+    "Daemon Swarm": {
       "type": "Infantry",
       "points": 45,
       "attack": "2",
@@ -23,9 +19,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Daemon Cavalry",
-      "id": 2,
+    "Daemon Cavalry": {
       "type": "Cavalry",
       "points": 110,
       "attack": "4",
@@ -34,9 +28,7 @@
       "size": 3,
       "max": 3
     },
-    {
-      "name": "Daemon Hounds",
-      "id": 3,
+    "Daemon Hounds": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -45,9 +37,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Daemon Chariots",
-      "id": 4,
+    "Daemon Chariots": {
       "type": "Chariot",
       "points": 95,
       "attack": "3",
@@ -56,9 +46,7 @@
       "size": 3,
       "max": 3
     },
-    {
-      "name": "Daemon Beasts",
-      "id": 5,
+    "Daemon Beasts": {
       "type": "Monster",
       "points": 200,
       "attack": "5",
@@ -67,9 +55,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Daemon Flyers",
-      "id": 6,
+    "Daemon Flyers": {
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -78,9 +64,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Greater Daemon",
-      "id": 7,
+    "Greater Daemon": {
       "type": "Monster",
       "points": 280,
       "attack": "8",
@@ -89,55 +73,54 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "Daemon Overlord",
-      "id": 8,
+    "Daemon Overlord": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Daemonic Wings",
+        "Favour of the Gods"
+      ]
     },
-    {
-      "name": "Daemon Lord Hero",
-      "id": 9,
+    "Daemon Lord Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Daemonic Wings",
+        "Favour of the Gods"
+      ]
     },
-    {
-      "name": "Daemon Sorcerer",
-      "id": 10,
+    "Daemon Sorcerer": {
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Daemonic Wings",
+        "Favour of the Gods"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Daemonic Wings",
+  },
+  "upgrades": {
+    "Daemonic Wings": {
       "type": "Special",
-      "pointsModify": 10,
-      "unitMax": 1
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Favour of the Gods",
+    "Favour of the Gods": {
       "type": "Special",
-      "attackModify": "+1",
-      "pointsModify": 50,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 50,
+      "max": 1
     }
-  ]  
+  }
 }
