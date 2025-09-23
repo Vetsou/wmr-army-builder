@@ -1,9 +1,7 @@
 {
   "name": "Chaos Dwarfs",
-  "units": [
-    {
-      "name": "Chaos Dwarfs",
-      "id": 0,
+  "units": {
+    "Chaos Dwarfs": {
       "type": "Infantry",
       "points": 110,
       "attack": "3",
@@ -13,9 +11,7 @@
       "min": 2,
       "max": 4
     },
-    {
-      "name": "Blunderbusses",
-      "id": 1,
+    "Blunderbusses": {
       "type": "Infantry",
       "points": 90,
       "attack": "3/2",
@@ -25,9 +21,7 @@
       "range": "15cm",
       "max": 2
     },
-    {
-      "name": "Hobgoblins",
-      "id": 2,
+    "Hobgoblins": {
       "type": "Infantry",
       "points": 45,
       "attack": "3/1",
@@ -36,9 +30,7 @@
       "size": 3,
       "range": "15cm"
     },
-    {
-      "name": "Black Orcs",
-      "id": 3,
+    "Black Orcs": {
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -47,9 +39,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Orc Slaves",
-      "id": 4,
+    "Orc Slaves": {
       "type": "Infantry",
       "points": 40,
       "attack": "4",
@@ -58,9 +48,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Hobgoblin Wolf Riders",
-      "id": 5,
+    "Hobgoblin Wolf Riders": {
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -69,9 +57,7 @@
       "size": 3,
       "range": "15cm"
     },
-    {
-      "name": "Bull Centaurs",
-      "id": 6,
+    "Bull Centaurs": {
       "type": "Cavalry",
       "points": 140,
       "attack": "4",
@@ -80,9 +66,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Earthshaker Cannon",
-      "id": 7,
+    "Earthshaker Cannon": {
       "type": "Artillery",
       "points": 90,
       "attack": "1/3",
@@ -92,9 +76,7 @@
       "range": "60cm",
       "max": 1
     },
-    {
-      "name": "Death Rocket",
-      "id": 8,
+    "Death Rocket": {
       "type": "Artillery",
       "points": 60,
       "attack": "1/d6",
@@ -104,9 +86,7 @@
       "range": "60cm",
       "max": 1
     },
-    {
-      "name": "Bolt Thrower",
-      "id": 9,
+    "Bolt Thrower": {
       "type": "Artillery",
       "points": 65,
       "attack": "1/2 per stand",
@@ -116,56 +96,53 @@
       "range": "40cm",
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 10,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Great Taurus"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 11,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Great Taurus"
+      ]
     },
-    {
-      "name": "Sorcerer",
-      "id": 12,
+    "Sorcerer": {
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Great Taurus",
+        "Lammasu"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Great Taurus",
+  },
+  "upgrades": {
+    "Great Taurus": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Lammasu",
+    "Lammasu": {
       "type": "Monstrous Mount",
-      "attackModify": "+1",
-      "pointsModify": 20,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 20,
+      "max": 1
     }
-  ]
+  }
 }

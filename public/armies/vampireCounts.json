@@ -1,9 +1,7 @@
 {
   "name": "Vampire Counts",
-  "units": [
-    {
-      "name": "Skeletons",
-      "id": 0,
+  "units": {
+    "Skeletons": {
       "type": "Infantry",
       "points": 30,
       "attack": "2",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Zombies",
-      "id": 1,
+    "Zombies": {
       "type": "Infantry",
       "points": 35,
       "attack": "2",
@@ -23,9 +19,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Ghouls",
-      "id": 2,
+    "Ghouls": {
       "type": "Infantry",
       "points": 55,
       "attack": "4",
@@ -33,9 +27,7 @@
       "hits": 3,
       "size": 3
     },
-    {
-      "name": "Grave Guard",
-      "id": 3,
+    "Grave Guard": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -44,9 +36,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Ethereal Host",
-      "id": 4,
+    "Ethereal Host": {
       "type": "Infantry",
       "points": 90,
       "attack": "3",
@@ -55,9 +45,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Black Knights",
-      "id": 5,
+    "Black Knights": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -66,9 +54,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Dire Wolves",
-      "id": 6,
+    "Dire Wolves": {
       "type": "Cavalry",
       "points": 40,
       "attack": "2",
@@ -77,9 +63,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Fell Bats",
-      "id": 7,
+    "Fell Bats": {
       "type": "Monster",
       "points": 65,
       "attack": "2",
@@ -88,57 +72,61 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Vampire Lord",
-      "id": 8,
+    "Vampire Lord": {
       "type": "General",
       "points": 150,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0, 1],
-      "magicItemRef": [13, 14, 15, 16, 17]
+      "customItems": [
+        "Ring of Magic",
+        "Staff of Spellbinding",
+        "Scroll of Dispelling",
+        "Wand of Power",
+        "Rod of Repetition"
+      ],
+      "upgrades": [
+        "Winged Nightmare",
+        "Black Coach"
+      ]
     },
-    {
-      "name": "Vampire",
-      "id": 9,
+    "Vampire": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Winged Nightmare",
+        "Black Coach"
+      ]
     },
-    {
-      "name": "Necromancer",
-      "id": 10,
+    "Necromancer": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Winged Nightmare"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Winged Nightmare",
+  },
+  "upgrades": {
+    "Winged Nightmare": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Black Coach",
+    "Black Coach": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 40,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 40,
+      "max": 1
     }
-  ]  
+  }
 }

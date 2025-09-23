@@ -1,0 +1,143 @@
+{
+  "name": "Beastmen",
+  "units": {
+    "Beastherd": {
+      "type": "Infantry",
+      "points": 45,
+      "attack": "3",
+      "armor": "6+",
+      "hits": 3,
+      "size": 3,
+      "min": 2
+    },
+    "Herdkin": {
+      "type": "Infantry",
+      "points": 55,
+      "attack": "3/1",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "min": 2
+    },
+    "Bestigors": {
+      "type": "Infantry",
+      "points": 75,
+      "attack": "4",
+      "armor": "5+",
+      "hits": 3,
+      "size": 3,
+      "max": 2
+    },
+    "Minotaurs": {
+      "type": "Infantry",
+      "points": 80,
+      "attack": "5",
+      "armor": "-",
+      "hits": 4,
+      "size": 3,
+      "max": 2
+    },
+    "Centigors": {
+      "type": "Cavalry",
+      "points": 75,
+      "attack": "3/1",
+      "armor": "6+",
+      "hits": 3,
+      "size": 3,
+      "range": "15cm",
+      "max": 2
+    },
+    "Chaos Hounds": {
+      "type": "Cavalry",
+      "points": 40,
+      "attack": "3",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "max": 6
+    },
+    "Tuskgor Chariots": {
+      "type": "Chariot",
+      "points": 95,
+      "attack": "3",
+      "armor": "5+",
+      "hits": 3,
+      "size": 3,
+      "max": 4
+    },
+    "Dragon Ogres": {
+      "type": "Monster",
+      "points": 230,
+      "attack": "6",
+      "armor": "5+",
+      "hits": 4,
+      "size": 3,
+      "max": 1
+    },
+    "Chaos Spawn": {
+      "type": "Monster",
+      "points": 110,
+      "attack": "3/3",
+      "armor": "3+",
+      "hits": 4,
+      "size": 1,
+      "range": "15cm",
+      "max": 2
+    },
+    "Dragon Ogre Shaggoth": {
+      "type": "Monster",
+      "points": 160,
+      "attack": "8",
+      "armor": "5+",
+      "hits": 8,
+      "size": 1,
+      "max": 1
+    },
+    "Beastlord": {
+      "type": "General",
+      "points": 125,
+      "attack": "+2",
+      "size": 1,
+      "command": 9,
+      "armyMax": 1,
+      "upgrades": [
+        "Tuskgor Chariot"
+      ]
+    },
+    "Doombull": {
+      "type": "Hero",
+      "points": 80,
+      "attack": "+2",
+      "size": 1,
+      "command": 6,
+      "armyMax": 1
+    },
+    "Wargor": {
+      "type": "Hero",
+      "points": 80,
+      "attack": "+1",
+      "size": 1,
+      "command": 8,
+      "max": 1,
+      "upgrades": [
+        "Tuskgor Chariot"
+      ]
+    },
+    "Bray Shaman": {
+      "type": "Wizard",
+      "points": 80,
+      "attack": "+0",
+      "size": 1,
+      "command": 8,
+      "max": 1
+    }
+  },
+  "upgrades": {
+    "Tuskgor Chariot": {
+      "type": "Chariot Mount",
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
+    }
+  }
+}

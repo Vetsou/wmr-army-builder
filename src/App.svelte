@@ -1,14 +1,19 @@
 <script lang="ts">
-  import { Router, Route } from 'svelte-routing'
-  import Home from './routes/Home.svelte'
-  import Builder from './routes/Builder.svelte'
+  import { Router, type RouteConfig } from '@mateothegreat/svelte5-router'
+  import Home from './lib/routes/Home.svelte'
+  import Builder from './lib/routes/Builder.svelte'
 
-  export let url: string
+  const routes: RouteConfig[] = [
+    {
+      component: Home
+    },
+    {
+      path: '/factions/(?<name>.*)',
+      component: Builder
+    }
+  ]
 </script>
 
-<Router {url}>
-  <Route path="/" component={Home} />
-  <Route path="/:factionFile" let:params>
-    <Builder factionFile={params.factionFile} />
-  </Route>
-</Router>
+<main>
+  <Router {routes} />
+</main>

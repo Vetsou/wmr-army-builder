@@ -1,0 +1,126 @@
+{
+  "name": "Witch Hunter",
+  "units": {
+    "Zealots": {
+      "type": "Infantry",
+      "points": 35,
+      "attack": "3",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "min": 3,
+      "extraStands": ["Warhounds"]
+    },
+    "Halberdiers": {
+      "type": "Infantry",
+      "points": 45,
+      "attack": "3",
+      "armor": "6+",
+      "hits": 3,
+      "size": 3,
+      "max": 4
+    },
+    "Crossbowmen": {
+      "type": "Infantry",
+      "points": 55,
+      "attack": "3/1",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "range": "30cm",
+      "max": 2
+    },
+    "Handgunners": {
+      "type": "Infantry",
+      "points": 65,
+      "attack": "3/1",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "max": 4,
+      "extraStands": ["Warhounds"]
+    },
+    "Flagellants": {
+      "type": "Infantry",
+      "points": 70,
+      "attack": "5",
+      "armor": "-",
+      "hits": 3,
+      "size": 3,
+      "max": 4,
+      "extraStands": ["Warhounds"]
+    },
+    "Warhounds": {
+      "type": "Infantry",
+      "points": 20,
+      "attack": "3",
+      "armor": "-",
+      "hits": 3,
+      "size": 1
+    },
+    "Knights": {
+      "type": "Cavalry",
+      "points": 110,
+      "attack": "3",
+      "armor": "4+",
+      "hits": 3,
+      "size": 3,
+      "max": 1
+    },
+    "Pistoliers": {
+      "type": "Cavalry",
+      "points": 95,
+      "attack": "3/1",
+      "armor": "5+",
+      "hits": 3,
+      "size": 3,
+      "range": "15cm",
+      "max": 1,
+      "extraStands": ["Warhounds"]
+    },
+    "Cannon": {
+      "type": "Artillery",
+      "points": 85,
+      "attack": "1/2+bounce",
+      "armor": "-",
+      "hits": 2,
+      "size": 2,
+      "range": "60cm",
+      "max": 1
+    },
+    "General": {
+      "type": "General",
+      "points": 125,
+      "attack": "+2",
+      "size": 1,
+      "command": 9,
+      "armyMax": 1
+    },
+    "Hero": {
+      "type": "Hero",
+      "points": 80,
+      "attack": "+1",
+      "size": 1,
+      "command": 8,
+      "max": 2
+    },
+    "Warrior Priest": {
+      "type": "Wizard",
+      "points": 55,
+      "attack": "+1",
+      "size": 1,
+      "command": 7,
+      "max": 1
+    }
+  },
+  "stands": {
+    "Warhounds": {
+      "type": "Infantry",
+      "points": 20,
+      "attack": "3",
+      "armor": "-",
+      "hits": 3,
+      "size": 1
+    }
+  }
+}

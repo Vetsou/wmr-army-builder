@@ -1,9 +1,7 @@
 {
   "name": "Albion",
-  "units": [
-    {
-      "name": "Warriors",
-      "id": 0,
+  "units": {
+    "Warriors": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Slingers",
-      "id": 1,
+    "Slingers": {
       "type": "Infantry",
       "points": 40,
       "attack": "2/1",
@@ -25,9 +21,7 @@
       "min": 1,
       "max": 6
     },
-    {
-      "name": "Ogres",
-      "id": 2,
+    "Ogres": {
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -36,9 +30,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Wolfhounds",
-      "id": 3,
+    "Wolfhounds": {
       "type": "Cavalry",
       "points": 40,
       "attack": "3",
@@ -47,9 +39,7 @@
       "size": 3,
       "max": 6
     },
-    {
-      "name": "Cavalry",
-      "id": 4,
+    "Cavalry": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -58,9 +48,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Chariots",
-      "id": 5,
+    "Chariots": {
       "type": "Chariot",
       "points": 95,
       "attack": "3",
@@ -70,9 +58,7 @@
       "min": 1,
       "max": 4
     },
-    {
-      "name": "Giant",
-      "id": 6,
+    "Giant": {
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -81,9 +67,7 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "Giant Eagles",
-      "id": 7,
+    "Giant Eagles": {
       "type": "Monster",
       "points": 70,
       "attack": "2",
@@ -92,9 +76,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Fenbeast",
-      "id": 8,
+    "Fenbeast": {
       "type": "Monster",
       "points": 0,
       "attack": "6",
@@ -103,56 +85,53 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 9,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [1]
+      "upgrades": [
+        "Chariot"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 10,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [1]
+      "upgrades": [
+        "Chariot"
+      ]
     },
-    {
-      "name": "Druid",
-      "id": 11,
+    "Druid": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Giant Eagle",
+        "Chariot"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Giant Eagle",
+  },
+  "upgrades": {
+    "Giant Eagle": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 20,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 20,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Chariot",
+    "Chariot": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     }
-  ]
+  }
 }

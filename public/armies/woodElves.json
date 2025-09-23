@@ -1,9 +1,7 @@
 {
   "name": "Wood Elves",
-  "units": [
-    {
-      "name": "Glade Guard",
-      "id": 0,
+  "units": {
+    "Glade Guard": {
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -13,11 +11,9 @@
       "range": "30cm",
       "min": 2,
       "max": 4,
-      "standsRef": [0]
+      "extraStands": ["Wardancers"]
     },
-    {
-      "name": "Eternal Guard",
-      "id": 1,
+    "Eternal Guard": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -25,11 +21,9 @@
       "hits": 3,
       "size": 3,
       "max": 3,
-      "standsRef": [0]
+      "extraStands": ["Wardancers"]
     },
-    {
-      "name": "Wardancers",
-      "id": 2,
+    "Wardancers": {
       "type": "Infantry",
       "points": 30,
       "attack": "4",
@@ -38,9 +32,7 @@
       "size": 1,
       "max": 4
     },
-    {
-      "name": "Waywatchers",
-      "id": 3,
+    "Waywatchers": {
       "type": "Infantry",
       "points": 60,
       "attack": "1/2",
@@ -50,9 +42,7 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "Dryads",
-      "id": 4,
+    "Dryads": {
       "type": "Infantry",
       "points": 60,
       "attack": "4",
@@ -61,9 +51,7 @@
       "size": 3,
       "min": 1
     },
-    {
-      "name": "Glade Riders",
-      "id": 5,
+    "Glade Riders": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3/1",
@@ -73,9 +61,7 @@
       "range": "30cm",
       "max": 3
     },
-    {
-      "name": "Wild Riders",
-      "id": 6,
+    "Wild Riders": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -85,9 +71,7 @@
       "range": "15cm",
       "max": 2
     },
-    {
-      "name": "Warhawk Riders",
-      "id": 7,
+    "Warhawk Riders": {
       "type": "Monster",
       "points": 85,
       "attack": "2/1",
@@ -96,9 +80,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Treekin",
-      "id": 8,
+    "Treekin": {
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -107,9 +89,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Treeman",
-      "id": 9,
+    "Treeman": {
       "type": "Monster",
       "points": 130,
       "attack": "6",
@@ -118,31 +98,33 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 10,
+    "General": {
       "type": "General",
       "points": 155,
       "attack": "+2",
       "size": 1,
       "command": 10,
       "armyMax": 1,
-      "upgradeRef": [0, 2, 3]
+      "upgrades": [
+        "Giant Stag",
+        "Warhawk",
+        "Forest Dragon"
+      ]
     },
-    {
-      "name": "Noble",
-      "id": 11,
+    "Noble": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 2, 3]
+      "upgrades": [
+        "Giant Stag",
+        "Warhawk",
+        "Forest Dragon"
+      ]
     },
-    {
-      "name": "Treeman Ancient",
-      "id": 12,
+    "Treeman Ancient": {
       "type": "Hero",
       "points": 130,
       "attack": "+3",
@@ -150,9 +132,7 @@
       "command": 8,
       "armyMax": 1
     },
-    {
-      "name": "Branchwraith",
-      "id": 13,
+    "Branchwraith": {
       "type": "Hero",
       "points": 90,
       "attack": "+2",
@@ -160,56 +140,49 @@
       "command": 8,
       "max": 1
     },
-    {
-      "name": "Spell Weaver",
-      "id": 14,
+    "Spell Weaver": {
       "type": "Wizard",
       "points": 80,
       "attack": "+0",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 1, 2, 3]
+      "upgrades": [
+        "Giant Stag",
+        "Unicorn",
+        "Warhawk",
+        "Forest Dragon"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Giant Stag",
+  },
+  "upgrades": {
+    "Giant Stag": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Unicorn",
+    "Unicorn": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 15,
+      "max": 1
     },
-    {
-      "id": 2,
-      "name": "Warhawk",
+    "Warhawk": {
       "type": "Monstrous Mount",
-      "attackModify": "+1",
-      "pointsModify": 15,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 15,
+      "max": 1
     },
-    {
-      "id": 3,
-      "name": "Forest Dragon",
+    "Forest Dragon": {
       "type": "Monstrous Mount",
-      "attackModify": "+3",
-      "pointsModify": 100,
-      "unitMax": 1
+      "attack": "+3",
+      "cost": 100,
+      "max": 1
     }
-  ],
-  "stands": [
-    {
-      "name": "Wardancers",
-      "id": 0,
+  },
+  "stands": {
+    "Wardancers": {
       "type": "Infantry",
       "points": 30,
       "attack": "4",
@@ -218,5 +191,5 @@
       "size": 1,
       "max": 4
     }
-  ]
+  }
 }

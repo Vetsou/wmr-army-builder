@@ -1,9 +1,7 @@
 {
   "name": "Araby",
-  "units": [
-    {
-      "name": "Spearmen",
-      "id": 0,
+  "units": {
+    "Spearmen": {
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Bowmen",
-      "id": 1,
+    "Bowmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -23,9 +19,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Guards",
-      "id": 2,
+    "Guards": {
       "type": "Infantry",
       "points": 65,
       "attack": "3",
@@ -34,9 +28,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Knights",
-      "id": 3,
+    "Knights": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -44,9 +36,7 @@
       "hits": 3,
       "size": 3
     },
-    {
-      "name": "Desert Riders",
-      "id": 4,
+    "Desert Riders": {
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -55,9 +45,7 @@
       "size": 3,
       "range": "15cm"
     },
-    {
-      "name": "Camel Riders",
-      "id": 5,
+    "Camel Riders": {
       "type": "Cavalry",
       "points": 100,
       "attack": "3/1",
@@ -66,9 +54,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Magic Carpets",
-      "id": 6,
+    "Magic Carpets": {
       "type": "Cavalry",
       "points": 85,
       "attack": "1/2",
@@ -78,9 +64,7 @@
       "range": "15cm",
       "max": 2
     },
-    {
-      "name": "Elephants",
-      "id": 7,
+    "Elephants": {
       "type": "Monster",
       "points": 200,
       "attack": "5",
@@ -89,64 +73,64 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 8,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0, 1, 2]
+      "upgrades": [
+        "Flying Carpet",
+        "Elephant",
+        "Djinn"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 9,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0, 1, 2]
+      "upgrades": [
+        "Flying Carpet",
+        "Elephant",
+        "Djinn"
+      ]
     },
-    {
-      "name": "Wizard",
-      "id": 10,
+    "Wizard": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0, 1, 2]
+      "upgrades": [
+        "Flying Carpet",
+        "Elephant",
+        "Djinn"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Flying Carpet",
+  },
+  "upgrades": {
+    "Flying Carpet": {
       "type": "Chariot Mount",
-      "attackModify": "+0",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+0",
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Elephant",
+    "Elephant": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 65,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 65,
+      "max": 1
     },
-    {
-      "id": 2,
-      "name": "Djinn",
+    "Djinn": {
       "type": "Monstrous Mount",
-      "attackModify": "+2/+2",
-      "pointsModify": 90,
-      "unitMax": 1
+      "attack": "+2/+2",
+      "cost": 90,
+      "max": 1
     }
-  ]
+  }
 }

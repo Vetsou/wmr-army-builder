@@ -1,9 +1,7 @@
 {
   "name": "Dogs of War",
-  "units": [
-    {
-      "name": "Pikemen",
-      "id": 0,
+  "units": {
+    "Pikemen": {
       "type": "Infantry",
       "points": 50,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Crossbowmen",
-      "id": 1,
+    "Crossbowmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -24,9 +20,7 @@
       "range": "30cm",
       "min": 2
     },
-    {
-      "name": "Handgunners",
-      "id": 2,
+    "Handgunners": {
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -36,9 +30,7 @@
       "range": "30cm",
       "max": 2
     },
-    {
-      "name": "Swordmen",
-      "id": 3,
+    "Swordmen": {
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -47,9 +39,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Ogres",
-      "id": 4,
+    "Ogres": {
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -58,9 +48,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Dwarfs",
-      "id": 5,
+    "Dwarfs": {
       "type": "Infantry",
       "points": 110,
       "attack": "3",
@@ -69,9 +57,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Marauders",
-      "id": 6,
+    "Marauders": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -80,9 +66,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Light Cavalry",
-      "id": 7,
+    "Light Cavalry": {
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -91,9 +75,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Knights",
-      "id": 8,
+    "Knights": {
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -102,9 +84,7 @@
       "size": 3,
       "max": 2
     },
-    {
-      "name": "Galloper Guns",
-      "id": 9,
+    "Galloper Guns": {
       "type": "Artillery",
       "points": 85,
       "attack": "1/2+bounce",
@@ -113,9 +93,7 @@
       "size": 2,
       "max": 1
     },
-    {
-      "name": "Giant",
-      "id": 10,
+    "Giant": {
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -124,9 +102,7 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "Birdmen",
-      "id": 11,
+    "Birdmen": {
       "type": "Infantry",
       "points": 85,
       "attack": "2/1",
@@ -135,67 +111,64 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 12,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Griffon"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 13,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Griffon"
+      ]
     },
-    {
-      "name": "Paymaster",
-      "id": 14,
+    "Paymaster": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "armyMax": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Griffon",
+        "Pay Wagon"
+      ]
     },
-    {
-      "name": "Wizard",
-      "id": 15,
+    "Wizard": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Griffon"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Griffon",
+  },
+  "upgrades": {
+    "Griffon": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Pay Wagon",
+    "Pay Wagon": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 20,
+      "attack": "+1",
+      "cost": 20,
       "armyMax": 1
     }
-  ]
+  }
 }

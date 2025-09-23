@@ -1,9 +1,7 @@
 {
   "name": "Goblin",
-  "units": [
-    {
-      "name": "Goblins",
-      "id": 0,
+  "units": {
+    "Goblins": {
       "type": "Infantry",
       "points": 30,
       "attack": "2/1",
@@ -13,9 +11,7 @@
       "range": "15cm",
       "min": 4
     },
-    {
-      "name": "Squig Herd",
-      "id": 1,
+    "Squig Herd": {
       "type": "Infantry",
       "points": 30,
       "attack": "3",
@@ -23,9 +19,7 @@
       "hits": 3,
       "size": 3
     },
-    {
-      "name": "Trolls",
-      "id": 2,
+    "Trolls": {
       "type": "Infantry",
       "points": 110,
       "attack": "5",
@@ -34,9 +28,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Wolf Riders",
-      "id": 3,
+    "Wolf Riders": {
       "type": "Cavalry",
       "points": 60,
       "attack": "2/1",
@@ -46,9 +38,7 @@
       "range": "15cm",
       "min": 2
     },
-    {
-      "name": "Wolf Chariots",
-      "id": 4,
+    "Wolf Chariots": {
       "type": "Chariot",
       "points": 80,
       "attack": "3",
@@ -57,9 +47,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Pump Wagon",
-      "id": 5,
+    "Pump Wagon": {
       "type": "Chariot",
       "points": 50,
       "attack": "d6",
@@ -68,9 +56,7 @@
       "size": 1,
       "max": 2
     },
-    {
-      "name": "Giant",
-      "id": 6,
+    "Giant": {
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -79,9 +65,7 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "Doom Diver",
-      "id": 7,
+    "Doom Diver": {
       "type": "Artillery",
       "points": 80,
       "attack": "1/3",
@@ -91,9 +75,7 @@
       "range": "60cm",
       "max": 1
     },
-    {
-      "name": "Spear Chukka",
-      "id": 8,
+    "Spear Chukka": {
       "type": "Artillery",
       "points": 65,
       "attack": "1/2 per stand",
@@ -103,56 +85,55 @@
       "range": "40cm",
       "max": 2
     },
-    {
-      "name": "Goblin Warboss",
-      "id": 9,
+    "Goblin Warboss": {
       "type": "General",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "armyMax": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Wolf Chariot",
+        "Wyvern"
+      ]
     },
-    {
-      "name": "Goblin Hero",
-      "id": 10,
+    "Goblin Hero": {
       "type": "Hero",
       "points": 45,
       "attack": "+1",
       "size": 1,
       "command": 7,
       "max": 4,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Wolf Chariot",
+        "Wyvern"
+      ]
     },
-    {
-      "name": "Goblin Shaman",
-      "id": 11,
+    "Goblin Shaman": {
       "type": "Wizard",
       "points": 30,
       "attack": "+0",
       "size": 1,
       "command": 6,
       "max": 2,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Wolf Chariot",
+        "Wyvern"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Wolf Chariot",
+  },
+  "upgrades": {
+    "Wolf Chariot": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Wyvern",
+    "Wyvern": {
       "type": "Monstrous Mount",
-      "attackModify": "+2",
-      "pointsModify": 80,
-      "unitMax": 1
+      "attack": "+2",
+      "cost": 80,
+      "max": 1
     }
-  ]  
+  }
 }

@@ -1,9 +1,7 @@
 {
   "name": "Norse",
-  "units": [
-    {
-      "name": "Bondsmen",
-      "id": 0,
+  "units": {
+    "Bondsmen": {
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Huscarls",
-      "id": 1,
+    "Huscarls": {
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -24,9 +20,7 @@
       "min": 1,
       "max": 4
     },
-    {
-      "name": "Huntsmen",
-      "id": 2,
+    "Huntsmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -35,9 +29,7 @@
       "size": 3,
       "range": "30cm"
     },
-    {
-      "name": "Berserkers",
-      "id": 3,
+    "Berserkers": {
       "type": "Infantry",
       "points": 70,
       "attack": "5",
@@ -46,9 +38,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Ulfwerener",
-      "id": 4,
+    "Ulfwerener": {
       "type": "Infantry",
       "points": 115,
       "attack": "4",
@@ -57,9 +47,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Cavalry",
-      "id": 5,
+    "Cavalry": {
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -68,9 +56,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Storm Giant",
-      "id": 6,
+    "Storm Giant": {
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -79,9 +65,7 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "War Mammoth",
-      "id": 7,
+    "War Mammoth": {
       "type": "Monster",
       "points": 180,
       "attack": "8",
@@ -90,9 +74,7 @@
       "size": 1,
       "max": 1
     },
-    {
-      "name": "Valkyries",
-      "id": 8,
+    "Valkyries": {
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -101,56 +83,53 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "Jarl",
-      "id": 9,
+    "Jarl": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Were Kin"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 10,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Were Kin"
+      ]
     },
-    {
-      "name": "Shaman",
-      "id": 11,
+    "Shaman": {
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Were Kin",
+        "Horn of Resounding"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Were Kin",
+  },
+  "upgrades": {
+    "Were Kin": {
       "type": "Special",
-      "attackModify": "+1",
-      "pointsModify": 40,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 40,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Horn of Resounding",
+    "Horn of Resounding": {
       "type": "Chariot Mount",
-      "attackModify": "+1",
-      "pointsModify": 20,
+      "attack": "+1",
+      "cost": 20,
       "armyMax": 1
     }
-  ]  
+  }
 }

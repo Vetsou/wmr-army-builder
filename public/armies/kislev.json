@@ -1,9 +1,7 @@
 {
   "name": "Kislev",
-  "units": [
-    {
-      "name": "Winged Lancers",
-      "id": 0,
+  "units": {
+    "Winged Lancers": {
       "type": "Cavalry",
       "points": 100,
       "attack": "3",
@@ -12,9 +10,7 @@
       "size": 3,
       "max": 4
     },
-    {
-      "name": "Horse Archers",
-      "id": 1,
+    "Horse Archers": {
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -24,9 +20,7 @@
       "range": "15cm",
       "min": 2
     },
-    {
-      "name": "Cossacks",
-      "id": 2,
+    "Cossacks": {
       "type": "Cavalry",
       "points": 95,
       "attack": "3/1",
@@ -36,9 +30,7 @@
       "range": "15cm",
       "max": 2
     },
-    {
-      "name": "Bowmen",
-      "id": 3,
+    "Bowmen": {
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -47,9 +39,7 @@
       "size": 3,
       "range": "30cm"
     },
-    {
-      "name": "Red Guard",
-      "id": 4,
+    "Red Guard": {
       "type": "Infantry",
       "points": 90,
       "attack": "3/1",
@@ -59,9 +49,7 @@
       "range": "30cm",
       "max": 1
     },
-    {
-      "name": "Axemen",
-      "id": 5,
+    "Axemen": {
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -70,9 +58,7 @@
       "size": 3,
       "min": 2
     },
-    {
-      "name": "Bears",
-      "id": 6,
+    "Bears": {
       "type": "Infantry",
       "points": 90,
       "attack": "5",
@@ -81,9 +67,7 @@
       "size": 3,
       "max": 1
     },
-    {
-      "name": "War Wagons",
-      "id": 7,
+    "War Wagons": {
       "type": "Artillery",
       "points": 125,
       "attack": "4/4",
@@ -92,56 +76,53 @@
       "size": 2,
       "max": 1
     },
-    {
-      "name": "General",
-      "id": 8,
+    "General": {
       "type": "General",
       "points": 125,
       "attack": "+2",
       "size": 1,
       "command": 9,
       "armyMax": 1,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Bear"
+      ]
     },
-    {
-      "name": "Hero",
-      "id": 9,
+    "Hero": {
       "type": "Hero",
       "points": 80,
       "attack": "+1",
       "size": 1,
       "command": 8,
       "max": 2,
-      "upgradeRef": [0]
+      "upgrades": [
+        "Bear"
+      ]
     },
-    {
-      "name": "Shaman",
-      "id": 10,
+    "Shaman": {
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
       "size": 1,
       "command": 7,
       "max": 1,
-      "upgradeRef": [0, 1]
+      "upgrades": [
+        "Bear",
+        "Yozhin"
+      ]
     }
-  ],
-  "upgrades": [
-    {
-      "id": 0,
-      "name": "Bear",
+  },
+  "upgrades": {
+    "Bear": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 10,
-      "unitMax": 1
+      "attack": "+1",
+      "cost": 10,
+      "max": 1
     },
-    {
-      "id": 1,
-      "name": "Yozhin",
+    "Yozhin": {
       "type": "Special Mount",
-      "attackModify": "+1",
-      "pointsModify": 40,
+      "attack": "+1",
+      "cost": 40,
       "armyMax": 1
     }
-  ]  
+  }
 }
