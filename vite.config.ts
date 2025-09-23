@@ -2,15 +2,20 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [svelte(), tailwindcss()],
   resolve: {
     alias: {
-      '$builder': path.resolve(__dirname, 'src/lib/builder'),
-      '$helper': path.resolve(__dirname, 'src/lib/builder/helper'),
-      '$components': path.resolve(__dirname, 'src/lib/components')
+      '$builder': resolve(__dirname, 'src/lib/builder'),
+      '$helper': resolve(__dirname, 'src/lib/builder/helper'),
+      '$components': resolve(__dirname, 'src/lib/components')
     }
   },
   test: {
