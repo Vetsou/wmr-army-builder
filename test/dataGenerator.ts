@@ -51,3 +51,12 @@ export const createArmyUnit = (unit: Partial<IArmyUnit>): IArmyUnit => {
     equippedUpgrades: unit.equippedUpgrades ?? {}
   }
 }
+
+export const createSchemaItem = (item: Partial<ISchemaMagicItem>): ISchemaMagicItem => {
+  return {
+    type: item.type ?? 'Magic Weapon',
+    cost: item.cost ?? 100,
+    allowedUnits: item.allowedUnits ?? ['Infantry'],
+    stat: item.stat
+  }
+}

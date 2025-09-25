@@ -3,6 +3,7 @@ import { get, type Writable } from 'svelte/store'
 import * as DataGenerator from 'test/dataGenerator'
 
 import * as ArmyMutator from '$builder/mutator/armyMutator'
+import * as UnitMutator from '$builder/mutator/unitMutator'
 
 // Mocks
 vi.mock('$builder/validator/unitRules', () => ({ validateUnit: vi.fn() }))
@@ -66,6 +67,23 @@ describe('removeUnit', () => {
     expect(state.units.UnitA).toBeUndefined()
     expect(state.armyCost).toBe(0)
   })
+
+  it('removes all items from deleted unit', () => {
+    // Arrange
+    const schemaUnit = DataGenerator.createArmyUnit({ points: 35 })
+    const item = DataGenerator.createSchemaItem({ cost: 100 })
+    ArmyMutator.addUnit(store, 'UnitA', schemaUnit, 2)
+    UnitMutator.equipItem(store, "UnitA", "ItemA", item)
+
+    // Act & Assert
+    const state = get(store)
+    expect(state.armyCost).toBe(170)
+
+    ArmyMutator.removeUnit(store, 'UnitA', schemaUnit, 2)
+
+    expect(state.units.UnitA).toBeUndefined()
+    expect(state.armyCost).toBe(0)
+  })
 })
 
 describe('resetState', () => {
@@ -84,5 +102,25 @@ describe('resetState', () => {
     expect(state.units).toMatchObject({})
     expect(state.armyCost).toBe(0)
     expect(state.armyCostLimit).toBe(2000)
+  })
+
+  it('adds required units and update army cost', () => {
+    // Arrange
+    const schema = DataGenerator.createArmySchema({
+      units: {
+        "UnitA": DataGenerator.createSchemaUnit({ points: 15, min: 3 }),
+        "UnitGeneral": DataGenerator.createSchemaUnit({ points: 50, type: 'General' })
+      }
+    })
+
+    // Act
+    ArmyMutator.resetState(store, schema, {})
+
+    // Assert
+    const state = get(store)
+    expect(state.armyCost).toBe(95)
+    expect(state.armyCostLimit).toBe(2000)
+    expect(state.units.UnitA.count).toBe(3)
+    expect(state.units.UnitGeneral.count).toBe(1)
   })
 })
