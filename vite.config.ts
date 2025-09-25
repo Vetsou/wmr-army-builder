@@ -8,16 +8,19 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+const aliases = {
+  '$builder': resolve(__dirname, 'src/lib/builder'),
+  '$helper': resolve(__dirname, 'src/lib/builder/helper'),
+  '$components': resolve(__dirname, 'src/lib/components')
+}
+
 export default defineConfig({
   plugins: [svelte(), tailwindcss()],
   resolve: {
-    alias: {
-      '$builder': resolve(__dirname, 'src/lib/builder'),
-      '$helper': resolve(__dirname, 'src/lib/builder/helper'),
-      '$components': resolve(__dirname, 'src/lib/components')
-    }
+    alias: aliases
   },
   test: {
-    include: ['./tests/**/*.{test,spec}.ts']
+    include: ['./test/**/*.{test,spec}.ts'],
+    alias: aliases
   }
 })

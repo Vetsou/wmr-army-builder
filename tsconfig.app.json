@@ -16,16 +16,17 @@
     "checkJs": true,
     "isolatedModules": true,
     "moduleDetection": "force",
+    "baseUrl": ".",
     "paths": {
-      "$builder/*": ["./src/lib/builder/*"],
-      "$helper/*": ["./src/lib/builder/helper/*"],
-      "$components/*": ["./src/lib/components/*"]
+      "$builder/*": ["src/lib/builder/*"],
+      "$helper/*": ["src/lib/builder/helper/*"],
+      "$components/*": ["src/lib/components/*"]
     }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.svelte",
-    "tests/**/*.ts",
-    "tests/**/*.test.ts"
+    "test/**/*.ts",
+    "test/**/*.test.ts"
   ]
 }
