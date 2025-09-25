@@ -13,14 +13,15 @@ import * as UnitValidator from '$builder/validator/unitRules'
 import * as ArmyValidator from '$builder/validator/armyRules'
 import type { IBuilderState } from '$builder/store'
 
+
 let store: Writable<IBuilderState>
 
 beforeEach(() => {
-  store = DataGenerator.createBuilderState()
+  store = DataGenerator.createBuilderState({})
   vi.clearAllMocks()
 })
 
-describe('addUnit', () => {
+describe('AddUnit', () => {
   it('adds new unit and updates army cost', () => {
     // Arrange
     const schemaUnit = DataGenerator.createSchemaUnit({ points: 15 })
@@ -37,7 +38,7 @@ describe('addUnit', () => {
   })
 })
 
-describe('removeUnit', () => {
+describe('RemoveUnit', () => {
   it('removes unit and updates army cost', () => {
     // Arrange
     const schemaUnit = DataGenerator.createArmyUnit({ points: 30 })
@@ -86,7 +87,7 @@ describe('removeUnit', () => {
   })
 })
 
-describe('resetState', () => {
+describe('ResetState', () => {
   it('removes all unit and updates state', () => {
     // Arrange
     const schemaUnit = DataGenerator.createArmyUnit({ points: 5 })

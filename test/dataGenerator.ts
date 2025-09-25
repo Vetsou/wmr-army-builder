@@ -1,11 +1,11 @@
 import type { IBuilderState } from "$builder/store"
 import { writable, type Writable } from "svelte/store"
 
-export const createBuilderState = (): Writable<IBuilderState> => {
+export const createBuilderState = (state: Partial<IBuilderState>): Writable<IBuilderState> => {
   return writable<IBuilderState>({
-    armyName: 'Test Army',
-    armyCost: 0,
-    armyCostLimit: 2000,
+    armyName: state.armyName ?? 'Test Army',
+    armyCost: state.armyCost ?? 0,
+    armyCostLimit: state.armyCostLimit ?? 2000,
     units: {},
     armyErrors: [],
     lookup: {
@@ -58,5 +58,16 @@ export const createSchemaItem = (item: Partial<ISchemaMagicItem>): ISchemaMagicI
     cost: item.cost ?? 100,
     allowedUnits: item.allowedUnits ?? ['Infantry'],
     stat: item.stat
+  }
+}
+
+export const createSchemaUpgrade = (upgrade: Partial<ISchemaUpgrade>): ISchemaUpgrade => {
+  return {
+    type: upgrade.type ?? 'Chariot Mount',
+    cost: upgrade.cost ?? 25,
+    max: upgrade.max,
+    armyMax: upgrade.armyMax,
+    attack: upgrade.attack,
+    range: upgrade.range
   }
 }
