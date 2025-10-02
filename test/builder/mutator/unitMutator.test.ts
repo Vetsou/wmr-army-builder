@@ -71,7 +71,7 @@ describe('UnequipItem', () => {
     UnitMutator.equipItem(store, 'UnitA', 'ItemA', schemaItem)
 
     // Act
-    UnitMutator.unequipItem(store, 'UnitA', 'ItemA', schemaItem)
+    UnitMutator.unequipItem(store, 'UnitA', 'ItemA')
 
     // Assert
     const state = get(store)
@@ -88,7 +88,7 @@ describe('UnequipItem', () => {
     UnitMutator.equipItem(store, 'UnitA', 'ItemA', schemaItem)
 
     // Act
-    UnitMutator.unequipItem(store, 'UnitA', 'ItemA', schemaItem)
+    UnitMutator.unequipItem(store, 'UnitA', 'ItemA')
 
     // Assert
     const state = get(store)
