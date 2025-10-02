@@ -132,7 +132,7 @@ export const removeStand = (
     s.armyCost -= unitStand.points
 
     if (unitStand.count <= 0) {
-      delete unit.addedStands[unitKey]
+      delete unit.addedStands[standKey]
     }
   })
 }

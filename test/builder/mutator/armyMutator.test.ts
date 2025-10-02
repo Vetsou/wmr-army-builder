@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import type { IBuilderState } from '$builder/store'
 import { get, type Writable } from 'svelte/store'
 import * as DataGenerator from 'test/dataGenerator'
 
@@ -11,7 +12,6 @@ vi.mock('$builder/validator/armyRules', () => ({ validateArmy: vi.fn() }))
 
 import * as UnitValidator from '$builder/validator/unitRules'
 import * as ArmyValidator from '$builder/validator/armyRules'
-import type { IBuilderState } from '$builder/store'
 
 
 let store: Writable<IBuilderState>
@@ -37,6 +37,7 @@ describe('AddUnit', () => {
     expect(ArmyValidator.validateArmy).toHaveBeenCalled()
   })
 })
+
 
 describe('RemoveUnit', () => {
   it('removes unit and updates army cost', () => {
@@ -86,6 +87,7 @@ describe('RemoveUnit', () => {
     expect(state.armyCost).toBe(0)
   })
 })
+
 
 describe('ResetState', () => {
   it('removes all unit and updates state', () => {
