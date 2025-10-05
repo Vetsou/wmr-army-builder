@@ -40,8 +40,8 @@ const createBuilderStore = () => {
 
     equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem) =>
       UnitMutator.equipItem(state, unitKey, itemKey, itemData),
-    unequipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem) =>
-      UnitMutator.unequipItem(state, unitKey, itemKey, itemData),
+    unequipItem: (unitKey: string, itemKey: string) =>
+      UnitMutator.unequipItem(state, unitKey, itemKey),
 
     equipUpgrade: (unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade) =>
       UnitMutator.equipUpgrade(state, unitKey, upgradeKey, upgradeData),
