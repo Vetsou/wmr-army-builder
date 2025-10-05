@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import type { IBuilderState } from '$builder/store'
 import { get, type Writable } from 'svelte/store'
 import { ArmyErrors, formatError } from '$builder/validator/errorMessages'

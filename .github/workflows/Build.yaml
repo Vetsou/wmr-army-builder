@@ -35,5 +35,5 @@ jobs:
       - name: Build Check
         run: npm run check
 
-      - name: Run tests (skipped)
-        run: echo "No tests yet"
+      - name: Run tests
+        run: npm run test
