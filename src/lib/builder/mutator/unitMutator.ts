@@ -49,15 +49,13 @@ export const equipItem = (
 export const unequipItem = (
   state: Writable<IBuilderState>,
   unitKey: string,
-  itemKey: string,
-  itemData: ISchemaMagicItem
+  itemKey: string
 ) => {
   mutateUnit(state, unitKey, (s, unit) => {
     const unitItem = unit.equippedItems[itemKey]
 
-    const costForUnit = getUnitItemCost(unit, itemData)
     unitItem.count--
-    s.armyCost -= costForUnit
+    s.armyCost -= unitItem.costForUnit
 
     if (unitItem.count <= 0) delete unit.equippedItems[itemKey]
   })
@@ -132,7 +130,7 @@ export const removeStand = (
     s.armyCost -= unitStand.points
 
     if (unitStand.count <= 0) {
-      delete unit.addedStands[unitKey]
+      delete unit.addedStands[standKey]
     }
   })
 }

@@ -29,6 +29,7 @@ const commonRules = {
     varsIgnorePattern: '^_',
     caughtErrorsIgnorePattern: '^_',
   }],
+  // Max line length
   'max-len': ['error', {
     code: 120,
     tabWidth: 2,

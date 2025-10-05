@@ -11,7 +11,7 @@
 
 {#each Object.entries(unitData.equippedItems) as [itemName, itemData], i (i)}
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-      onclick={() => BuilderStore.unequipItem(unitName, itemName, itemData)}>
+      onclick={() => BuilderStore.unequipItem(unitName, itemName)}>
     <div>{ itemName }</div>
     <div>{ itemData.type }</div>
     <div>{ itemData.costForUnit * itemData.count }</div>
