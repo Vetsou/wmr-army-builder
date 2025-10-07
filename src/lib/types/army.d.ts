@@ -69,6 +69,14 @@ declare global {
     equippedUpgrades: Record<string, IArmyUpgrade>
     addedStands: Record<string, IArmyStand>
   }
+
+  /**
+   * Regiment of Renown inside schema
+   */
+  interface ISchemaRegiment extends ISchemaUnit {
+    incompatibleWith?: string[]
+    incompatibleFactions?: string[]
+  }
 }
 
 export {}
