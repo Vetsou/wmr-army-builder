@@ -1,0 +1,411 @@
+{
+  "Pirazzo's Lost Legion": {
+    "type": "Infantry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": ["Tichi-Huichi's Raiders"],
+    "incompatibleFactions": ["Lizardmen"]
+  },
+  "Alcatani Fellowship": {
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3
+  },
+  "Ricco's Republican Guard": {
+    "type": "Infantry",
+    "points": 75,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3
+  },
+  "Leopold's Leopard Company": {
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3
+  },
+  "Marksmen of Miragliano": {
+    "type": "Infantry",
+    "points": 65,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3,
+    "incompatibleFactions": ["Skaven"]
+  },
+  "Braganza's Besiegers": {
+    "type": "Infantry",
+    "points": 90,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleFactions": ["Skaven"]
+  },
+  "Lumpin Croop's Cocks": {
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3
+  },
+  "Vespero's Vendetta": {
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3
+  },
+  "The Cursed Company": {
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": [
+      "Tomb Kings",
+      "Bretonnia",
+      "Vampire Counts",
+      "Witch Hunters",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ]
+  },
+  "Mengil's Manflyers": {
+    "type": "Infantry",
+    "points": 85,
+    "attack": "3/2",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": [
+      "Asarnil the Dragonlord",
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix"
+    ],
+    "incompatibleFactions": [
+      "High Elves",
+      "Dwarfs",
+      "Bretonnia",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Anakonda's Amazons": {
+    "type": "Infantry",
+    "points": 75,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3
+  },
+  "Bearmen of Urslo": {
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleFactions": [
+      "High Elves",
+      "Lizardmen",
+      "Bretonnia",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Ruglud's Armoured Orcs": {
+    "type": "Infantry",
+    "points": 90,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": [
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix"
+    ],
+    "incompatibleFactions": [
+      "Empire",
+      "High Elves",
+      "Dwarfs",
+      "Lizardmen",
+      "Bretonnia",
+      "Dark Elves",
+      "Araby",
+      "Albion",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Long Drong's Slayer Pirates": {
+    "type": "Infantry",
+    "points": 120,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 4,
+    "size": 3,
+    "incompatibleWith": [
+      "Ruglud's Armoured Orcs",
+      "Oglah Khan's Wolfboyz",
+      "Mengil Manhide's Manflayers",
+      "Asarnil the Dragonlord"
+    ],
+    "incompatibleFactions": [
+      "Chaos",
+      "Orcs",
+      "High Elves",
+      "Skaven",
+      "Bretonnia",
+      "Dark Elves",
+      "Daemons",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Golgfag's Mercenary Ogres": {
+    "type": "Infantry",
+    "points": 115,
+    "attack": "4",
+    "armor": "5+",
+    "hits": 4,
+    "size": 3,
+    "incompatibleFactions": [
+      "High Elves",
+      "Bretonnia",
+      "Dark Elves"
+    ]
+  },
+  "Voland's Venators": {
+    "type": "Cavalry",
+    "points": 120,
+    "attack": "3",
+    "armor": "4+",
+    "hits": 3,
+    "size": 3
+  },
+  "Al Muktar's Desert Dogs": {
+    "type": "Cavalry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleFactions": [
+      "Empire",
+      "Tomb Kings"
+    ]
+  },
+  "Oglah Khan's Wolfboyz": {
+    "type": "Cavalry",
+    "points": 70,
+    "attack": "2/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": [
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix"
+    ],
+    "incompatibleFactions": [
+      "Empire",
+      "High Elves",
+      "Dwarfs",
+      "Lizardmen",
+      "Bretonnia",
+      "Kislev",
+      "Araby",
+      "Albion",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Tichi-Huichi's Raiders": {
+    "type": "Cavalry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleWith": ["Pirazzo's Lost Legion"],
+    "incompatibleFactions": [
+      "Chaos",
+      "Orcs",
+      "Skaven",
+      "Bretonnia",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Birdmen of Catrazza": {
+    "type": "Infantry",
+    "points": 95,
+    "attack": "2/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "incompatibleFactions": [
+      "Empire",
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Dwarfs",
+      "Skaven",
+      "Lizardmen",
+      "Kislev",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Albion",
+      "Goblins",
+      "Witch Hunters",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Cathay"
+    ]
+  },
+  "Bronzino's Galloper Guns": {
+    "type": "Infantry",
+    "points": 95,
+    "attack": "1/2+bounce",
+    "armor": "-",
+    "hits": 2,
+    "size": 2,
+    "incompatibleFactions": [
+      "Chaos",
+      "High Elves",
+      "Lizardmen",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Araby",
+      "Albion",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "Asarnil The Dragonlord": {
+    "type": "Hero",
+    "points": 190,
+    "attack": "+4",
+    "command": 8,
+    "size": 1,
+    "incompatibleWith": [
+      "Mengil Manhide's Manflayers",
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix"
+    ],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Dwarfs",
+      "Skaven",
+      "Lizardmen",
+      "Bretonnia",
+      "Kislev",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Albion",
+      "Goblins",
+      "Witch Hunters",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ]
+  },
+  "Gotrek and Felix": {
+    "type": "Hero",
+    "points": 100,
+    "attack": "+2",
+    "command": 8,
+    "size": 1,
+    "incompatibleWith": [
+      "Ruglud's Armoured Orcs",
+      "Oglah Khan's Wolfboyz",
+      "Mengil Manhide's Manflayers",
+      "Asarnil the Dragonlord"
+    ],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "High Elves",
+      "Skaven",
+      "Lizardmen",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ]
+  },
+  "The Witch Hunters": {
+    "type": "Hero",
+    "points": 90,
+    "attack": "+1",
+    "command": 8,
+    "size": 1,
+    "incompatibleWith": ["The Cursed Company"],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Skaven",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ]
+  }
+}
