@@ -1,5 +1,6 @@
 {
   "Pirazzo's Lost Legion": {
+    "urlId": "R1",
     "type": "Infantry",
     "points": 85,
     "attack": "3/1",
@@ -11,6 +12,7 @@
     "incompatibleFactions": ["Lizardmen"]
   },
   "Alcatani Fellowship": {
+    "urlId": "R2",
     "type": "Infantry",
     "points": 60,
     "attack": "3",
@@ -20,6 +22,7 @@
     "max": 1
   },
   "Ricco's Republican Guard": {
+    "urlId": "R3",
     "type": "Infantry",
     "points": 75,
     "attack": "3",
@@ -29,6 +32,7 @@
     "max": 1
   },
   "Leopold's Leopard Company": {
+    "urlId": "R4",
     "type": "Infantry",
     "points": 60,
     "attack": "3",
@@ -38,6 +42,7 @@
     "max": 1
   },
   "Marksmen of Miragliano": {
+    "urlId": "R5",
     "type": "Infantry",
     "points": 65,
     "attack": "3/1",
@@ -48,6 +53,7 @@
     "incompatibleFactions": ["Skaven"]
   },
   "Braganza's Besiegers": {
+    "urlId": "R6",
     "type": "Infantry",
     "points": 90,
     "attack": "3/1",
@@ -58,6 +64,7 @@
     "incompatibleFactions": ["Skaven"]
   },
   "Lumpin Croop's Cocks": {
+    "urlId": "R7",
     "type": "Infantry",
     "points": 70,
     "attack": "3/1",
@@ -67,6 +74,7 @@
     "max": 1
   },
   "Vespero's Vendetta": {
+    "urlId": "R8",
     "type": "Infantry",
     "points": 60,
     "attack": "3/1",
@@ -76,6 +84,7 @@
     "max": 1
   },
   "The Cursed Company": {
+    "urlId": "R9",
     "type": "Infantry",
     "points": 70,
     "attack": "3",
@@ -94,6 +103,7 @@
     ]
   },
   "Mengil's Manflyers": {
+    "urlId": "R10",
     "type": "Infantry",
     "points": 85,
     "attack": "3/2",
@@ -117,6 +127,7 @@
     ]
   },
   "Anakonda's Amazons": {
+    "urlId": "R11",
     "type": "Infantry",
     "points": 75,
     "attack": "3/1",
@@ -126,6 +137,7 @@
     "max": 1
   },
   "Bearmen of Urslo": {
+    "urlId": "R12",
     "type": "Infantry",
     "points": 70,
     "attack": "3",
@@ -144,6 +156,7 @@
     ]
   },
   "Ruglud's Armoured Orcs": {
+    "urlId": "R13",
     "type": "Infantry",
     "points": 90,
     "attack": "3/1",
@@ -171,6 +184,7 @@
     ]
   },
   "Long Drong's Slayer Pirates": {
+    "urlId": "R14",
     "type": "Infantry",
     "points": 120,
     "attack": "3/1",
@@ -201,6 +215,7 @@
     ]
   },
   "Golgfag's Mercenary Ogres": {
+    "urlId": "R15",
     "type": "Infantry",
     "points": 115,
     "attack": "4",
@@ -215,6 +230,7 @@
     ]
   },
   "Voland's Venators": {
+    "urlId": "R16",
     "type": "Cavalry",
     "points": 120,
     "attack": "3",
@@ -224,6 +240,7 @@
     "max": 1
   },
   "Al Muktar's Desert Dogs": {
+    "urlId": "R17",
     "type": "Cavalry",
     "points": 85,
     "attack": "3/1",
@@ -237,6 +254,7 @@
     ]
   },
   "Oglah Khan's Wolfboyz": {
+    "urlId": "R18",
     "type": "Cavalry",
     "points": 70,
     "attack": "2/1",
@@ -264,6 +282,7 @@
     ]
   },
   "Tichi-Huichi's Raiders": {
+    "urlId": "R19",
     "type": "Cavalry",
     "points": 85,
     "attack": "3/1",
@@ -288,6 +307,7 @@
     ]
   },
   "Birdmen of Catrazza": {
+    "urlId": "R20",
     "type": "Infantry",
     "points": 95,
     "attack": "2/1",
@@ -318,6 +338,7 @@
     ]
   },
   "Bronzino's Galloper Guns": {
+    "urlId": "R21",
     "type": "Infantry",
     "points": 95,
     "attack": "1/2+bounce",
@@ -341,6 +362,7 @@
     ]
   },
   "Asarnil The Dragonlord": {
+    "urlId": "R22",
     "type": "Hero",
     "points": 190,
     "attack": "+4",
@@ -376,6 +398,7 @@
     ]
   },
   "Gotrek and Felix": {
+    "urlId": "R23",
     "type": "Hero",
     "points": 100,
     "attack": "+2",
@@ -408,6 +431,7 @@
     ]
   },
   "The Witch Hunters": {
+    "urlId": "R24",
     "type": "Hero",
     "points": 90,
     "attack": "+1",

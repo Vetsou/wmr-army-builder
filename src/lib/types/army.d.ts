@@ -30,6 +30,7 @@ declare global {
    * Unit data inside schema
    */
   interface ISchemaUnit {
+    urlId?: string
     type: UnitType
 
     // Unit stats
@@ -68,14 +69,6 @@ declare global {
     equippedItems: Record<string, IArmyMagicItem>
     equippedUpgrades: Record<string, IArmyUpgrade>
     addedStands: Record<string, IArmyStand>
-  }
-
-  /**
-   * Regiment of Renown inside schema
-   */
-  interface ISchemaRegiment extends ISchemaUnit {
-    incompatibleWith?: string[]
-    incompatibleFactions?: string[]
   }
 }
 

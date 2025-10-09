@@ -19,10 +19,8 @@
     armyName: string
   ) => {
     return Object.fromEntries(
-      Object.entries(regimentsOfRenown).filter(([_, regimentData]) => {
-        const { incompatibleFactions } = regimentData
-        return !incompatibleFactions?.includes(armyName)
-      })
+      Object.entries(regimentsOfRenown)
+        .filter(([_, regimentData]) => !regimentData.incompatibleFactions?.includes(armyName))
     )
   }
 
