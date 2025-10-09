@@ -1,6 +1,7 @@
 import type { IBuilderState } from '$builder/store'
 import type { ArmyRule } from './rules'
 
+import { isUnitCountIncorrect, isUpgradeCountIncorrect } from '$helper/unitLimits'
 import { ArmyErrors, formatError } from './errorMessages'
 import { validateUnit } from './unitRules'
 import {
@@ -8,10 +9,6 @@ import {
   getArmyStandsCount,
   getArmyUpgradeCount
 } from '$helper/armyHelper'
-import {
-  isUnitCountIncorrect,
-  isUpgradeCountIncorrect
-} from '$helper/unitHelper'
 
 const armyRules: readonly ArmyRule[] = [
   {

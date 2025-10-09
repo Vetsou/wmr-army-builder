@@ -1,12 +1,12 @@
 import type { IBuilderState } from '$builder/store'
 import type { UnitRule } from './rules'
 
+import { isUnitCountIncorrect } from '$helper/unitLimits'
 import { formatError, UnitErrors } from './errorMessages'
 import {
   getUnitItemCount,
   getUnitStandsCount,
-  getUnitUpgradesCount,
-  isUnitCountIncorrect
+  getUnitUpgradesCount
 } from '$helper/unitHelper'
 
 const unitRules: readonly UnitRule[] = [
