@@ -69,6 +69,17 @@ const armyRules: readonly ArmyRule[] = [
 
       return errors
     }
+  },
+  {
+    check(state) {
+      const regimentLimit = Math.ceil(state.armyCost / 1000)
+      const totalRegiments = Object.values(state.units)
+        .filter(u => isRegiment(u))
+        .reduce((sum, regiment) => sum + regiment.count, 0)
+
+      return totalRegiments > regimentLimit ?
+        [formatError(ArmyErrors.TooManyRegiments, totalRegiments, regimentLimit)] : []
+    }
   }
 ]
 
