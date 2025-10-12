@@ -3,6 +3,7 @@ import type { ArmyRule } from './rules'
 
 import { isUnitCountIncorrect, isUpgradeCountIncorrect } from '$helper/unitLimits'
 import { ArmyErrors, formatError } from './errorMessages'
+import { isRegiment } from '$helper/typeGuards'
 import { validateUnit } from './unitRules'
 import {
   getArmyItemCount,
@@ -45,6 +46,28 @@ const armyRules: readonly ArmyRule[] = [
         .filter(([_, upgradeData]) => isUpgradeCountIncorrect(upgradeData, state.armyCost))
         .map(([upgradeKey, upgradeData]) =>
           formatError(ArmyErrors.UpgradeOutOfBounds, upgradeData.count, upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'))
+    }
+  },
+  {
+    check(state) {
+      const regiments = new Map<string, IArmyRegiment>()
+      const errors: string[] = []
+
+      for (const [name, unit] of Object.entries(state.units)) {
+        if (isRegiment(unit)) regiments.set(name, unit)
+      }
+
+      for (const [name, regiment] of regiments) {
+        if (!regiment?.incompatibleWith) continue
+
+        for (const badName of regiment.incompatibleWith) {
+          if (regiments.has(badName)) {
+            errors.push(formatError(ArmyErrors.IncompatibleRegiments, name, badName))
+          }
+        }
+      }
+
+      return errors
     }
   }
 ]

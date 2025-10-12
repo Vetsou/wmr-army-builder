@@ -6,6 +6,11 @@ declare global {
     incompatibleWith?: string[]
     incompatibleFactions?: string[]
   }
+
+  /**
+   * Regiment of Renown inside army builder
+   */
+  interface IArmyRegiment extends IArmyUnit, ISchemaRegiment {}
 }
 
 export {}
