@@ -58,11 +58,27 @@ const armyRules: readonly ArmyRule[] = [
       }
 
       for (const [name, regiment] of regiments) {
-        if (!regiment?.incompatibleWith) continue
+        const incompatibleUnits = regiment.incompatibleWith
+        if (!incompatibleUnits) continue
 
-        for (const badName of regiment.incompatibleWith) {
-          if (regiments.has(badName)) {
-            errors.push(formatError(ArmyErrors.IncompatibleRegiments, name, badName))
+        for (const badUnitName of incompatibleUnits) {
+          if (badUnitName.startsWith('(')) {
+            const endIdx = badUnitName.indexOf(')')
+
+            if (endIdx !== -1) {
+              const armyName = badUnitName.slice(1, endIdx).trim()
+              const unitName = badUnitName.slice(endIdx + 1).trim()
+
+              if (state.armyName === armyName && state.units[unitName]) {
+                errors.push(formatError(ArmyErrors.IncompatibleRegiments, name, unitName))
+              }
+
+              continue // Skip standard check
+            }
+          }
+
+          if (regiments.has(badUnitName)) {
+            errors.push(formatError(ArmyErrors.IncompatibleRegiments, name, badUnitName))
           }
         }
       }

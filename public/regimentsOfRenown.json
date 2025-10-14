@@ -114,7 +114,8 @@
     "incompatibleWith": [
       "Asarnil the Dragonlord",
       "Long Drong's Slayer Pirates",
-      "Gotrek and Felix"
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
     ],
     "incompatibleFactions": [
       "High Elves",
@@ -166,7 +167,8 @@
     "armyMax": 1,
     "incompatibleWith": [
       "Long Drong's Slayer Pirates",
-      "Gotrek and Felix"
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
     ],
     "incompatibleFactions": [
       "Empire",
@@ -264,7 +266,8 @@
     "armyMax": 1,
     "incompatibleWith": [
       "Long Drong's Slayer Pirates",
-      "Gotrek and Felix"
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
     ],
     "incompatibleFactions": [
       "Empire",
@@ -372,7 +375,8 @@
     "incompatibleWith": [
       "Mengil Manhide's Manflayers",
       "Long Drong's Slayer Pirates",
-      "Gotrek and Felix"
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
     ],
     "incompatibleFactions": [
       "Tomb Kings",
