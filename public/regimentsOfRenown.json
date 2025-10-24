@@ -8,6 +8,10 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    },
     "incompatibleWith": ["Tichi-Huichi's Raiders"],
     "incompatibleFactions": ["Lizardmen"]
   },
@@ -19,7 +23,11 @@
     "armor": "6+",
     "hits": 3,
     "size": 3,
-    "armyMax": 1
+    "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Ricco's Republican Guard": {
     "urlId": "R3",
@@ -29,7 +37,11 @@
     "armor": "5+",
     "hits": 3,
     "size": 3,
-    "armyMax": 1
+    "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Leopold's Leopard Company": {
     "urlId": "R4",
@@ -39,7 +51,11 @@
     "armor": "6+",
     "hits": 3,
     "size": 3,
-    "armyMax": 1
+    "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Marksmen of Miragliano": {
     "urlId": "R5",
@@ -50,7 +66,10 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "incompatibleFactions": ["Skaven"]
+    "incompatibleFactions": ["Skaven"],
+    "countAs": {
+      "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
+    }
   },
   "Braganza's Besiegers": {
     "urlId": "R6",
@@ -61,7 +80,11 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "incompatibleFactions": ["Skaven"]
+    "incompatibleFactions": ["Skaven"],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Lumpin Croop's Cocks": {
     "urlId": "R7",
@@ -71,7 +94,10 @@
     "armor": "-",
     "hits": 3,
     "size": 3,
-    "armyMax": 1
+    "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
+    }
   },
   "Vespero's Vendetta": {
     "urlId": "R8",
@@ -100,7 +126,10 @@
       "Norse",
       "Cathay",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" }
+    }
   },
   "Mengil's Manflyers": {
     "urlId": "R10",
@@ -125,7 +154,11 @@
       "Wood Elves",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Anakonda's Amazons": {
     "urlId": "R11",
@@ -154,7 +187,11 @@
       "Wood Elves",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Ruglud's Armoured Orcs": {
     "urlId": "R13",
@@ -183,7 +220,11 @@
       "Wood Elves",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Long Drong's Slayer Pirates": {
     "urlId": "R14",
@@ -214,7 +255,11 @@
       "Beastmen",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Golgfag's Mercenary Ogres": {
     "urlId": "R15",
@@ -229,7 +274,11 @@
       "High Elves",
       "Bretonnia",
       "Dark Elves"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
   },
   "Voland's Venators": {
     "urlId": "R16",
@@ -239,7 +288,12 @@
     "armor": "4+",
     "hits": 3,
     "size": 3,
-    "armyMax": 1
+    "armyMax": 1,
+    "countAs": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
   },
   "Al Muktar's Desert Dogs": {
     "urlId": "R17",
@@ -253,7 +307,12 @@
     "incompatibleFactions": [
       "Empire",
       "Tomb Kings"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
   },
   "Oglah Khan's Wolfboyz": {
     "urlId": "R18",
@@ -282,7 +341,11 @@
       "Wood Elves",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
   },
   "Tichi-Huichi's Raiders": {
     "urlId": "R19",
@@ -307,7 +370,11 @@
       "Beastmen",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } }
+    }
   },
   "Birdmen of Catrazza": {
     "urlId": "R20",
@@ -338,11 +405,14 @@
       "Wood Elves",
       "Beastmen",
       "Cathay"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "any", "tags": { "mustFly": true }, "costType": "any" }
+    }
   },
   "Bronzino's Galloper Guns": {
     "urlId": "R21",
-    "type": "Infantry",
+    "type": "Artillery",
     "points": 95,
     "attack": "1/2+bounce",
     "armor": "-",
@@ -362,7 +432,10 @@
       "Beastmen",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Artillery", "costType": "highest" }
+    }
   },
   "Asarnil The Dragonlord": {
     "urlId": "R22",
@@ -399,7 +472,10 @@
       "Norse",
       "Cathay",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Hero&Monstrous Mount", "costType": "highest" }
+    }
   },
   "Gotrek and Felix": {
     "urlId": "R23",
@@ -432,7 +508,10 @@
       "Beastmen",
       "Norse",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Hero", "costType": "any" }
+    }
   },
   "The Witch Hunters": {
     "urlId": "R24",
@@ -458,6 +537,9 @@
       "Norse",
       "Cathay",
       "Nippon"
-    ]
+    ],
+    "countAs": {
+      "any": { "type": "Hero", "costType": "any" }
+    }
   }
 }
