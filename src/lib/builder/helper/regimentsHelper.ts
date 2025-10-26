@@ -1,6 +1,6 @@
 import type { IBuilderState } from '$builder/store'
 
-type CountAsRuleResult = {
+export type CountAsRuleResult = {
   units: [string, ISchemaUnit][]
   upgrades: [string, ISchemaUpgrade][]
 }
@@ -58,25 +58,26 @@ const filterUnitsByTags = (
 
 const filterUpgradesByTags = (
   upgrades: [string, ISchemaUpgrade][],
-  rule: RegimentCountAsRule
+  _: RegimentCountAsRule
 ) => {
   return upgrades.filter(([_, _upg]) => {
     // Flying
-    if (rule.tags?.mustCauseTerror /* ADD UNIT TERROR CHECK HERE */) return false
+    //if (rule.tags?.mustCauseTerror /* ADD UNIT TERROR CHECK HERE */) return false
     return true
   })
 }
 
 export const getRegimentCountAsRuleUnits = (
   state: IBuilderState,
-  regiment: IArmyRegiment
+  schemaUnits: Record<string, ISchemaUnit>,
+  regiment: ISchemaRegiment
 ): CountAsRuleResult => {
   if (!regiment.countAsRules) return { units: [], upgrades: [] }
 
   const countAsRule = regiment.countAsRules[state.armyName] ?? regiment.countAsRules.any
 
   let result: CountAsRuleResult = {
-    units: Object.entries(state.units).filter(([_, u]) => u.max || u.armyMax),
+    units: Object.entries(schemaUnits).filter(([_, u]) => u.max || u.armyMax),
     upgrades: []
   }
 

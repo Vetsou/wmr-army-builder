@@ -8,7 +8,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     },
@@ -24,7 +24,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -38,7 +38,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -52,7 +52,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -67,7 +67,7 @@
     "size": 3,
     "armyMax": 1,
     "incompatibleFactions": ["Skaven"],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
     }
   },
@@ -81,7 +81,7 @@
     "size": 3,
     "armyMax": 1,
     "incompatibleFactions": ["Skaven"],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -95,7 +95,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
     }
   },
@@ -127,7 +127,7 @@
       "Cathay",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" }
     }
   },
@@ -155,7 +155,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -188,7 +188,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -221,7 +221,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -256,7 +256,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -275,7 +275,7 @@
       "Bretonnia",
       "Dark Elves"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Infantry", "costType": "highest" },
       "Tomb Kings": { "type": "Monster", "costType": "any" }
     }
@@ -289,7 +289,7 @@
     "hits": 3,
     "size": 3,
     "armyMax": 1,
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Cavalry|Chariots", "costType": "highest" },
       "Dwarfs": { "tags": { "unitName": "Rangers" } },
       "Skaven": { "tags": { "unitName": "Gutter Runners" } }
@@ -308,7 +308,7 @@
       "Empire",
       "Tomb Kings"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Cavalry|Chariots", "costType": "highest" },
       "Dwarfs": { "tags": { "unitName": "Rangers" } },
       "Skaven": { "tags": { "unitName": "Gutter Runners" } }
@@ -342,7 +342,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Cavalry|Chariots", "costType": "highest" },
       "Skaven": { "tags": { "unitName": "Gutter Runners" } }
     }
@@ -371,7 +371,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Cavalry|Chariots", "costType": "highest" },
       "Dwarfs": { "tags": { "unitName": "Rangers" } }
     }
@@ -406,7 +406,7 @@
       "Beastmen",
       "Cathay"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "any", "tags": { "mustFly": true }, "costType": "any" }
     }
   },
@@ -433,7 +433,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Artillery", "costType": "highest" }
     }
   },
@@ -473,8 +473,8 @@
       "Cathay",
       "Nippon"
     ],
-    "countAs": {
-      "any": { "type": "Hero&Monstrous Mount", "costType": "highest" }
+    "countAsRules": {
+      "any": { "type": "Hero&Monstrous Mount", "tags": { "mustCauseTerror": true }, "costType": "highest" }
     }
   },
   "Gotrek and Felix": {
@@ -509,7 +509,7 @@
       "Norse",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Hero", "costType": "any" }
     }
   },
@@ -538,7 +538,7 @@
       "Cathay",
       "Nippon"
     ],
-    "countAs": {
+    "countAsRules": {
       "any": { "type": "Hero", "costType": "any" }
     }
   }
