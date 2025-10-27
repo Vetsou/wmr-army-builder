@@ -11,6 +11,7 @@
 </script>
 
 {#each getUnitEquipableItems(unitData, $BuilderStore.lookup.magicItems) as [itemName, itemData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.equipItem(unitName, itemName, itemData)}>
     <div>{ itemName }</div>
@@ -20,6 +21,7 @@
 {/each}
 
 {#each getUnitUpgrades(unitData, $BuilderStore.lookup.armyUpgrades) as [upgradeName, upgradeData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.equipUpgrade(unitName, upgradeName, upgradeData)}>
     <div>{ upgradeName }</div>
@@ -29,6 +31,7 @@
 {/each}
 
 {#each getUnitStands(unitData, $BuilderStore.lookup.armyStands) as [standName, standData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.addStand(unitName, standName, standData)}>
     <div>{ standName }</div>

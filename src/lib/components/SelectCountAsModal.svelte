@@ -29,7 +29,7 @@
     }
   })
 
-  const isDisabled = () => {
+  const isConfirmDisabled = () => {
     const unitRequired = countAsDataResult?.units?.length !== 0
     const upgradeRequired = countAsDataResult?.upgrades?.length !== 0
 
@@ -107,7 +107,7 @@
         Cancel
       </button>
 
-      <button onclick={() => onConfirm()} disabled={isDisabled()}
+      <button onclick={() => onConfirm()} disabled={isConfirmDisabled()}
         class="bg-blue-600 text-white rounded-md mt-4 px-4 py-2 hover:bg-blue-700 cursor-pointer
           disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
       >
