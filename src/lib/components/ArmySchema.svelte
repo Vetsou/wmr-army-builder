@@ -61,4 +61,4 @@
   </div>
 </div>
 
-<SelectCountAsModal bind:showModal {selectedRegiment} schemaUnits={units} />
+<SelectCountAsModal bind:showModal processedRegiment={selectedRegiment} schemaUnits={units} />

@@ -4,14 +4,14 @@
   import { getRegimentCountAsRuleUnits, type CountAsRuleResult } from "$builder/helper/regimentsHelper"
 
   type Props = {
-    showModal: boolean
-    selectedRegiment: { name: string, data: ISchemaRegiment }
     readonly schemaUnits: Record<string, ISchemaUnit>
+    processedRegiment: { name: string, data: ISchemaRegiment }
+    showModal: boolean
   }
 
   let {
     showModal = $bindable<boolean>(),
-    selectedRegiment,
+    processedRegiment,
     schemaUnits
   }: Props = $props()
   
@@ -24,8 +24,8 @@
 
   $effect(() => {
     if (showModal) {
+      countAsDataResult = getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, processedRegiment.data)
       dialog?.showModal()
-      countAsDataResult = getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, selectedRegiment.data)
     }
   })
 
@@ -48,8 +48,9 @@
   }
 
   const onCancel = () => onBeforeClose()
+
   const onConfirm = () => {
-    BuilderStore.addUnit(selectedRegiment.name, selectedRegiment.data)
+    BuilderStore.addUnit(processedRegiment.name, processedRegiment.data)
     onBeforeClose()
   }
 </script>
@@ -57,13 +58,12 @@
 <dialog
   bind:this={dialog}
   transition:fade={{ duration: 150 }}
-  onclose={() => (showModal = false)}
   onclick={(e) => { if (e.target === dialog) onCancel() }}
   class="count-as-dialog backdrop:bg-black/50"
 >
   <div class="bg-white rounded-2xl p-6 w-full min-w-md">
     <div class="text-lg font-semibold mb-4">
-      Unit name: {selectedRegiment.name}
+      Unit name: {processedRegiment.name}
     </div>
     
     <div>
@@ -73,11 +73,12 @@
     <div class="space-y-2 mt-4">
       {#if countAsDataResult?.units.length != 0}
         <div class="font-medium">Units to select:</div>
+
         {#each countAsDataResult?.units as [name, data]}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div 
-            class="p-2 border rounded-md hover:bg-gray-100 cursor-pointer {selectedUnit?.name === name ? 'bg-blue-100' : ''}"
-            onclick={() => selectedUnit = { name, data }}
+          <div onclick={() => selectedUnit = { name, data }}
+            class="p-2 border rounded-md cursor-pointer
+            {selectedUnit?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
           >
             {name}
           </div>
@@ -86,11 +87,12 @@
 
       {#if countAsDataResult?.upgrades.length != 0}
         <div class="font-medium mt-4">Upgrades to select:</div>
+
         {#each countAsDataResult?.upgrades as [name, data]}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div 
-            class="p-2 border rounded-md hover:bg-gray-100 cursor-pointer {selectedUpgrade?.name === name ? 'bg-blue-100' : ''}" 
-            onclick={() => selectedUpgrade = { name, data }}
+          <div onclick={() => selectedUpgrade = { name, data }}
+            class="p-2 border rounded-md cursor-pointer
+            {selectedUpgrade?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
           >
             {name}
           </div>
