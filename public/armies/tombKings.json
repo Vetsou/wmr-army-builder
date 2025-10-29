@@ -29,7 +29,7 @@
       "size": 3
     },
     "Skeleton Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 110,
       "attack": "3/1",
       "armor": "5+",

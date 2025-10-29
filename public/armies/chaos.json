@@ -65,7 +65,7 @@
       "max": 2
     },
     "Chaos Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 95,
       "attack": "3",
       "armor": "5+",

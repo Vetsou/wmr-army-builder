@@ -8,12 +8,18 @@ interface ILookupData {
   readonly armyStands?: Record<string, ISchemaUnit>
 }
 
+interface IRegimentCountAsData {
+  units: Record<string, number>
+  upgrades: Record<string, number>
+}
+
 export interface IBuilderState {
   armyName: string
   armyCost: number
   armyCostLimit: number
   units: Record<string, IArmyUnit>
   armyErrors: string[]
+  regimentCountAs: IRegimentCountAsData
   lookup: ILookupData
 }
 
@@ -24,7 +30,15 @@ const createBuilderStore = () => {
     armyCostLimit: 2000,
     units: {},
     armyErrors: [],
-    lookup: { magicItems: {}, armyUpgrades: {}, armyStands: {} }
+    regimentCountAs: {
+      units: {},
+      upgrades: {}
+    },
+    lookup: { 
+      magicItems: {},
+      armyUpgrades: {},
+      armyStands: {}
+    }
   })
 
   return {
@@ -37,6 +51,10 @@ const createBuilderStore = () => {
       ArmyMutator.addUnit(state, unitKey, unitData, 1),
     removeUnit: (unitKey: string, unitData: IArmyUnit) =>
       ArmyMutator.removeUnit(state, unitKey, unitData, 1),
+
+    addRegiment:
+      (unitKey: string, unitData: ISchemaRegiment, countAsData: { unitName?: string, upgradeName?: string }) =>
+        ArmyMutator.addRegiment(state, unitKey, unitData, countAsData, 1),
 
     equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem) =>
       UnitMutator.equipItem(state, unitKey, itemKey, itemData),

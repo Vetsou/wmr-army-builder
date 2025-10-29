@@ -10,13 +10,13 @@
 
   const { units, regiments }: Props = $props()
 
-  // This is updated before modal is shown so it should be safe
+  let showModal = $state(false)
   let selectedRegiment: { name: string, data: ISchemaRegiment } = $state({
     name: Object.keys(regiments)[0],
     data: Object.values(regiments)[0]
   })
 
-  let showModal = $state(false)
+  // Display modal and set it's state
   const toggleCountAsModal = (regimentName: string, regimentData: ISchemaRegiment) => {
     selectedRegiment = { name: regimentName, data: regimentData }
     showModal = true

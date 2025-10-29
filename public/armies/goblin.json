@@ -39,7 +39,7 @@
       "min": 2
     },
     "Wolf Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 80,
       "attack": "3",
       "armor": "6+",
@@ -48,7 +48,7 @@
       "max": 4
     },
     "Pump Wagon": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 50,
       "attack": "d6",
       "armor": "5+",

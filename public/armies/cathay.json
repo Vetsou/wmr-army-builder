@@ -48,7 +48,7 @@
       "max": 1
     },
     "Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 110,
       "attack": "3/1",
       "armor": "5+",

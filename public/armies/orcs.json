@@ -65,7 +65,7 @@
       "range": "15cm"
     },
     "Wolf Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 80,
       "attack": "3",
       "armor": "5+",
