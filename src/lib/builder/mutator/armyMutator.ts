@@ -82,8 +82,15 @@ export const removeUnit = (
 
       if (isRegiment(armyUnit)) {
         const armyRegiment = armyUnit as IArmyRegiment
-        if (armyRegiment.countAsUnit) s.regimentCountAs.units[armyRegiment.countAsUnit]--
-        if (armyRegiment.countAsUpgrade) s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade]--
+        if (armyRegiment.countAsUnit) {
+          s.regimentCountAs.units[armyRegiment.countAsUnit]--
+          UnitValidator.validateUnit(s, armyRegiment.countAsUnit)
+        }
+
+        if (armyRegiment.countAsUpgrade) {
+          s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade]--
+          UnitValidator.validateUnit(s, armyRegiment.countAsUpgrade)
+        }
       }
 
       // Remove items and upgrades if unit is deleted
@@ -107,8 +114,15 @@ export const addRegiment = (
       armyRegiment.count += count
       s.armyCost += unitData.points * count
 
-      if (countAsData.unitName) s.regimentCountAs.units[countAsData.unitName]++
-      if (countAsData.upgradeName) s.regimentCountAs.upgrades[countAsData.upgradeName]++
+      if (countAsData.unitName) {
+        s.regimentCountAs.units[countAsData.unitName]++
+        UnitValidator.validateUnit(s, countAsData.unitName)
+      }
+
+      if (countAsData.upgradeName) {
+        s.regimentCountAs.upgrades[countAsData.upgradeName]++
+        UnitValidator.validateUnit(s, countAsData.upgradeName)
+      }
 
       armyRegiment.countAsUnit = countAsData.unitName
       armyRegiment.countAsUpgrade = countAsData.upgradeName

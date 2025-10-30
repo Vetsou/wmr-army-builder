@@ -35,7 +35,7 @@ const armyRules: readonly ArmyRule[] = [
     check(state) {
       const standsCount = getArmyStandsCount(state)
       return Object.entries(standsCount)
-        .filter(([_, standData]) => isUnitCountIncorrect(standData, state.armyCost))
+        .filter(([_, standData]) => isUnitCountIncorrect(standData, 0, state.armyCost))
         .map(([standKey, standData]) => formatError(ArmyErrors.StandOutOfBounds, standData.count, standKey))
     }
   },
@@ -43,7 +43,8 @@ const armyRules: readonly ArmyRule[] = [
     check(state) {
       const upgradeCount = getArmyUpgradeCount(state)
       return Object.entries(upgradeCount)
-        .filter(([_, upgradeData]) => isUpgradeCountIncorrect(upgradeData, state.armyCost))
+        .filter(([upgradeKey, upgradeData]) => 
+          isUpgradeCountIncorrect(upgradeData, state.regimentCountAs.upgrades[upgradeKey], state.armyCost))
         .map(([upgradeKey, upgradeData]) =>
           formatError(ArmyErrors.UpgradeOutOfBounds, upgradeData.count, upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'))
     }

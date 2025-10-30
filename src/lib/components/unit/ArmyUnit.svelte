@@ -35,7 +35,12 @@
   class="flex relative cursor-pointer
     {unitHasErrors() ? 'bg-rose-200  hover:bg-rose-300' : 'bg-slate-50 hover:bg-gray-200'}"
 >
-  <div class="w-1/5">{ unitData.count }</div>
+  <div class="w-1/5">
+    { unitData.count }
+    {#if $BuilderStore.regimentCountAs.units[unitName] > 0 }
+      (+{ $BuilderStore.regimentCountAs.units[unitName] })
+    {/if}
+  </div>
   <div class="w-1/5">{ unitName }</div>
   <div class="w-1/5">{ unitData.type }</div>
   <div class="w-1/5">{ unitData.points * unitData.count }</div>

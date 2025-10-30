@@ -13,8 +13,11 @@ const unitRules: readonly UnitRule[] = [
   {
     check(state, name) {
       const armyUnit = state.units[name]
-      return isUnitCountIncorrect(armyUnit, state.armyCost)
-        ? [formatError(UnitErrors.CountOutOfBounds, name, armyUnit.count)] : []
+      const takenByRegiment = state.regimentCountAs.units[name]
+      const unitCount = armyUnit.count + takenByRegiment
+
+      return isUnitCountIncorrect(armyUnit, takenByRegiment, state.armyCost)
+        ? [formatError(UnitErrors.CountOutOfBounds, name, unitCount)] : []
     }
   },
   {
