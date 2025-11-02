@@ -11,7 +11,11 @@ let store: Writable<IBuilderState>
 
 beforeEach(() => {
   store = DataGenerator.createBuilderState({
-    armyCostLimit: 3000
+    armyCostLimit: 3000,
+    regimentCountAs: {
+      units: { UnitA: 0 },
+      upgrades: { UpgradeA: 0 }
+    }
   })
 })
 
@@ -78,9 +82,9 @@ describe('ValidateUnit', () => {
     const schemaUpgrade = DataGenerator.createSchemaUpgrade({ cost: 50 })
 
     // Act
-    UnitMutator.equipUpgrade(store, 'UnitA', 'upgradeA', schemaUpgrade)
-    UnitMutator.equipUpgrade(store, 'UnitA', 'upgradeA', schemaUpgrade)
-    UnitMutator.equipUpgrade(store, 'UnitA', 'upgradeA', schemaUpgrade)
+    UnitMutator.equipUpgrade(store, 'UnitA', 'UpgradeA', schemaUpgrade)
+    UnitMutator.equipUpgrade(store, 'UnitA', 'UpgradeA', schemaUpgrade)
+    UnitMutator.equipUpgrade(store, 'UnitA', 'UpgradeA', schemaUpgrade)
 
     // Assert
     const state = get(store)

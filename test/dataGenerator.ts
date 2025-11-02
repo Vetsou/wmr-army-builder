@@ -7,6 +7,10 @@ export const createBuilderState = (state: Partial<IBuilderState>): Writable<IBui
     armyCost: state.armyCost ?? 0,
     armyCostLimit: state.armyCostLimit ?? 2000,
     units: {},
+    regimentCountAs: {
+      units: state.regimentCountAs?.units ?? {},
+      upgrades: state.regimentCountAs?.upgrades ?? {}
+    },
     armyErrors: [],
     lookup: {
       magicItems: {},
