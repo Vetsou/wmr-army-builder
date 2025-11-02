@@ -122,7 +122,8 @@
       "type": "Special Mount",
       "attack": "+1",
       "cost": 40,
-      "armyMax": 1
+      "armyMax": 1,
+      "terror": true
     }
   }
 }

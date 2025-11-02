@@ -14,6 +14,9 @@ declare global {
     cost: number
     max?: number
     armyMax?: number
+
+    // Tags
+    terror?: boolean
   }
 
   /**

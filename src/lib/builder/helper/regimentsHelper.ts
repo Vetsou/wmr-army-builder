@@ -48,7 +48,7 @@ const filterUnitsByTags = (
     : null
 
   return units.filter(([_, u]) => {
-    // Flying
+    if (rule.tags?.mustFly && !u.flying) return false
     if (rule.tags?.mustBeRanged && u.range === undefined) return false
     if (rule.tags?.requiredSize && u.size !== rule.tags.requiredSize) return false
     if (rule.costType === 'highest' && u.points !== highestCost) return false
@@ -58,11 +58,10 @@ const filterUnitsByTags = (
 
 const filterUpgradesByTags = (
   upgrades: [string, ISchemaUpgrade][],
-  _: RegimentCountAsRule
+  rule: RegimentCountAsRule
 ) => {
-  return upgrades.filter(([_, _upg]) => {
-    // Flying
-    //if (rule.tags?.mustCauseTerror /* ADD UNIT TERROR CHECK HERE */) return false
+  return upgrades.filter(([_, upg]) => {
+    if (rule.tags?.mustCauseTerror && !upg.terror) return false
     return true
   })
 }

@@ -43,10 +43,14 @@ const armyRules: readonly ArmyRule[] = [
     check(state) {
       const upgradeCount = getArmyUpgradeCount(state)
       return Object.entries(upgradeCount)
-        .filter(([upgradeKey, upgradeData]) => 
+        .filter(([upgradeKey, upgradeData]) =>
           isUpgradeCountIncorrect(upgradeData, state.regimentCountAs.upgrades[upgradeKey], state.armyCost))
         .map(([upgradeKey, upgradeData]) =>
-          formatError(ArmyErrors.UpgradeOutOfBounds, upgradeData.count, upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'))
+          formatError(
+            ArmyErrors.UpgradeOutOfBounds,
+            upgradeData.count + state.regimentCountAs.upgrades[upgradeKey],
+            upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'
+          ))
     }
   },
   {

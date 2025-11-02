@@ -42,6 +42,9 @@ declare global {
     range?: string // Range unit
     command?: number // Commander unit
 
+    // Tags
+    flying?: boolean
+
     // Limits
     min?: number
     max?: number
