@@ -1,27 +1,6 @@
 import { writable, get } from 'svelte/store'
-import * as ArmyMutator from './mutator/armyMutator'
-import * as UnitMutator from './mutator/unitMutator'
-
-interface ILookupData {
-  readonly magicItems: Record<string, ISchemaMagicItem>
-  readonly armyUpgrades?: Record<string, ISchemaUpgrade>
-  readonly armyStands?: Record<string, ISchemaUnit>
-}
-
-interface IRegimentCountAsData {
-  units: Record<string, number>
-  upgrades: Record<string, number>
-}
-
-export interface IBuilderState {
-  armyName: string
-  armyCost: number
-  armyCostLimit: number
-  units: Record<string, IArmyUnit>
-  armyErrors: string[]
-  regimentCountAs: IRegimentCountAsData
-  lookup: ILookupData
-}
+import * as ArmyMutator from './mutator/army'
+import * as UnitMutator from './mutator/unit'
 
 const createBuilderStore = () => {
   const state = writable<IBuilderState>({
