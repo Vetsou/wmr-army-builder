@@ -1,7 +1,7 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits, type CountAsRuleResult } from "$builder/helper/regimentsHelper"
+  import { getRegimentCountAsRuleUnits, type CountAsRuleResult } from '$builder/helper/regimentsHelper'
 
   type Props = {
     readonly schemaUnits: Record<string, ISchemaUnit>
@@ -16,7 +16,8 @@
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
-  let countAsDataResult: CountAsRuleResult = $state(getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, processedRegiment.data))
+  let countAsDataResult: CountAsRuleResult =
+    $state(getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, processedRegiment.data))
 
   // Unit/Upgrade selected by user
   let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
@@ -74,10 +75,10 @@
     </div>
 
     <div class="space-y-2 mt-4">
-      {#if countAsDataResult.units.length != 0}
+      {#if countAsDataResult.units.length !== 0}
         <div class="font-medium">Units to select:</div>
 
-        {#each countAsDataResult.units as [name, data]}
+        {#each countAsDataResult.units as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={() => selectedUnit = { name, data }}
             class="p-2 border rounded-md cursor-pointer
@@ -88,10 +89,10 @@
         {/each}
       {/if}
 
-      {#if countAsDataResult.upgrades.length != 0}
+      {#if countAsDataResult.upgrades.length !== 0}
         <div class="font-medium mt-4">Upgrades to select:</div>
 
-        {#each countAsDataResult.upgrades as [name, data]}
+        {#each countAsDataResult.upgrades as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={() => selectedUpgrade = { name, data }}
             class="p-2 border rounded-md cursor-pointer
