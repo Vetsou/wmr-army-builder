@@ -1,9 +1,11 @@
 import type { Writable } from 'svelte/store'
 import type { IBuilderState } from '$builder/store'
+import { isRegiment } from '$builder/helper/typeGuards'
+
 import * as UnitValidator from '$builder/validator/unitRules'
 import * as ArmyValidator from '$builder/validator/armyRules'
 
-type UnitMutationFn = (s: IBuilderState, unit: IArmyUnit) => void
+type UnitMutationFn = (s: IBuilderState, unit: IArmyUnit | IArmyRegiment) => void
 
 const mutateUnit = (
   builderState: Writable<IBuilderState>,
@@ -59,7 +61,7 @@ export const addUnit = (
 ) => {
   mutateUnit(
     builderState, unitKey, unitData,
-    (s, armyUnit) => {
+    (s, armyUnit: IArmyUnit) => {
       armyUnit.count += count
       s.armyCost += unitData.points * count
     }
@@ -74,14 +76,56 @@ export const removeUnit = (
 ) => {
   mutateUnit(
     builderState, unitKey, unitData,
-    (s, armyUnit) => {
+    (s, armyUnit: IArmyUnit) => {
       armyUnit.count -= count
       s.armyCost -= unitData.points * count
+
+      if (isRegiment(armyUnit)) {
+        const armyRegiment = armyUnit as IArmyRegiment
+        if (armyRegiment.countAsUnit) {
+          s.regimentCountAs.units[armyRegiment.countAsUnit]--
+          UnitValidator.validateUnit(s, armyRegiment.countAsUnit)
+        }
+
+        if (armyRegiment.countAsUpgrade) {
+          s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade]--
+          UnitValidator.validateUnit(s, armyRegiment.countAsUpgrade)
+        }
+      }
 
       // Remove items and upgrades if unit is deleted
       if (armyUnit.count === 0) {
         s.armyCost -= getUnitAugmentsCost(armyUnit)
       }
+    }
+  )
+}
+
+export const addRegiment = (
+  builderState: Writable<IBuilderState>,
+  unitKey: string,
+  unitData: ISchemaRegiment,
+  countAsData: { unitName?: string, upgradeName?: string },
+  count: number
+) => {
+  mutateUnit(
+    builderState, unitKey, unitData,
+    (s, armyRegiment: IArmyRegiment) => {
+      armyRegiment.count += count
+      s.armyCost += unitData.points * count
+
+      if (countAsData.unitName) {
+        s.regimentCountAs.units[countAsData.unitName]++
+        UnitValidator.validateUnit(s, countAsData.unitName)
+      }
+
+      if (countAsData.upgradeName) {
+        s.regimentCountAs.upgrades[countAsData.upgradeName]++
+        UnitValidator.validateUnit(s, countAsData.upgradeName)
+      }
+
+      armyRegiment.countAsUnit = countAsData.unitName
+      armyRegiment.countAsUpgrade = countAsData.upgradeName
     }
   )
 }
@@ -111,6 +155,10 @@ export const resetState = (
     armyCostLimit: 2000,
     units: {},
     armyErrors: [],
+    regimentCountAs: {
+      units: Object.fromEntries(Object.keys(armySchema.units).map(name => [name, 0])),
+      upgrades: Object.fromEntries(Object.keys(armySchema.upgrades ?? {}).map(name => [name, 0]))
+    },
     lookup: {
       magicItems: magicItems,
       armyUpgrades: armySchema.upgrades,

@@ -26,6 +26,7 @@
   }
 </script>
 
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 <div
   onclick={() => BuilderStore.removeUnit(unitName, unitData)}
   onmouseenter={toggleErrorList}
@@ -34,7 +35,12 @@
   class="flex relative cursor-pointer
     {unitHasErrors() ? 'bg-rose-200  hover:bg-rose-300' : 'bg-slate-50 hover:bg-gray-200'}"
 >
-  <div class="w-1/5">{ unitData.count }</div>
+  <div class="w-1/5">
+    { unitData.count }
+    {#if $BuilderStore.regimentCountAs.units[unitName] > 0 }
+      (+{ $BuilderStore.regimentCountAs.units[unitName] })
+    {/if}
+  </div>
   <div class="w-1/5">{ unitName }</div>
   <div class="w-1/5">{ unitData.type }</div>
   <div class="w-1/5">{ unitData.points * unitData.count }</div>

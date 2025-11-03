@@ -13,7 +13,11 @@ let store: Writable<IBuilderState>
 
 beforeEach(() => {
   store = DataGenerator.createBuilderState({
-    armyCostLimit: 200
+    armyCostLimit: 200,
+    regimentCountAs: {
+      units: { UnitA: 0, UnitB: 0 },
+      upgrades: { UpgradeA: 0, UpgradeB: 0 }
+    }
   })
 })
 

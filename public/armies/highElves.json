@@ -39,7 +39,7 @@
       "max": 3
     },
     "Chariots": {
-      "type": "Chariot",
+      "type": "Chariots",
       "points": 95,
       "attack": "3",
       "armor": "5+",
@@ -54,7 +54,8 @@
       "armor": "6+",
       "hits": 3,
       "size": 3,
-      "max": 1
+      "max": 1,
+      "flying": true
     },
     "Dragon Rider": {
       "type": "Monster",
@@ -64,7 +65,8 @@
       "hits": 6,
       "size": 1,
       "range": "20cm",
-      "max": 1
+      "max": 1,
+      "flying": true
     },
     "Elven Bolt Thrower": {
       "type": "Artillery",
@@ -118,7 +120,8 @@
       "attack": "+3/+3",
       "range": "20cm",
       "cost": 100,
-      "max": 1
+      "max": 1,
+      "terror": true
     },
     "Chariot": {
       "type": "Chariot Mount",

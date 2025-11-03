@@ -30,6 +30,7 @@ declare global {
    * Unit data inside schema
    */
   interface ISchemaUnit {
+    urlId?: string
     type: UnitType
 
     // Unit stats
@@ -40,6 +41,9 @@ declare global {
     hits?: number
     range?: string // Range unit
     command?: number // Commander unit
+
+    // Tags
+    flying?: boolean
 
     // Limits
     min?: number

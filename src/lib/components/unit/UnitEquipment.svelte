@@ -10,6 +10,7 @@
 </script>
 
 {#each Object.entries(unitData.equippedItems) as [itemName, itemData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.unequipItem(unitName, itemName)}>
     <div>{ itemName }</div>
@@ -20,6 +21,7 @@
 {/each}
 
 {#each Object.entries(unitData.equippedUpgrades) as [upgradeName, upgradeData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.unequipUpgrade(unitName, upgradeName)}>
     <div>{ upgradeName }</div>
@@ -30,6 +32,7 @@
 {/each}
 
 {#each Object.entries(unitData.addedStands) as [standName, standData], i (i)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.removeStand(unitName, standName)}>
     <div>{ standName }</div>

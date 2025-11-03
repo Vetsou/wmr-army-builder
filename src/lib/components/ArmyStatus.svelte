@@ -9,9 +9,11 @@
   <div>Army points: { $BuilderStore.armyCost }/{ $BuilderStore.armyCostLimit }</div>
 
   {#if $BuilderStore.armyErrors.length > 0}
-    <div>Army errors:</div>
-    {#each $BuilderStore.armyErrors as armyError, i (i)}
-      <div>{ armyError }</div>
-    {/each}
+    <div class="text-red-600">
+      <div>Army errors:</div>
+      {#each $BuilderStore.armyErrors as armyError, i (i)}
+        <div>{ armyError }</div>
+      {/each}
+    </div>
   {/if}
 </div>

@@ -1,0 +1,545 @@
+{
+  "Pirazzo's Lost Legion": {
+    "urlId": "R1",
+    "type": "Infantry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    },
+    "incompatibleWith": ["Tichi-Huichi's Raiders"],
+    "incompatibleFactions": ["Lizardmen"]
+  },
+  "Alcatani Fellowship": {
+    "urlId": "R2",
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Ricco's Republican Guard": {
+    "urlId": "R3",
+    "type": "Infantry",
+    "points": 75,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Leopold's Leopard Company": {
+    "urlId": "R4",
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Marksmen of Miragliano": {
+    "urlId": "R5",
+    "type": "Infantry",
+    "points": 65,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": ["Skaven"],
+    "countAsRules": {
+      "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
+    }
+  },
+  "Braganza's Besiegers": {
+    "urlId": "R6",
+    "type": "Infantry",
+    "points": 90,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": ["Skaven"],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Lumpin Croop's Cocks": {
+    "urlId": "R7",
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Infantry", "tags": { "mustBeRanged": true }, "costType": "highest" }
+    }
+  },
+  "Vespero's Vendetta": {
+    "urlId": "R8",
+    "type": "Infantry",
+    "points": 60,
+    "attack": "3/1",
+    "armor": "-",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1
+  },
+  "The Cursed Company": {
+    "urlId": "R9",
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Tomb Kings",
+      "Bretonnia",
+      "Vampire Counts",
+      "Witch Hunters",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" }
+    }
+  },
+  "Mengil's Manflyers": {
+    "urlId": "R10",
+    "type": "Infantry",
+    "points": 85,
+    "attack": "3/2",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Asarnil the Dragonlord",
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
+    ],
+    "incompatibleFactions": [
+      "High Elves",
+      "Dwarfs",
+      "Bretonnia",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Anakonda's Amazons": {
+    "urlId": "R11",
+    "type": "Infantry",
+    "points": 75,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1
+  },
+  "Bearmen of Urslo": {
+    "urlId": "R12",
+    "type": "Infantry",
+    "points": 70,
+    "attack": "3",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": [
+      "High Elves",
+      "Lizardmen",
+      "Bretonnia",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Ruglud's Armoured Orcs": {
+    "urlId": "R13",
+    "type": "Infantry",
+    "points": 90,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
+    ],
+    "incompatibleFactions": [
+      "Empire",
+      "High Elves",
+      "Dwarfs",
+      "Lizardmen",
+      "Bretonnia",
+      "Dark Elves",
+      "Araby",
+      "Albion",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Long Drong's Slayer Pirates": {
+    "urlId": "R14",
+    "type": "Infantry",
+    "points": 120,
+    "attack": "3/1",
+    "armor": "5+",
+    "hits": 4,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Ruglud's Armoured Orcs",
+      "Oglah Khan's Wolfboyz",
+      "Mengil Manhide's Manflayers",
+      "Asarnil the Dragonlord"
+    ],
+    "incompatibleFactions": [
+      "Chaos",
+      "Orcs",
+      "High Elves",
+      "Skaven",
+      "Bretonnia",
+      "Dark Elves",
+      "Daemons",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Golgfag's Mercenary Ogres": {
+    "urlId": "R15",
+    "type": "Infantry",
+    "points": 115,
+    "attack": "4",
+    "armor": "5+",
+    "hits": 4,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": [
+      "High Elves",
+      "Bretonnia",
+      "Dark Elves"
+    ],
+    "countAsRules": {
+      "any": { "type": "Infantry", "costType": "highest" },
+      "Tomb Kings": { "type": "Monster", "costType": "any" }
+    }
+  },
+  "Voland's Venators": {
+    "urlId": "R16",
+    "type": "Cavalry",
+    "points": 120,
+    "attack": "3",
+    "armor": "4+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "countAsRules": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
+  },
+  "Al Muktar's Desert Dogs": {
+    "urlId": "R17",
+    "type": "Cavalry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": [
+      "Empire",
+      "Tomb Kings"
+    ],
+    "countAsRules": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
+  },
+  "Oglah Khan's Wolfboyz": {
+    "urlId": "R18",
+    "type": "Cavalry",
+    "points": 70,
+    "attack": "2/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
+    ],
+    "incompatibleFactions": [
+      "Empire",
+      "High Elves",
+      "Dwarfs",
+      "Lizardmen",
+      "Bretonnia",
+      "Kislev",
+      "Araby",
+      "Albion",
+      "Witch Hunters",
+      "Wood Elves",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Skaven": { "tags": { "unitName": "Gutter Runners" } }
+    }
+  },
+  "Tichi-Huichi's Raiders": {
+    "urlId": "R19",
+    "type": "Cavalry",
+    "points": 85,
+    "attack": "3/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleWith": ["Pirazzo's Lost Legion"],
+    "incompatibleFactions": [
+      "Chaos",
+      "Orcs",
+      "Skaven",
+      "Bretonnia",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Cavalry|Chariots", "costType": "highest" },
+      "Dwarfs": { "tags": { "unitName": "Rangers" } }
+    }
+  },
+  "Birdmen of Catrazza": {
+    "urlId": "R20",
+    "type": "Infantry",
+    "points": 95,
+    "attack": "2/1",
+    "armor": "6+",
+    "hits": 3,
+    "size": 3,
+    "armyMax": 1,
+    "incompatibleFactions": [
+      "Empire",
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Dwarfs",
+      "Skaven",
+      "Lizardmen",
+      "Kislev",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Albion",
+      "Goblins",
+      "Witch Hunters",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Cathay"
+    ],
+    "countAsRules": {
+      "any": { "type": "any", "tags": { "mustFly": true }, "costType": "any" }
+    }
+  },
+  "Bronzino's Galloper Guns": {
+    "urlId": "R21",
+    "type": "Artillery",
+    "points": 95,
+    "attack": "1/2+bounce",
+    "armor": "-",
+    "hits": 2,
+    "size": 2,
+    "armyMax": 1,
+    "incompatibleFactions": [
+      "Chaos",
+      "High Elves",
+      "Lizardmen",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Araby",
+      "Albion",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Artillery", "costType": "highest" }
+    }
+  },
+  "Asarnil The Dragonlord": {
+    "urlId": "R22",
+    "type": "Hero",
+    "points": 190,
+    "attack": "+4",
+    "command": 8,
+    "size": 1,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Mengil Manhide's Manflayers",
+      "Long Drong's Slayer Pirates",
+      "Gotrek and Felix",
+      "(Dogs of War) Dwarfs"
+    ],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Dwarfs",
+      "Skaven",
+      "Lizardmen",
+      "Bretonnia",
+      "Kislev",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Albion",
+      "Goblins",
+      "Witch Hunters",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Hero&Monstrous Mount", "tags": { "mustCauseTerror": true }, "costType": "highest" }
+    }
+  },
+  "Gotrek and Felix": {
+    "urlId": "R23",
+    "type": "Hero",
+    "points": 100,
+    "attack": "+2",
+    "command": 8,
+    "size": 1,
+    "armyMax": 1,
+    "incompatibleWith": [
+      "Ruglud's Armoured Orcs",
+      "Oglah Khan's Wolfboyz",
+      "Mengil Manhide's Manflayers",
+      "Asarnil the Dragonlord"
+    ],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "High Elves",
+      "Skaven",
+      "Lizardmen",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Wood Elves",
+      "Beastmen",
+      "Norse",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Hero", "costType": "any" }
+    }
+  },
+  "The Witch Hunters": {
+    "urlId": "R24",
+    "type": "Hero",
+    "points": 90,
+    "attack": "+1",
+    "command": 8,
+    "size": 1,
+    "armyMax": 1,
+    "incompatibleWith": ["The Cursed Company"],
+    "incompatibleFactions": [
+      "Tomb Kings",
+      "Chaos",
+      "Orcs",
+      "Skaven",
+      "Dark Elves",
+      "Daemons",
+      "Vampire Counts",
+      "Ogre Kingdoms",
+      "Goblins",
+      "Chaos Dwarfs",
+      "Beastmen",
+      "Norse",
+      "Cathay",
+      "Nippon"
+    ],
+    "countAsRules": {
+      "any": { "type": "Hero", "costType": "any" }
+    }
+  }
+}
