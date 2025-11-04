@@ -1,4 +1,4 @@
-import { formatError } from '$builder/validator/internal'
+import { formatError } from '$validator/internal'
 import { ArmyErrors } from '../messages'
 
 

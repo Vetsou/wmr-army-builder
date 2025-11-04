@@ -19,7 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "$builder/*": ["src/lib/builder/*"],
-      "$helper/*": ["src/lib/builder/helper/*"],
+      "$validator/*": ["src/lib/builder/validator/*"],
       "$components/*": ["src/lib/components/*"]
     }
   },

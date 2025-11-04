@@ -1,5 +1,5 @@
 import { isRegiment } from '$builder/types/guards'
-import { formatError } from '$builder/validator/internal'
+import { formatError } from '$validator/internal'
 import { ArmyErrors } from '../messages'
 
 export const hasIncompatibleRegiments = (

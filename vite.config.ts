@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const aliases = {
   '$builder': resolve(__dirname, 'src/lib/builder'),
-  '$helper': resolve(__dirname, 'src/lib/builder/helper'),
+  '$validator': resolve(__dirname, 'src/lib/builder/validator'),
   '$components': resolve(__dirname, 'src/lib/components')
 }
 

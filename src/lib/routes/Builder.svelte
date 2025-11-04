@@ -1,10 +1,10 @@
 <script lang="ts">
+  import { fetchPublicData } from './io'
+
   import BuilderStore from '$builder/store'
   import ArmyBuilder from '$components/ArmyBuilder.svelte'
   import ArmySchema from '$components/ArmySchema.svelte'
   import ArmyStatus from '$components/ArmyStatus.svelte'
-
-  import { fetchPublicData } from '../io'
 
   const { route } = $props()
   const factionFile = route.result.path.params.name

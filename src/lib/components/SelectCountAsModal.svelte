@@ -1,7 +1,7 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits, type CountAsRuleResult } from '$builder/helper/regimentsHelper'
+  import { getRegimentCountAsRuleUnits } from './logic/regiments'
 
   type Props = {
     readonly schemaUnits: Record<string, ISchemaUnit>

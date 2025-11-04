@@ -1,6 +1,6 @@
 <script lang="ts">
   import { route } from '@mateothegreat/svelte5-router'
-  import { fetchPublicData } from '../io'
+  import { fetchPublicData } from './io'
 
   const loadFactions = fetchPublicData<IFaction[]>('/factions.json')
     .then((data: IFaction[]) => data)

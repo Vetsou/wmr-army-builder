@@ -1,4 +1,4 @@
-export const fetchPublicData = 
+export const fetchPublicData =
 async <T>(publicPath: string): Promise<T> => {
   const response = await fetch(publicPath, {
     headers : { 
