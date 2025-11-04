@@ -3,6 +3,7 @@
   import SelectCountAsModal from './SelectCountAsModal.svelte'
   import { getUnitBoundsString } from './logic'
 
+
   type Props = {
     units: Record<string, ISchemaUnit>
     regiments: Record<string, ISchemaRegiment>

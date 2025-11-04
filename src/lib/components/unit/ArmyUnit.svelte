@@ -5,6 +5,7 @@
   import UnitEquipment from './UnitEquipment.svelte'
   import SchemaEquipment from './SchemaEquipment.svelte'
 
+
   type Props = {
     unitName: string
     unitData: IArmyUnit

@@ -5,6 +5,7 @@ import * as DataGenerator from 'test/dataGenerator'
 import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
+
 let store: Writable<IBuilderState>
 
 beforeEach(() => {

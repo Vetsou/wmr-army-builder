@@ -1,5 +1,6 @@
 import * as UnitRules from './rules'
 
+
 interface UnitRule {
   check(state: IBuilderState, unitName: string): string[]
 }

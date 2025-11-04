@@ -1,6 +1,7 @@
 import { formatError, isUnitCountIncorrect } from '$validator/internal'
 import { ArmyErrors } from '../messages'
 
+
 const getArmyStandsCount = (
   state: IBuilderState
 ): Record<string, IArmyStand> => {

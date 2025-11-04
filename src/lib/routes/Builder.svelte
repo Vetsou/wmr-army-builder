@@ -6,6 +6,7 @@
   import ArmySchema from '$components/ArmySchema.svelte'
   import ArmyStatus from '$components/ArmyStatus.svelte'
 
+
   const { route } = $props()
   const factionFile = route.result.path.params.name
 

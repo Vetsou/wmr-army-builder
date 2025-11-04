@@ -1,6 +1,7 @@
 import { validateUnit } from '../unit'
 import * as ArmyRules from './rules'
 
+
 interface ArmyRule {
   check(state: IBuilderState): string[]
 }

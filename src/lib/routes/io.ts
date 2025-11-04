@@ -1,5 +1,7 @@
 export const fetchPublicData =
-async <T>(publicPath: string): Promise<T> => {
+async <T>(
+  publicPath: string
+): Promise<T> => {
   const response = await fetch(publicPath, {
     headers : { 
       'Content-Type': 'application/json',

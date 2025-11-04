@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition'
   import { getRegimentCountAsRuleUnits } from './logic/regiments'
 
+
   type Props = {
     readonly schemaUnits: Record<string, ISchemaUnit>
     processedRegiment: { name: string, data: ISchemaRegiment }
