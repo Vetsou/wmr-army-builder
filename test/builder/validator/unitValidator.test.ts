@@ -1,11 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import type { IBuilderState } from '$builder/store'
 import { get, type Writable } from 'svelte/store'
 
 import * as DataGenerator from 'test/dataGenerator'
-
-import * as ArmyMutator from '$builder/mutator/armyMutator'
-import * as UnitMutator from '$builder/mutator/unitMutator'
+import * as ArmyMutator from '$builder/mutator/army'
+import * as UnitMutator from '$builder/mutator/unit'
 
 let store: Writable<IBuilderState>
 

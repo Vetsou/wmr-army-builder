@@ -1,7 +1,8 @@
-import type { IBuilderState } from "$builder/store"
 import { writable, type Writable } from "svelte/store"
 
-export const createBuilderState = (state: Partial<IBuilderState>): Writable<IBuilderState> => {
+export const createBuilderState = (
+  state: Partial<IBuilderState>
+): Writable<IBuilderState> => {
   return writable<IBuilderState>({
     armyName: state.armyName ?? 'Test Army',
     armyCost: state.armyCost ?? 0,
@@ -20,7 +21,9 @@ export const createBuilderState = (state: Partial<IBuilderState>): Writable<IBui
   })
 }
 
-export const createArmySchema = (schema: Partial<IArmySchema>): IArmySchema => {
+export const createArmySchema = (
+  schema: Partial<IArmySchema>
+): IArmySchema => {
   return {
     name: schema.name ?? 'Test Army',
     units: schema.units ?? {},
@@ -29,7 +32,9 @@ export const createArmySchema = (schema: Partial<IArmySchema>): IArmySchema => {
   }
 }
 
-export const createSchemaUnit = (unit: Partial<ISchemaUnit>): ISchemaUnit => {
+export const createSchemaUnit = (
+  unit: Partial<ISchemaUnit>
+): ISchemaUnit => {
   return {
     attack: unit.attack ?? '2',
     max: unit.max,
@@ -44,7 +49,9 @@ export const createSchemaUnit = (unit: Partial<ISchemaUnit>): ISchemaUnit => {
   } 
 }
 
-export const createArmyUnit = (unit: Partial<IArmyUnit>): IArmyUnit => {
+export const createArmyUnit = (
+  unit: Partial<IArmyUnit>
+): IArmyUnit => {
   const schemaUnit = createSchemaUnit({ ...unit })
   return {
     ...schemaUnit,
@@ -56,7 +63,9 @@ export const createArmyUnit = (unit: Partial<IArmyUnit>): IArmyUnit => {
   }
 }
 
-export const createSchemaItem = (item: Partial<ISchemaMagicItem>): ISchemaMagicItem => {
+export const createSchemaItem = (
+  item: Partial<ISchemaMagicItem>
+): ISchemaMagicItem => {
   return {
     type: item.type ?? 'Magic Weapon',
     cost: item.cost ?? 100,
@@ -65,7 +74,9 @@ export const createSchemaItem = (item: Partial<ISchemaMagicItem>): ISchemaMagicI
   }
 }
 
-export const createSchemaUpgrade = (upgrade: Partial<ISchemaUpgrade>): ISchemaUpgrade => {
+export const createSchemaUpgrade = (
+  upgrade: Partial<ISchemaUpgrade>
+): ISchemaUpgrade => {
   return {
     type: upgrade.type ?? 'Chariot Mount',
     cost: upgrade.cost ?? 25,

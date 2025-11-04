@@ -1,17 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { IBuilderState } from '$builder/store'
 import { get, type Writable } from 'svelte/store'
-import * as DataGenerator from 'test/dataGenerator'
 
-import * as ArmyMutator from '$builder/mutator/armyMutator'
-import * as UnitMutator from '$builder/mutator/unitMutator'
+import * as DataGenerator from 'test/dataGenerator'
+import * as ArmyMutator from '$builder/mutator/army'
+import * as UnitMutator from '$builder/mutator/unit'
 
 // Mocks
 vi.mock('$builder/validator/unitRules', () => ({ validateUnit: vi.fn() }))
 vi.mock('$builder/validator/armyRules', () => ({ validateArmy: vi.fn() }))
 
-import * as UnitValidator from '$builder/validator/unitRules'
-import * as ArmyValidator from '$builder/validator/armyRules'
+import * as UnitValidator from '$builder/validator/unit'
+import * as ArmyValidator from '$builder/validator/army'
 
 
 let store: Writable<IBuilderState>
