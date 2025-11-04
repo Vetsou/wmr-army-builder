@@ -20,7 +20,44 @@ const commonRules = {
   'dot-notation': 'error',          // Enforce prop.name instead of prop['name']
   'default-case': 'error',          // Require default case in switch
 
-  // Disable unused for _... variables
+  '@typescript-eslint/explicit-function-return-type': 'error',
+  '@typescript-eslint/array-type': ['error', { default: 'array' }],
+  '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'as' }],
+  '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
+  '@typescript-eslint/method-signature-style': ['error', 'method'],
+  '@typescript-eslint/no-confusing-non-null-assertion': 'error',
+  '@typescript-eslint/no-for-in-array': 'error',
+  "@typescript-eslint/no-inferrable-types": "error",
+  "@typescript-eslint/no-invalid-void-type": "error",
+  "@typescript-eslint/no-mixed-enums": "error",
+  "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+
+  // Naming convention
+  '@typescript-eslint/naming-convention': [
+    'error',
+    {
+      selector: 'default',
+      format: ['camelCase'],
+      leadingUnderscore: 'allow',
+      trailingUnderscore: 'allow'
+    },
+    {
+      selector: 'import',
+      format: ['camelCase', 'PascalCase']
+    },
+    {
+      selector: 'variable',
+      format: ['camelCase', 'UPPER_CASE'],
+      leadingUnderscore: 'allow',
+      trailingUnderscore: 'allow'
+    },
+    {
+      selector: 'typeLike',
+      format: ['PascalCase']
+    }
+  ],
+
+  // Extend recommended rule with unused '_...' variables
   '@typescript-eslint/no-unused-vars': ['error', {
     argsIgnorePattern: '^_',
     varsIgnorePattern: '^_',
@@ -65,13 +102,7 @@ export default defineConfig([
     plugins: { '@typescript-eslint': ts.plugin },
     extends: ts.configs.recommended,
     rules: {
-      ...commonRules,
-
-      // Use consts when possible
-      'prefer-const': ['error', {
-        destructuring: 'all',
-        ignoreReadBeforeAssign: false
-      }]
+      ...commonRules
     }
   },
 
