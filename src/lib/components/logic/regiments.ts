@@ -1,8 +1,3 @@
-export type CountAsRuleResult = {
-  units: [string, ISchemaUnit][]
-  upgrades: [string, ISchemaUpgrade][]
-}
-
 const filterByType = (
   state: IBuilderState,
   result: CountAsRuleResult,
