@@ -6,8 +6,8 @@ import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 // Mocks
-vi.mock('$builder/validator/unitRules', () => ({ validateUnit: vi.fn() }))
-vi.mock('$builder/validator/armyRules', () => ({ validateArmy: vi.fn() }))
+vi.mock('$builder/validator/unit', () => ({ validateUnit: vi.fn() }))
+vi.mock('$builder/validator/army', () => ({ validateArmy: vi.fn() }))
 
 import * as UnitValidator from '$builder/validator/unit'
 import * as ArmyValidator from '$builder/validator/army'
