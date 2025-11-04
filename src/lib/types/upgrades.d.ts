@@ -1,11 +1,11 @@
 declare global {
   /**
-   * Types of upgrades inside schema
+   * Categories of unit upgrades available in the army schema.
    */
   type UpgradeType = 'Chariot Mount' | 'Monstrous Mount' | 'Special Mount' | 'Special'
 
   /**
-   * Army upgrade inside schema file
+   * Base upgrade definition as stored in an army's schema file.
    */
   interface ISchemaUpgrade {
     type: UpgradeType
@@ -20,7 +20,7 @@ declare global {
   }
 
   /**
-   * Army upgrade inside army builder
+   * Representation of an upgrade when added to an army within the builder.
    */
   interface IArmyUpgrade extends ISchemaUpgrade {
     count: number
