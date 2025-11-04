@@ -29,16 +29,16 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 <div
-  onclick={() => BuilderStore.removeUnit(unitName, unitData)}
-  onmouseenter={toggleErrorList}
-  onmouseleave={toggleErrorList}
-  oncontextmenu={toggleItemList}
+  onclick={ () => BuilderStore.removeUnit(unitName, unitData) }
+  onmouseenter={ toggleErrorList }
+  onmouseleave={ toggleErrorList }
+  oncontextmenu={ toggleItemList }
   class="flex relative cursor-pointer
-    {unitHasErrors() ? 'bg-rose-200  hover:bg-rose-300' : 'bg-slate-50 hover:bg-gray-200'}"
+    { unitHasErrors() ? 'bg-rose-200  hover:bg-rose-300' : 'bg-slate-50 hover:bg-gray-200' }"
 >
   <div class="w-1/5">
     { unitData.count }
-    {#if $BuilderStore.regimentCountAs.units[unitName] > 0 }
+    {#if $BuilderStore.regimentCountAs.units[unitName] > 0}
       (+{ $BuilderStore.regimentCountAs.units[unitName] })
     {/if}
   </div>
@@ -49,7 +49,8 @@
 
   {#if isErrorListVisible && unitHasErrors()}
     <div class="absolute rounded px-2 py-1 bg-rose-400 z-50 top-10 left-1/2 
-      transform -translate-x-1/2 -translate-y-1/2">
+      transform -translate-x-1/2 -translate-y-1/2"
+    >
       {#each unitData.errors as error, i (i)} <div>{ error }</div> {/each}
     </div>
   {/if}

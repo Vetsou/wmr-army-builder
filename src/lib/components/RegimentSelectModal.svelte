@@ -61,14 +61,14 @@
 </script>
 
 <dialog
-  bind:this={dialog}
-  transition:fade={{ duration: 150 }}
-  onclick={(e) => { if (e.target === dialog) onCancel() }}
+  bind:this={ dialog }
+  transition:fade={ { duration: 150 } }
+  onclick={ (e) => { if (e.target === dialog) onCancel() } }
   class="count-as-dialog backdrop:bg-black/50"
 >
   <div class="bg-white rounded-2xl p-6 w-full min-w-md">
     <div class="text-lg font-semibold mb-4">
-      Unit name: {processedRegiment.name}
+      Unit name: { processedRegiment.name }
     </div>
     
     <div>
@@ -81,11 +81,11 @@
 
         {#each countAsDataResult.units as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={() => selectedUnit = { name, data }}
+          <div onclick={ () => selectedUnit = { name, data } }
             class="p-2 border rounded-md cursor-pointer
-            {selectedUnit?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
+              { selectedUnit?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
           >
-            {name}
+            { name }
           </div>
         {/each}
       {/if}
@@ -95,24 +95,24 @@
 
         {#each countAsDataResult.upgrades as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={() => selectedUpgrade = { name, data }}
+          <div onclick={ () => selectedUpgrade = { name, data } }
             class="p-2 border rounded-md cursor-pointer
-            {selectedUpgrade?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
+              { selectedUpgrade?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
           >
-            {name}
+            { name }
           </div>
         {/each}
       {/if}
     </div>
 
     <div>
-      <button onclick={() => onCancel()}
+      <button onclick={ () => onCancel() }
         class="bg-gray-300 text-gray-800 rounded-md px-4 py-2 hover:bg-gray-400 cursor-pointer"
       >
         Cancel
       </button>
 
-      <button onclick={() => onConfirm()} disabled={isConfirmDisabled()}
+      <button onclick={ () => onConfirm() } disabled={ isConfirmDisabled() }
         class="bg-blue-600 text-white rounded-md mt-4 px-4 py-2 hover:bg-blue-700 cursor-pointer
           disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
       >

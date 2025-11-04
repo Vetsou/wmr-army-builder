@@ -1,5 +1,6 @@
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
+
 import svelteConfig from './svelte.config.js'
 
 import js from '@eslint/js'
@@ -18,17 +19,14 @@ const commonRules = {
   'prefer-template': 'error',       // Enforce string templates (`${}`)
   'dot-notation': 'error',          // Enforce prop.name instead of prop['name']
   'default-case': 'error',          // Require default case in switch
-  // Use consts when possible
-  'prefer-const': ['error', {
-    destructuring: 'all',
-    ignoreReadBeforeAssign: false
-  }],
+
   // Disable unused for _... variables
   '@typescript-eslint/no-unused-vars': ['error', {
     argsIgnorePattern: '^_',
     varsIgnorePattern: '^_',
     caughtErrorsIgnorePattern: '^_',
   }],
+  
   // Max line length
   'max-len': ['error', {
     code: 120,
@@ -41,32 +39,45 @@ const commonRules = {
 }
 
 export default defineConfig([
-  // GLOBAL
+  // --- GLOBAL ---
+  globalIgnores([
+    'node_modules/*',
+    'public/*',
+    'dist/*',
+    '.github/*',
+    '.vscode/*'
+  ]),
   { 
-    files: ['./src/**/*.{js,ts,tsx,svelte}'],
+    files: ['./**/*.{js,ts,svelte}'],
     languageOptions: { globals: globals.browser }
   },
 
-  // JS
+  // --- JS ---
   {
-    files: ['src/**/*.js'],
+    files: ['./**/**/*.js'],
     plugins: { js },
     extends: ['js/recommended']
   },
 
-  // TS
+  // --- TS ---
   {
-    files: ['./src/**/*.{ts,tsx}'],
+    files: ['./**/**/*.ts'],
     plugins: { '@typescript-eslint': ts.plugin },
     extends: ts.configs.recommended,
     rules: {
-      ...commonRules
+      ...commonRules,
+
+      // Use consts when possible
+      'prefer-const': ['error', {
+        destructuring: 'all',
+        ignoreReadBeforeAssign: false
+      }]
     }
   },
 
-  // SVELTE
+  // --- SVELTE ---
   {
-    files: ['./src/**/*.svelte'],
+    files: ['./**/**/*.svelte'],
     plugins: {
       svelte,
       '@typescript-eslint': ts.plugin
@@ -83,8 +94,41 @@ export default defineConfig([
     },
     rules: {
       ...commonRules,
-      'svelte/no-target-blank': 'error',
-      'svelte/no-top-level-browser-globals': 'error'
+      'prefer-const': 'off', // handled by Svelte linter
+
+      'svelte/no-target-blank': 'error',                             // disallows using target="_blank"
+      'svelte/prefer-class-directive': 'error',                      // class directives instead of ternary operation
+      'svelte/no-top-level-browser-globals': 'error',                // disallow top-level browser global variables
+      'svelte/html-closing-bracket-new-line': 'error',               // disallow a '\n' before tag's closing brackets
+      'svelte/indent': 'error',                                      // consistent indentation
+      'svelte/shorthand-attribute': ['error', { prefer: 'always' }], // use shorthand syntax in attribute
+      'svelte/shorthand-directive': ['error', { prefer: 'always' }], // use shorthand syntax in directives
+      'svelte/prefer-const': 'error',                                // prefer const variables
+      'svelte/no-spaces-around-equal-signs-in-attribute': 'error',   // no spaces around '=' in html
+
+      // Enforcing unified spacing in mustaches
+      'svelte/mustache-spacing': [
+        'error',
+        {
+          "textExpressions": "always",
+          "attributesAndProps": "always",
+          "directiveExpressions": "always",
+          "tags": {
+            "openingBrace": "never",
+            "closingBrace": "never"
+          }
+        }
+      ],
+
+      // Disallow specific HTML elements
+      'svelte/no-restricted-html-elements': [
+        "error",
+        "h1", "h2", "h3", "h4", "h5", "h6",
+        "marquee", "big", "center", "font",
+        "small", "u", "tt", "blink", "applet",
+        "acronym", "dir", "menu", "isindex",
+        "basefont"
+      ]
     }
   }
 ])

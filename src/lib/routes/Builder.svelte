@@ -51,7 +51,7 @@
   <p>Loading army data...</p>
 {:then armyData}
   <section class="flex justify-evenly items-start">
-    <ArmySchema {...armyData} />
+    <ArmySchema { ...armyData } />
     <ArmyInfo />
     <ArmyBuilder />
   </section>

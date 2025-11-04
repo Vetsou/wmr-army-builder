@@ -74,7 +74,7 @@ describe('RemoveUnit', () => {
     const schemaUnit = DataGenerator.createArmyUnit({ points: 35 })
     const item = DataGenerator.createSchemaItem({ cost: 100 })
     ArmyMutator.addUnit(store, 'UnitA', schemaUnit, 2)
-    UnitMutator.equipItem(store, "UnitA", "ItemA", item)
+    UnitMutator.equipItem(store, 'UnitA', 'ItemA', item)
 
     // Act & Assert
     const state = get(store)
@@ -110,8 +110,8 @@ describe('ResetState', () => {
     // Arrange
     const schema = DataGenerator.createArmySchema({
       units: {
-        "UnitA": DataGenerator.createSchemaUnit({ points: 15, min: 3 }),
-        "UnitGeneral": DataGenerator.createSchemaUnit({ points: 50, type: 'General' })
+        'UnitA': DataGenerator.createSchemaUnit({ points: 15, min: 3 }),
+        'UnitGeneral': DataGenerator.createSchemaUnit({ points: 50, type: 'General' })
       }
     })
 
