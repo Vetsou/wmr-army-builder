@@ -1,6 +1,5 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
-  import { isRegiment } from '$builder/types/guards'
 
 
   type Props = {
@@ -19,35 +18,9 @@
     const statCompareValue = unit[item.stat!]?.toString() || '-'
     return item.cost[statCompareValue]
   }
-
-  const getUnitEquipableItems = (
-    unitData: ISchemaUnit,
-    magicItems: Record<string, ISchemaMagicItem>
-  ): [string, ISchemaMagicItem][] => {
-    if (isRegiment(unitData)) return []
-
-    return Object.entries(magicItems).filter(([itemName, item]) =>
-      item.allowedUnits.includes(unitData.type) || unitData.customItems?.includes(itemName))
-  }
-
-  const getUnitUpgrades = (
-    unitData: ISchemaUnit,
-    armyUpgrades?: Record<string, ISchemaUpgrade>
-  ): [string, ISchemaUpgrade][] => {
-    return Object.entries(armyUpgrades ?? {})
-      .filter(([upgradeName]) => unitData.upgrades?.includes(upgradeName))
-  }
-
-  const getUnitStands = (
-    unitData: ISchemaUnit,
-    armyStands?: Record<string, ISchemaUnit>
-  ): [string, ISchemaUnit][] => {
-    return Object.entries(armyStands ?? {})
-      .filter(([standName]) => unitData.extraStands?.includes(standName))
-  }
 </script>
 
-{#each getUnitEquipableItems(unitData, $BuilderStore.lookup.magicItems) as [itemName, itemData], i (i)}
+{#each BuilderStore.getUnitEquipableItems(unitData) as [itemName, itemData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.equipItem(unitName, itemName, itemData)}>
@@ -57,7 +30,7 @@
   </div>
 {/each}
 
-{#each getUnitUpgrades(unitData, $BuilderStore.lookup.armyUpgrades) as [upgradeName, upgradeData], i (i)}
+{#each BuilderStore.getUnitEquipableUpgrades(unitData) as [upgradeName, upgradeData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.equipUpgrade(unitName, upgradeName, upgradeData)}>
@@ -67,7 +40,7 @@
   </div>
 {/each}
 
-{#each getUnitStands(unitData, $BuilderStore.lookup.armyStands) as [standName, standData], i (i)}
+{#each BuilderStore.getAttachableStands(unitData) as [standName, standData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex gap-x-4 select-none cursor-pointer hover:bg-gray-200"
       onclick={() => BuilderStore.addStand(unitName, standName, standData)}>

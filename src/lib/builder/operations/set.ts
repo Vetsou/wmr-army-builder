@@ -1,10 +1,10 @@
 import type { Writable } from 'svelte/store'
 
-import * as UnitMutator from './mutator/unit'
-import * as ArmyMutator from './mutator/army'
+import * as UnitMutator from '../mutator/unit'
+import * as ArmyMutator from '../mutator/army'
 
 
-export const UnitActions = (
+export const SetUnitActions = (
   state: Writable<IBuilderState>
 ) => ({
   equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem) =>
@@ -26,7 +26,7 @@ export const UnitActions = (
     UnitMutator.removeStand(state, unitKey, standKey),
 })
 
-export const ArmyActions = (
+export const SetArmyActions = (
   state: Writable<IBuilderState>
 ) => ({
   initNewArmy: (armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>) =>

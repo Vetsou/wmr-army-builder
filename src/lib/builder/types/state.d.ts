@@ -32,19 +32,24 @@ declare global {
     // Svelte store
     getState(): IBuilderState
 
-    // Army actions
+    // Set army actions
     initNewArmy(armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>): void
     addUnit(unitKey: string, unitData: ISchemaUnit): void
     removeUnit(unitKey: string, unitData: IArmyUnit): void
     addRegiment(unitKey: string, unitData: ISchemaRegiment, countAsData: IAddRegimentData): void
 
-    // Unit actions
+    // Set unit actions
     equipItem(unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void
     unequipItem(unitKey: string, itemKey: string): void
     equipUpgrade(unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade): void
     unequipUpgrade(unitKey: string, upgradeKey: string): void
     addStand(unitKey: string, standKey: string, standData: ISchemaUnit): void
     removeStand(unitKey: string, standKey: string): void
+
+    // Get unit augments
+    getUnitEquipableItems(unitData: ISchemaUnit): [string, ISchemaMagicItem][]
+    getUnitEquipableUpgrades(unitData: ISchemaUnit): [string, ISchemaUpgrade][]
+    getAttachableStands(unitData: ISchemaUnit): [string, ISchemaUnit][]
   }
 }
 

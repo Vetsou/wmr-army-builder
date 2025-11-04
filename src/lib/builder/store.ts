@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store'
-import { UnitActions, ArmyActions } from './operations'
+import * as Operations from './operations'
 
 
 const createBuilderStore = (): IBuilderStore => {
@@ -24,8 +24,10 @@ const createBuilderStore = (): IBuilderStore => {
     subscribe: state.subscribe,
     getState: () => get(state),
 
-    ...ArmyActions(state),
-    ...UnitActions(state)
+    ...Operations.SetArmyActions(state),
+    ...Operations.SetUnitActions(state),
+
+    ...Operations.GetAugmentsActions(state)
   }
 }
 
