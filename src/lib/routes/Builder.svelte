@@ -4,7 +4,7 @@
   import BuilderStore from '$builder/store'
   import ArmyBuilder from '$components/ArmyBuilder.svelte'
   import ArmySchema from '$components/ArmySchema.svelte'
-  import ArmyStatus from '$components/ArmyStatus.svelte'
+  import ArmyInfo from '$components/ArmyInfo.svelte'
 
 
   const { route } = $props()
@@ -52,7 +52,7 @@
 {:then armyData}
   <section class="flex justify-evenly items-start">
     <ArmySchema {...armyData} />
-    <ArmyStatus />
+    <ArmyInfo />
     <ArmyBuilder />
   </section>
 {:catch error}

@@ -1,6 +1,6 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
-  import SelectCountAsModal from './SelectCountAsModal.svelte'
+  import RegimentSelectModal from './RegimentSelectModal.svelte'
   import { getUnitBoundsString } from './logic'
 
 
@@ -62,4 +62,4 @@
   </div>
 </div>
 
-<SelectCountAsModal bind:showModal processedRegiment={selectedRegiment} schemaUnits={units} />
+<RegimentSelectModal bind:showModal processedRegiment={selectedRegiment} schemaUnits={units} />

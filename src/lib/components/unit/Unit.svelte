@@ -2,8 +2,8 @@
   import BuilderStore from '$builder/store'
   import { getUnitBoundsString } from '../logic'
 
-  import UnitEquipment from './UnitEquipment.svelte'
-  import SchemaEquipment from './SchemaEquipment.svelte'
+  import UnitAugments from './UnitAugments.svelte'
+  import SchemaAugments from './SchemaAugments.svelte'
 
 
   type Props = {
@@ -55,8 +55,8 @@
   {/if}
 </div>
 
-<UnitEquipment { unitName } { unitData } />
+<UnitAugments { unitName } { unitData } />
 
 {#if isItemListVisible}
-  <SchemaEquipment { unitName } { unitData } />
+  <SchemaAugments { unitName } { unitData } />
 {/if}
