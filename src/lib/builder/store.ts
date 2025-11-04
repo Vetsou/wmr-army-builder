@@ -25,7 +25,7 @@ const createBuilderStore = (): IBuilderStore => {
     getState: () => get(state),
 
     ...ArmyActions(state),
-    ...UnitActions(state),
+    ...UnitActions(state)
   }
 }
 

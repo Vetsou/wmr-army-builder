@@ -1,3 +1,6 @@
+import type { Readable } from 'svelte/store'
+
+
 interface ILookupData {
   readonly magicItems: Record<string, ISchemaMagicItem>
   readonly armyUpgrades?: Record<string, ISchemaUpgrade>
@@ -25,9 +28,8 @@ declare global {
     lookup: ILookupData
   }
 
-  interface IBuilderStore {
+  interface IBuilderStore extends Readable<IBuilderState> {
     // Svelte store
-    subscribe: Writable<IBuilderState>['subscribe']
     getState(): IBuilderState
 
     // Army actions
