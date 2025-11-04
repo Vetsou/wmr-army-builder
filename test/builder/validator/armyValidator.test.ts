@@ -4,7 +4,7 @@ import { get, type Writable } from 'svelte/store'
 import { ArmyErrors } from '$validator/army/messages'
 import { formatError } from '$validator/internal'
 
-import * as DataGenerator from 'test/dataGenerator'
+import * as DataGenerator from '$test/dataGenerator'
 import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 

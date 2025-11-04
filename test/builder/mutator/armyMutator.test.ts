@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { get, type Writable } from 'svelte/store'
 
-import * as DataGenerator from 'test/dataGenerator'
+import * as DataGenerator from '$test/dataGenerator'
 import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 

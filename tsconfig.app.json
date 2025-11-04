@@ -20,7 +20,8 @@
     "paths": {
       "$builder/*": ["src/lib/builder/*"],
       "$validator/*": ["src/lib/builder/validator/*"],
-      "$components/*": ["src/lib/components/*"]
+      "$components/*": ["src/lib/components/*"],
+      "$test/*": ["test/*"]
     }
   },
   "include": [
