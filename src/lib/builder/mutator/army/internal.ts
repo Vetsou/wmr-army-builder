@@ -1,7 +1,7 @@
 import type { Writable } from 'svelte/store'
 
-import * as UnitValidator from '$builder/validator/unitRules'
-import * as ArmyValidator from '$builder/validator/armyRules'
+import * as UnitValidator from '$builder/validator/unit'
+import * as ArmyValidator from '$builder/validator/army'
 
 
 type UnitMutationFn = (s: IBuilderState, unit: IArmyUnit | IArmyRegiment) => void

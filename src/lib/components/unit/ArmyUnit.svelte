@@ -1,6 +1,6 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
-  import { getUnitBoundsString } from '$helper/unitHelper'
+  import { getUnitBoundsString } from '../logic'
 
   import UnitEquipment from './UnitEquipment.svelte'
   import SchemaEquipment from './SchemaEquipment.svelte'

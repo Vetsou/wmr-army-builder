@@ -1,7 +1,7 @@
 import type { Writable } from 'svelte/store'
 import { mutateArmy } from './internal'
 
-import * as UnitValidator from '$builder/validator/unitRules'
+import * as UnitValidator from '$builder/validator/unit'
 
 
 export const addUnit = (

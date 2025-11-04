@@ -1,13 +1,49 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
-  import { getUnitEquipableItems, getUnitItemCost, getUnitStands, getUnitUpgrades } from '$helper/unitHelper'
+  import { isRegiment } from '$builder/types/guards'
 
   type Props = {
     unitName: string
     unitData: IArmyUnit
   }
-  
+
   const { unitName, unitData }: Props = $props()
+
+  const getUnitItemCost = (
+    unit: IArmyUnit,
+    item: ISchemaMagicItem
+  ): number => {
+    if (typeof item.cost === 'number') return item.cost
+
+    const statCompareValue = unit[item.stat!]?.toString() || '-'
+    return item.cost[statCompareValue]
+  }
+
+  const getUnitEquipableItems = (
+    unitData: ISchemaUnit,
+    magicItems: Record<string, ISchemaMagicItem>
+  ): [string, ISchemaMagicItem][] => {
+    if (isRegiment(unitData)) return []
+
+    return Object.entries(magicItems).filter(([itemName, item]) =>
+      item.allowedUnits.includes(unitData.type) || unitData.customItems?.includes(itemName))
+  }
+
+  const getUnitUpgrades = (
+    unitData: ISchemaUnit,
+    armyUpgrades?: Record<string, ISchemaUpgrade>
+  ): [string, ISchemaUpgrade][] => {
+    return Object.entries(armyUpgrades ?? {})
+      .filter(([upgradeName]) => unitData.upgrades?.includes(upgradeName))
+  }
+
+  const getUnitStands = (
+    unitData: ISchemaUnit,
+    armyStands?: Record<string, ISchemaUnit>
+  ): [string, ISchemaUnit][] => {
+    return Object.entries(armyStands ?? {})
+      .filter(([standName]) => unitData.extraStands?.includes(standName))
+  }
 </script>
 
 {#each getUnitEquipableItems(unitData, $BuilderStore.lookup.magicItems) as [itemName, itemData], i (i)}

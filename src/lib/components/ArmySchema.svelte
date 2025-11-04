@@ -1,7 +1,7 @@
 <script lang="ts">
   import BuilderStore from '$builder/store'
   import SelectCountAsModal from './SelectCountAsModal.svelte'
-  import { getUnitBoundsString } from '$helper/unitHelper'
+  import { getUnitBoundsString } from './logic'
 
   type Props = {
     units: Record<string, ISchemaUnit>

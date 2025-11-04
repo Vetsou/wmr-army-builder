@@ -2,7 +2,7 @@ import type { Writable } from 'svelte/store'
 import { isRegiment } from '$builder/types/guards'
 import { mutateArmy } from './internal'
 
-import * as UnitValidator from '$builder/validator/unitRules'
+import * as UnitValidator from '$builder/validator/unit'
 
 
 const getUnitAugmentsCost = (

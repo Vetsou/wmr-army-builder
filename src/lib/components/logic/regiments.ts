@@ -1,5 +1,3 @@
-import type { IBuilderState } from '$builder/store'
-
 export type CountAsRuleResult = {
   units: [string, ISchemaUnit][]
   upgrades: [string, ISchemaUpgrade][]
@@ -59,7 +57,7 @@ const filterUnitsByTags = (
 const filterUpgradesByTags = (
   upgrades: [string, ISchemaUpgrade][],
   rule: RegimentCountAsRule
-) => {
+): [string, ISchemaUpgrade][] => {
   return upgrades.filter(([_, upg]) => {
     if (rule.tags?.mustCauseTerror && !upg.terror) return false
     return true
