@@ -11,7 +11,7 @@ export const mutateArmy = (
   unitKey: string,
   unitData: ISchemaUnit,
   mutationFunc: UnitMutationFn
-) => {
+): void => {
   builderState.update(s => {
     let armyUnit = s.units[unitKey]
 

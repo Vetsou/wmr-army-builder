@@ -13,5 +13,5 @@ export const areStandsOutOfBounds = (
   const armyUnit = state.units[name]
   const unitStandCount = getUnitStandsCount(armyUnit)
   return unitStandCount > armyUnit.count
-    ? [formatError(UnitErrors.TooManyStands, armyUnit.count, name, unitStandCount)] : []
+    ? [formatError(UnitErrors.tooManyStands, armyUnit.count, name, unitStandCount)] : []
 }

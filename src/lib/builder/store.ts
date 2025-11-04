@@ -24,12 +24,12 @@ const createBuilderStore = (): IBuilderStore => {
     subscribe: state.subscribe,
     getState: () => get(state),
 
-    ...Operations.SetArmyActions(state),
-    ...Operations.SetUnitActions(state),
+    ...Operations.setArmyActions(state),
+    ...Operations.setUnitActions(state),
 
-    ...Operations.GetAugmentsActions(state)
-  }
+    ...Operations.getAugmentsActions(state)
+  } as IBuilderStore
 }
 
-const BuilderStore = createBuilderStore()
-export default BuilderStore
+const builderStore = createBuilderStore()
+export default builderStore

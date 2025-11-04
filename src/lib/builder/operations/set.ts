@@ -4,43 +4,43 @@ import * as UnitMutator from '../mutator/unit'
 import * as ArmyMutator from '../mutator/army'
 
 
-export const SetUnitActions = (
+export const setUnitActions = (
   state: Writable<IBuilderState>
-) => ({
-  equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem) =>
+): Partial<IBuilderStore> => ({
+  equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void =>
     UnitMutator.equipItem(state, unitKey, itemKey, itemData),
 
-  unequipItem: (unitKey: string, itemKey: string) =>
+  unequipItem: (unitKey: string, itemKey: string): void =>
     UnitMutator.unequipItem(state, unitKey, itemKey),
 
-  equipUpgrade: (unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade) =>
+  equipUpgrade: (unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade): void =>
     UnitMutator.equipUpgrade(state, unitKey, upgradeKey, upgradeData),
 
-  unequipUpgrade: (unitKey: string, upgradeKey: string) =>
+  unequipUpgrade: (unitKey: string, upgradeKey: string): void =>
     UnitMutator.unequipUpgrade(state, unitKey, upgradeKey),
 
-  addStand: (unitKey: string, standKey: string, standData: ISchemaUnit) =>
+  addStand: (unitKey: string, standKey: string, standData: ISchemaUnit): void =>
     UnitMutator.addStand(state, unitKey, standKey, standData),
 
-  removeStand: (unitKey: string, standKey: string) =>
+  removeStand: (unitKey: string, standKey: string): void =>
     UnitMutator.removeStand(state, unitKey, standKey),
 })
 
-export const SetArmyActions = (
+export const setArmyActions = (
   state: Writable<IBuilderState>
-) => ({
-  initNewArmy: (armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>) =>
+): Partial<IBuilderStore> => ({
+  initNewArmy: (armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>): void =>
     ArmyMutator.resetState(state, armySchema, magicItems),
 
-  addUnit: (unitKey: string, unitData: ISchemaUnit) =>
+  addUnit: (unitKey: string, unitData: ISchemaUnit): void =>
     ArmyMutator.addUnit(state, unitKey, unitData, 1),
 
-  removeUnit: (unitKey: string, unitData: IArmyUnit) =>
+  removeUnit: (unitKey: string, unitData: IArmyUnit): void =>
     ArmyMutator.removeUnit(state, unitKey, unitData, 1),
 
   addRegiment: (
     unitKey: string,
     unitData: ISchemaRegiment,
     countAsData: IAddRegimentData
-  ) => ArmyMutator.addRegiment(state, unitKey, unitData, countAsData, 1),
+  ): void => ArmyMutator.addRegiment(state, unitKey, unitData, countAsData, 1),
 })

@@ -11,7 +11,7 @@ export const isUnitCountIncorrect = (
   unit: IArmyUnit | IArmyStand,
   takenByRegiments: number,
   armyCost: number
-) => {
+): boolean => {
   const countMultiplier = Math.ceil(armyCost / 1000)
   const max = (unit.max ?? Infinity) * countMultiplier
   const min = (unit.min ?? -Infinity) * countMultiplier

@@ -26,5 +26,5 @@ export const areStandsOutOfBounds = (
   const standsCount = getArmyStandsCount(state)
   return Object.entries(standsCount)
     .filter(([_, standData]) => isUnitCountIncorrect(standData, 0, state.armyCost))
-    .map(([standKey, standData]) => formatError(ArmyErrors.StandOutOfBounds, standData.count, standKey))
+    .map(([standKey, standData]) => formatError(ArmyErrors.standOutOfBounds, standData.count, standKey))
 }

@@ -18,7 +18,7 @@ export const equipItem = (
   unitKey: string,
   itemKey: string,
   itemData: ISchemaMagicItem
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     const costForUnit = getUnitItemCost(unit, itemData)
 
@@ -37,7 +37,7 @@ export const unequipItem = (
   state: Writable<IBuilderState>,
   unitKey: string,
   itemKey: string
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     const unitItem = unit.equippedItems[itemKey]
 

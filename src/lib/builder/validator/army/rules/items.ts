@@ -22,5 +22,5 @@ export const hasDuplicateMagicItem = (
   const itemsCount = getArmyItemCount(state)
   return Object.entries(itemsCount)
     .filter(([_, count]) => count > 1)
-    .map(([magicItemKey]) => formatError(ArmyErrors.DuplicateMagicItem, magicItemKey))
+    .map(([magicItemKey]) => formatError(ArmyErrors.duplicateMagicItem, magicItemKey))
 }

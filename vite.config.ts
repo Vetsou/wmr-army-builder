@@ -6,13 +6,13 @@ import tailwindcss from '@tailwindcss/vite'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const DIR_NAME = dirname(fileURLToPath(import.meta.url))
 
 const aliases = {
-  '$builder': resolve(__dirname, 'src/lib/builder'),
-  '$validator': resolve(__dirname, 'src/lib/builder/validator'),
-  '$components': resolve(__dirname, 'src/lib/components'),
-  '$test': resolve(__dirname, 'test')
+  '$builder': resolve(DIR_NAME, 'src/lib/builder'),
+  '$validator': resolve(DIR_NAME, 'src/lib/builder/validator'),
+  '$components': resolve(DIR_NAME, 'src/lib/components'),
+  '$test': resolve(DIR_NAME, 'test')
 }
 
 export default defineConfig({

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import BuilderStore from '$builder/store'
+  import builderStore from '$builder/store'
   import RegimentSelectModal from './RegimentSelectModal.svelte'
   import { getUnitBoundsString } from './logic'
 
@@ -18,7 +18,10 @@
   })
 
   // Display modal and set it's state
-  const toggleCountAsModal = (regimentName: string, regimentData: ISchemaRegiment) => {
+  const toggleCountAsModal = (
+    regimentName: string, 
+    regimentData: ISchemaRegiment
+  ): void => {
     selectedRegiment = { name: regimentName, data: regimentData }
     showModal = true
   }
@@ -34,7 +37,9 @@
     </div>
     {#each Object.entries(units) as [unitName, unitData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ () => BuilderStore.addUnit(unitName, unitData) } class="flex hover:bg-gray-200 cursor-pointer">
+      <div onclick={ (): void => builderStore.addUnit(unitName, unitData) } 
+        class="flex hover:bg-gray-200 cursor-pointer"
+      >
         <div class="w-1/4">{ unitName }</div>
         <div class="w-1/4">{ unitData.type }</div>
         <div class="w-1/4">{ unitData.points }</div>
@@ -52,7 +57,7 @@
     </div>
     {#each Object.entries(regiments) as [regimentName, regimentData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ () => toggleCountAsModal(regimentName, regimentData) } 
+      <div onclick={ (): void => toggleCountAsModal(regimentName, regimentData) } 
         class="flex hover:bg-gray-200 cursor-pointer"
       >
         <div class="w-1/4">{ regimentName }</div>

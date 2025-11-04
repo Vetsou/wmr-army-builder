@@ -7,7 +7,7 @@ export const equipUpgrade = (
   unitKey: string,
   upgradeKey: string,
   upgradeData: ISchemaUpgrade
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     let unitUpgrade = unit.equippedUpgrades[upgradeKey]
 
@@ -25,7 +25,7 @@ export const unequipUpgrade = (
   state: Writable<IBuilderState>,
   unitKey: string,
   upgradeKey: string
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     const unitUpgrade = unit.equippedUpgrades[upgradeKey]
     if (!unitUpgrade) return

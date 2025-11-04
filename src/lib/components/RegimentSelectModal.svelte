@@ -1,5 +1,5 @@
 <script lang="ts">
-  import BuilderStore from '$builder/store'
+  import builderStore from '$builder/store'
   import { fade } from 'svelte/transition'
   import { getRegimentCountAsRuleUnits } from './logic/regiments'
 
@@ -18,7 +18,7 @@
   
   let dialog: HTMLDialogElement | undefined = $state()
   let countAsDataResult: CountAsRuleResult =
-    $state(getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, processedRegiment.data))
+    $state(getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data))
 
   // Unit/Upgrade selected by user
   let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
@@ -26,12 +26,15 @@
 
   $effect(() => {
     if (showModal) {
-      countAsDataResult = getRegimentCountAsRuleUnits($BuilderStore, schemaUnits, processedRegiment.data)
+      countAsDataResult = getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data)
       dialog?.showModal()
     }
   })
 
-  const isConfirmDisabled = () => {
+  const onUnitSelect = (name: string, data: ISchemaUnit): void => { selectedUnit = { name, data } }
+  const onUpgradeSelect = (name: string, data: ISchemaUpgrade): void => { selectedUpgrade = { name, data } }
+
+  const isConfirmDisabled = (): boolean => {
     const unitRequired = countAsDataResult.units?.length !== 0
     const upgradeRequired = countAsDataResult.upgrades?.length !== 0
 
@@ -41,7 +44,7 @@
     return !(unitSelected && upgradeSelected)
   }
 
-  const onBeforeClose = () => {
+  const onBeforeClose = (): void => {
     selectedUnit = null
     selectedUpgrade = null
 
@@ -49,10 +52,10 @@
     showModal = false
   }
 
-  const onCancel = () => onBeforeClose()
+  const onCancel = (): void => onBeforeClose()
 
-  const onConfirm = () => {
-    BuilderStore.addRegiment(
+  const onConfirm = (): void => {
+    builderStore.addRegiment(
       processedRegiment.name, processedRegiment.data,
       { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name }
     )
@@ -63,7 +66,7 @@
 <dialog
   bind:this={ dialog }
   transition:fade={ { duration: 150 } }
-  onclick={ (e) => { if (e.target === dialog) onCancel() } }
+  onclick={ (e): void => { if (e.target === dialog) onCancel() } }
   class="count-as-dialog backdrop:bg-black/50"
 >
   <div class="bg-white rounded-2xl p-6 w-full min-w-md">
@@ -81,7 +84,7 @@
 
         {#each countAsDataResult.units as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={ () => selectedUnit = { name, data } }
+          <div onclick={ (): void => onUnitSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer
               { selectedUnit?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
           >
@@ -95,7 +98,7 @@
 
         {#each countAsDataResult.upgrades as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={ () => selectedUpgrade = { name, data } }
+          <div onclick={ (): void => onUpgradeSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer
               { selectedUpgrade?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
           >
@@ -106,13 +109,13 @@
     </div>
 
     <div>
-      <button onclick={ () => onCancel() }
+      <button onclick={ (): void => onCancel() }
         class="bg-gray-300 text-gray-800 rounded-md px-4 py-2 hover:bg-gray-400 cursor-pointer"
       >
         Cancel
       </button>
 
-      <button onclick={ () => onConfirm() } disabled={ isConfirmDisabled() }
+      <button onclick={ (): void => onConfirm() } disabled={ isConfirmDisabled() }
         class="bg-blue-600 text-white rounded-md mt-4 px-4 py-2 hover:bg-blue-700 cursor-pointer
           disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
       >

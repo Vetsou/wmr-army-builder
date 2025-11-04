@@ -9,7 +9,7 @@ export const addUnit = (
   unitKey: string,
   unitData: ISchemaUnit,
   count: number
-) => {
+): void => {
   mutateArmy(
     builderState, unitKey, unitData,
     (s, armyUnit: IArmyUnit) => {
@@ -25,7 +25,7 @@ export const addRegiment = (
   unitData: ISchemaRegiment,
   countAsData: { unitName?: string, upgradeName?: string },
   count: number
-) => {
+): void => {
   mutateArmy(
     builderState, unitKey, unitData,
     (s, armyRegiment: IArmyRegiment) => {

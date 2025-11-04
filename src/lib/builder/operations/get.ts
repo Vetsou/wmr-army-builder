@@ -2,9 +2,9 @@ import { get, type Writable } from 'svelte/store'
 import { isRegiment } from '$builder/types/guards'
 
 
-export const GetAugmentsActions = (
+export const getAugmentsActions = (
   state: Writable<IBuilderState>
-) => ({
+): Partial<IBuilderStore> => ({
   getUnitEquipableItems: (
     unitData: ISchemaUnit
   ): [string, ISchemaMagicItem][] => {

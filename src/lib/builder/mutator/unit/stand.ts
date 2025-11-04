@@ -7,7 +7,7 @@ export const addStand = (
   unitKey: string,
   standKey: string,
   standData: ISchemaUnit
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     let unitStand = unit.addedStands[standKey]
 
@@ -25,7 +25,7 @@ export const removeStand = (
   state: Writable<IBuilderState>,
   unitKey: string,
   standKey: string
-) => {
+): void => {
   mutateUnit(state, unitKey, (s, unit) => {
     const unitStand = unit.addedStands[standKey]
     if (!unitStand) return

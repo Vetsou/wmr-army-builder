@@ -18,7 +18,7 @@
   const filterAvailableRegiments = (
     regimentsOfRenown: Record<string, ISchemaRegiment>,
     armyName: string
-  ) => {
+  ): Record<string, ISchemaRegiment> => {
     return Object.fromEntries(
       Object.entries(regimentsOfRenown)
         .filter(([_, regimentData]) => !regimentData.incompatibleFactions?.includes(armyName))

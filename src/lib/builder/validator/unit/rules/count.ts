@@ -11,5 +11,5 @@ export const areUnitsOutOfBounds = (
   const unitCount = armyUnit.count + takenByRegiment
 
   return isUnitCountIncorrect(armyUnit, takenByRegiment, state.armyCost)
-    ? [formatError(UnitErrors.CountOutOfBounds, name, unitCount)] : []
+    ? [formatError(UnitErrors.countOutOfBounds, name, unitCount)] : []
 }

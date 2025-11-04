@@ -13,5 +13,5 @@ export const unitHasTooManyUpgrades = (
   const armyUnit = state.units[name]
   const unitUpgradesCount = getUnitUpgradesCount(armyUnit)
   return unitUpgradesCount > armyUnit.count
-    ? [formatError(UnitErrors.TooManyUpgrades, armyUnit.count, name, unitUpgradesCount)] : []
+    ? [formatError(UnitErrors.tooManyUpgrades, armyUnit.count, name, unitUpgradesCount)] : []
 }

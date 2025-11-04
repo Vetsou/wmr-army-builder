@@ -15,7 +15,7 @@ const unitRules: readonly UnitRule[] = [
 export const validateUnit = (
   state: IBuilderState,
   unitKey: string
-) => {
+): void => {
   if (!state.units[unitKey]) return
   state.units[unitKey].errors = unitRules.flatMap(rule => rule.check(state, unitKey))
 }

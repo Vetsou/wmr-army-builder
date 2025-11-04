@@ -110,8 +110,8 @@ describe('ResetState', () => {
     // Arrange
     const schema = DataGenerator.createArmySchema({
       units: {
-        'UnitA': DataGenerator.createSchemaUnit({ points: 15, min: 3 }),
-        'UnitGeneral': DataGenerator.createSchemaUnit({ points: 50, type: 'General' })
+        unitA: DataGenerator.createSchemaUnit({ points: 15, min: 3 }),
+        unitGeneral: DataGenerator.createSchemaUnit({ points: 50, type: 'General' })
       }
     })
 
@@ -122,7 +122,7 @@ describe('ResetState', () => {
     const state = get(store)
     expect(state.armyCost).toBe(95)
     expect(state.armyCostLimit).toBe(2000)
-    expect(state.units.UnitA.count).toBe(3)
-    expect(state.units.UnitGeneral.count).toBe(1)
+    expect(state.units.unitA.count).toBe(3)
+    expect(state.units.unitGeneral.count).toBe(1)
   })
 })

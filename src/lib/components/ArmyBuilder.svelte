@@ -1,5 +1,5 @@
 <script lang="ts">
-  import BuilderStore from '$builder/store'
+  import builderStore from '$builder/store'
   import Unit from '$components/unit/Unit.svelte'
 </script>
 
@@ -11,7 +11,7 @@
     <div class="w-1/5">Points</div>
     <div class="w-1/5">Min/Max</div>
   </div>
-  {#each Object.entries($BuilderStore.units) as [unitName, unitData], i (i)}
+  {#each Object.entries($builderStore.units) as [unitName, unitData], i (i)}
     <Unit { unitName } { unitData } />
   {/each}
 </div>

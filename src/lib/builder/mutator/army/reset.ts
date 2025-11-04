@@ -5,7 +5,7 @@ import { addUnit } from './add'
 const addRequiredUnits = (
   state: Writable<IBuilderState>,
   armySchema: IArmySchema
-) => {
+): void => {
   Object.entries(armySchema.units).forEach(([unitKey, schemaUnit]) => {
     if (schemaUnit.min) {
       addUnit(state, unitKey, schemaUnit, schemaUnit.min)
@@ -20,7 +20,7 @@ export const resetState = (
   state: Writable<IBuilderState>,
   armySchema: IArmySchema,
   magicItems: Record<string, ISchemaMagicItem>
-) => {
+): void => {
   state.set({
     armyName: armySchema.name,
     armyCost: 0,

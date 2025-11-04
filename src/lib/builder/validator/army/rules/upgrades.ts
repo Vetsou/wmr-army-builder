@@ -44,7 +44,7 @@ export const isArmyUpgradeCountCorrect = (
       isUpgradeCountIncorrect(upgradeData, state.regimentCountAs.upgrades[upgradeKey], state.armyCost))
     .map(([upgradeKey, upgradeData]) =>
       formatError(
-        ArmyErrors.UpgradeOutOfBounds,
+        ArmyErrors.upgradeOutOfBounds,
         upgradeData.count + state.regimentCountAs.upgrades[upgradeKey],
         upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'
       ))

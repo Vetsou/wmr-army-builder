@@ -1,5 +1,5 @@
 <script lang="ts">
-  import BuilderStore from '$builder/store'
+  import builderStore from '$builder/store'
 
 
   type Props = {
@@ -13,7 +13,7 @@
 {#each Object.entries(unitData.equippedItems) as [itemName, itemData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ () => BuilderStore.unequipItem(unitName, itemName) }
+    onclick={ (): void => builderStore.unequipItem(unitName, itemName) }
   >
     <div>{ itemName }</div>
     <div>{ itemData.type }</div>
@@ -25,7 +25,7 @@
 {#each Object.entries(unitData.equippedUpgrades) as [upgradeName, upgradeData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ () => BuilderStore.unequipUpgrade(unitName, upgradeName) }
+    onclick={ (): void => builderStore.unequipUpgrade(unitName, upgradeName) }
   >
     <div>{ upgradeName }</div>
     <div>{ upgradeData.type }</div>
@@ -37,7 +37,7 @@
 {#each Object.entries(unitData.addedStands) as [standName, standData], i (i)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ () => BuilderStore.removeStand(unitName, standName) }
+    onclick={ (): void => builderStore.removeStand(unitName, standName) }
   >
     <div>{ standName }</div>
     <div>{ standData.type }</div>

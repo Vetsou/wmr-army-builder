@@ -1,5 +1,5 @@
 <script lang="ts">
-  import BuilderStore from '$builder/store'
+  import builderStore from '$builder/store'
   import { getUnitBoundsString } from '../logic'
 
   import UnitAugments from './UnitAugments.svelte'
@@ -17,11 +17,11 @@
 
   // Display unit error list on hover
   let isErrorListVisible = $state(false)
-  const toggleErrorList = () => isErrorListVisible = !isErrorListVisible
+  const toggleErrorList = (): boolean => isErrorListVisible = !isErrorListVisible
 
   // Display schema magicItems/upgrades list
   let isItemListVisible = $state(false)
-  const toggleItemList = (ev: MouseEvent) => {
+  const toggleItemList = (ev: MouseEvent): void => {
     ev.preventDefault()
     isItemListVisible = !isItemListVisible
   }
@@ -29,7 +29,7 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 <div
-  onclick={ () => BuilderStore.removeUnit(unitName, unitData) }
+  onclick={ (): void => builderStore.removeUnit(unitName, unitData) }
   onmouseenter={ toggleErrorList }
   onmouseleave={ toggleErrorList }
   oncontextmenu={ toggleItemList }
@@ -38,8 +38,8 @@
 >
   <div class="w-1/5">
     { unitData.count }
-    {#if $BuilderStore.regimentCountAs.units[unitName] > 0}
-      (+{ $BuilderStore.regimentCountAs.units[unitName] })
+    {#if $builderStore.regimentCountAs.units[unitName] > 0}
+      (+{ $builderStore.regimentCountAs.units[unitName] })
     {/if}
   </div>
   <div class="w-1/5">{ unitName }</div>

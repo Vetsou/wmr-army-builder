@@ -29,8 +29,6 @@ const commonRules = {
   '@typescript-eslint/no-for-in-array': 'error',
   "@typescript-eslint/no-inferrable-types": "error",
   "@typescript-eslint/no-invalid-void-type": "error",
-  "@typescript-eslint/no-mixed-enums": "error",
-  "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
 
   // Naming convention
   '@typescript-eslint/naming-convention': [
