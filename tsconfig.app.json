@@ -19,8 +19,9 @@
     "baseUrl": ".",
     "paths": {
       "$builder/*": ["src/lib/builder/*"],
-      "$helper/*": ["src/lib/builder/helper/*"],
-      "$components/*": ["src/lib/components/*"]
+      "$validator/*": ["src/lib/builder/validator/*"],
+      "$components/*": ["src/lib/components/*"],
+      "$test/*": ["test/*"]
     }
   },
   "include": [

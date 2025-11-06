@@ -3,6 +3,7 @@
   import Home from './lib/routes/Home.svelte'
   import Builder from './lib/routes/Builder.svelte'
 
+
   const routes: RouteConfig[] = [
     {
       component: Home
@@ -15,5 +16,5 @@
 </script>
 
 <main>
-  <Router {routes} />
+  <Router { routes } />
 </main>

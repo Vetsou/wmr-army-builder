@@ -1,10 +1,11 @@
 <script lang="ts">
+  import { fetchPublicData } from './io'
+
   import BuilderStore from '$builder/store'
   import ArmyBuilder from '$components/ArmyBuilder.svelte'
   import ArmySchema from '$components/ArmySchema.svelte'
-  import ArmyStatus from '$components/ArmyStatus.svelte'
+  import ArmyInfo from '$components/ArmyInfo.svelte'
 
-  import { fetchPublicData } from '../io'
 
   const { route } = $props()
   const factionFile = route.result.path.params.name
@@ -17,7 +18,7 @@
   const filterAvailableRegiments = (
     regimentsOfRenown: Record<string, ISchemaRegiment>,
     armyName: string
-  ) => {
+  ): Record<string, ISchemaRegiment> => {
     return Object.fromEntries(
       Object.entries(regimentsOfRenown)
         .filter(([_, regimentData]) => !regimentData.incompatibleFactions?.includes(armyName))
@@ -50,8 +51,8 @@
   <p>Loading army data...</p>
 {:then armyData}
   <section class="flex justify-evenly items-start">
-    <ArmySchema {...armyData} />
-    <ArmyStatus />
+    <ArmySchema { ...armyData } />
+    <ArmyInfo />
     <ArmyBuilder />
   </section>
 {:catch error}

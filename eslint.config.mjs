@@ -1,72 +1,56 @@
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import globals from 'globals'
+
 import svelteConfig from './svelte.config.js'
 
 import js from '@eslint/js'
 import ts from 'typescript-eslint'
 import svelte from 'eslint-plugin-svelte'
 
-const commonRules = {
-  'no-var': 'error',                // Use let, const
-  'eqeqeq': ['error'],              // Require === and !==
-  'quotes': ['error', 'single'],    // Require '' quotes
-  'curly': ['error', 'multi-line'], // Enforce braces for statements
-  'indent': ['error', 2],           // Require indentation (2 spaces)
-  'no-extra-semi': 'error',         // Disallow unnecessary semicolons
-  'semi': ['error', 'never'],       // Disallow semicolons
-  'prefer-spread': 'error',         // Enforce spread operators (...)
-  'prefer-template': 'error',       // Enforce string templates (`${}`)
-  'dot-notation': 'error',          // Enforce prop.name instead of prop['name']
-  'default-case': 'error',          // Require default case in switch
-  // Use consts when possible
-  'prefer-const': ['error', {
-    destructuring: 'all',
-    ignoreReadBeforeAssign: false
-  }],
-  // Disable unused for _... variables
-  '@typescript-eslint/no-unused-vars': ['error', {
-    argsIgnorePattern: '^_',
-    varsIgnorePattern: '^_',
-    caughtErrorsIgnorePattern: '^_',
-  }],
-  // Max line length
-  'max-len': ['error', {
-    code: 120,
-    tabWidth: 2,
-    ignoreUrls: true,
-    ignoreStrings: true,
-    ignoreTemplateLiterals: true,
-    ignoreComments: false
-  }]
-}
+// Config
+import commonRules from './eslint/eslintCommon.mjs'
+import tsRules from './eslint/eslintTs.mjs'
+import svelteRules from './eslint/eslintSvelte.mjs'
+
 
 export default defineConfig([
-  // GLOBAL
+  // --- GLOBAL ---
+  globalIgnores([
+    'node_modules/*',
+    'public/*',
+    'dist/*',
+    '.github/*',
+    '.vscode/*'
+  ]),
   { 
-    files: ['./src/**/*.{js,ts,tsx,svelte}'],
+    files: ['./**/*.{js,mjs,ts,svelte}'],
     languageOptions: { globals: globals.browser }
   },
 
-  // JS
+  // --- JS ---
   {
-    files: ['src/**/*.js'],
+    files: ['./**/*.{js,mjs}'],
     plugins: { js },
-    extends: ['js/recommended']
-  },
-
-  // TS
-  {
-    files: ['./src/**/*.{ts,tsx}'],
-    plugins: { '@typescript-eslint': ts.plugin },
-    extends: ts.configs.recommended,
+    extends: ['js/recommended'],
     rules: {
       ...commonRules
     }
   },
 
-  // SVELTE
+  // --- TS ---
   {
-    files: ['./src/**/*.svelte'],
+    files: ['./**/*.ts'],
+    plugins: { '@typescript-eslint': ts.plugin },
+    extends: ts.configs.recommended,
+    rules: {
+      ...commonRules,
+      ...tsRules
+    }
+  },
+
+  // --- SVELTE ---
+  {
+    files: ['./**/*.svelte'],
     plugins: {
       svelte,
       '@typescript-eslint': ts.plugin
@@ -83,8 +67,8 @@ export default defineConfig([
     },
     rules: {
       ...commonRules,
-      'svelte/no-target-blank': 'error',
-      'svelte/no-top-level-browser-globals': 'error'
+      ...tsRules,
+      ...svelteRules
     }
   }
 ])
