@@ -31,7 +31,10 @@ export default defineConfig([
   {
     files: ['./**/*.{js,mjs}'],
     plugins: { js },
-    extends: ['js/recommended']
+    extends: ['js/recommended'],
+    rules: {
+      ...commonRules
+    }
   },
 
   // --- TS ---

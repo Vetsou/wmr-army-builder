@@ -16,23 +16,23 @@ export default {
   'svelte/mustache-spacing': [
     'error',
     {
-      "textExpressions": "always",
-      "attributesAndProps": "always",
-      "directiveExpressions": "always",
-      "tags": {
-        "openingBrace": "never",
-        "closingBrace": "never"
+      'textExpressions': 'always',
+      'attributesAndProps': 'always',
+      'directiveExpressions': 'always',
+      'tags': {
+        'openingBrace': 'never',
+        'closingBrace': 'never'
       }
     }
   ],
 
   // Disallow specific HTML elements
   'svelte/no-restricted-html-elements': [
-    "error",
-    "h1", "h2", "h3", "h4", "h5", "h6",
-    "marquee", "big", "center", "font",
-    "small", "u", "tt", "blink", "applet",
-    "acronym", "dir", "menu", "isindex",
-    "basefont"
+    'error',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'marquee', 'big', 'center', 'font',
+    'small', 'u', 'tt', 'blink', 'applet',
+    'acronym', 'dir', 'menu', 'isindex',
+    'basefont'
   ]
 }

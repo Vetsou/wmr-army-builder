@@ -6,12 +6,12 @@ export default {
   '@typescript-eslint/method-signature-style': ['error', 'method'],
   '@typescript-eslint/no-confusing-non-null-assertion': 'error',
   '@typescript-eslint/no-for-in-array': 'error',
-  "@typescript-eslint/no-inferrable-types": "error",
-  "@typescript-eslint/no-invalid-void-type": "error",
+  '@typescript-eslint/no-inferrable-types': 'error',
+  '@typescript-eslint/no-invalid-void-type': 'error',
   '@typescript-eslint/no-non-null-assertion': 'error',
   '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
 
-  // Extend recommended rule with unused '_...' variables
+  // Extend recommended rule with unused '_var' variable names
   '@typescript-eslint/no-unused-vars': ['error', {
     argsIgnorePattern: '^_',
     varsIgnorePattern: '^_',
