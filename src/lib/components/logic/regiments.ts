@@ -74,8 +74,8 @@ export const getRegimentCountAsRuleUnits = (
   // Rule should always have type or unitName
   if (countAsRule.tags?.unitName) {
     result.units = result.units.filter(([name, _]) => name === countAsRule.tags?.unitName)
-  } else if (countAsRule.type !== 'any') {
-    result = filterByType(state, result, countAsRule.type!)
+  } else if (countAsRule.type) {
+    result = filterByType(state, result, countAsRule.type)
   }
 
   return {
