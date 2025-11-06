@@ -1,5 +1,6 @@
 <script lang="ts">
   import builderStore from '$builder/store'
+  import { getUnitItemCost } from '$components/logic'
 
 
   type Props = {
@@ -8,16 +9,6 @@
   }
 
   const { unitName, unitData }: Props = $props()
-
-  const getUnitItemCost = (
-    unit: IArmyUnit,
-    item: ISchemaMagicItem
-  ): number => {
-    if (typeof item.cost === 'number') return item.cost
-
-    const statCompareValue = unit[item.stat!]?.toString() || '-'
-    return item.cost[statCompareValue]
-  }
 </script>
 
 {#each builderStore.getUnitEquipableItems(unitData) as [itemName, itemData], i (i)}

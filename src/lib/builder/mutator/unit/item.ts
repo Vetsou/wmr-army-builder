@@ -9,7 +9,9 @@ const getUnitItemCost = (
   if (typeof item.cost === 'number') return item.cost
 
   // If item is not a number it has to have stat property
-  const statCompareValue = unit[item.stat!]?.toString() || '-'
+  const stat = item.stat as ('armor' | 'hits')
+  const statCompareValue = unit[stat]?.toString() || '-'
+
   return item.cost[statCompareValue]
 }
 
