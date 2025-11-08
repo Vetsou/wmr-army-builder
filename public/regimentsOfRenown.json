@@ -1,6 +1,6 @@
 {
   "Pirazzo's Lost Legion": {
-    "urlId": "R1",
+    "id": "R1",
     "type": "Infantry",
     "points": 85,
     "attack": "3/1",
@@ -16,7 +16,7 @@
     "incompatibleFactions": ["Lizardmen"]
   },
   "Alcatani Fellowship": {
-    "urlId": "R2",
+    "id": "R2",
     "type": "Infantry",
     "points": 60,
     "attack": "3",
@@ -30,7 +30,7 @@
     }
   },
   "Ricco's Republican Guard": {
-    "urlId": "R3",
+    "id": "R3",
     "type": "Infantry",
     "points": 75,
     "attack": "3",
@@ -44,7 +44,7 @@
     }
   },
   "Leopold's Leopard Company": {
-    "urlId": "R4",
+    "id": "R4",
     "type": "Infantry",
     "points": 60,
     "attack": "3",
@@ -58,7 +58,7 @@
     }
   },
   "Marksmen of Miragliano": {
-    "urlId": "R5",
+    "id": "R5",
     "type": "Infantry",
     "points": 65,
     "attack": "3/1",
@@ -72,7 +72,7 @@
     }
   },
   "Braganza's Besiegers": {
-    "urlId": "R6",
+    "id": "R6",
     "type": "Infantry",
     "points": 90,
     "attack": "3/1",
@@ -87,7 +87,7 @@
     }
   },
   "Lumpin Croop's Cocks": {
-    "urlId": "R7",
+    "id": "R7",
     "type": "Infantry",
     "points": 70,
     "attack": "3/1",
@@ -100,7 +100,7 @@
     }
   },
   "Vespero's Vendetta": {
-    "urlId": "R8",
+    "id": "R8",
     "type": "Infantry",
     "points": 60,
     "attack": "3/1",
@@ -110,7 +110,7 @@
     "armyMax": 1
   },
   "The Cursed Company": {
-    "urlId": "R9",
+    "id": "R9",
     "type": "Infantry",
     "points": 70,
     "attack": "3",
@@ -119,6 +119,9 @@
     "size": 3,
     "armyMax": 1,
     "incompatibleWith": [
+      "The Witch Hunters"
+    ],
+    "incompatibleFactions": [
       "Tomb Kings",
       "Bretonnia",
       "Vampire Counts",
@@ -131,8 +134,8 @@
       "any": { "type": "Infantry", "costType": "highest" }
     }
   },
-  "Mengil's Manflyers": {
-    "urlId": "R10",
+  "Mengil Manhide's Manflayers": {
+    "id": "R10",
     "type": "Infantry",
     "points": 85,
     "attack": "3/2",
@@ -141,7 +144,7 @@
     "size": 3,
     "armyMax": 1,
     "incompatibleWith": [
-      "Asarnil the Dragonlord",
+      "Asarnil The Dragonlord",
       "Long Drong's Slayer Pirates",
       "Gotrek and Felix",
       "(Dogs of War) Dwarfs"
@@ -161,7 +164,7 @@
     }
   },
   "Anakonda's Amazons": {
-    "urlId": "R11",
+    "id": "R11",
     "type": "Infantry",
     "points": 75,
     "attack": "3/1",
@@ -171,7 +174,7 @@
     "armyMax": 1
   },
   "Bearmen of Urslo": {
-    "urlId": "R12",
+    "id": "R12",
     "type": "Infantry",
     "points": 70,
     "attack": "3",
@@ -194,7 +197,7 @@
     }
   },
   "Ruglud's Armoured Orcs": {
-    "urlId": "R13",
+    "id": "R13",
     "type": "Infantry",
     "points": 90,
     "attack": "3/1",
@@ -227,7 +230,7 @@
     }
   },
   "Long Drong's Slayer Pirates": {
-    "urlId": "R14",
+    "id": "R14",
     "type": "Infantry",
     "points": 120,
     "attack": "3/1",
@@ -239,7 +242,7 @@
       "Ruglud's Armoured Orcs",
       "Oglah Khan's Wolfboyz",
       "Mengil Manhide's Manflayers",
-      "Asarnil the Dragonlord"
+      "Asarnil The Dragonlord"
     ],
     "incompatibleFactions": [
       "Chaos",
@@ -262,7 +265,7 @@
     }
   },
   "Golgfag's Mercenary Ogres": {
-    "urlId": "R15",
+    "id": "R15",
     "type": "Infantry",
     "points": 115,
     "attack": "4",
@@ -281,7 +284,7 @@
     }
   },
   "Voland's Venators": {
-    "urlId": "R16",
+    "id": "R16",
     "type": "Cavalry",
     "points": 120,
     "attack": "3",
@@ -296,7 +299,7 @@
     }
   },
   "Al Muktar's Desert Dogs": {
-    "urlId": "R17",
+    "id": "R17",
     "type": "Cavalry",
     "points": 85,
     "attack": "3/1",
@@ -315,7 +318,7 @@
     }
   },
   "Oglah Khan's Wolfboyz": {
-    "urlId": "R18",
+    "id": "R18",
     "type": "Cavalry",
     "points": 70,
     "attack": "2/1",
@@ -348,7 +351,7 @@
     }
   },
   "Tichi-Huichi's Raiders": {
-    "urlId": "R19",
+    "id": "R19",
     "type": "Cavalry",
     "points": 85,
     "attack": "3/1",
@@ -377,7 +380,7 @@
     }
   },
   "Birdmen of Catrazza": {
-    "urlId": "R20",
+    "id": "R20",
     "type": "Infantry",
     "points": 95,
     "attack": "2/1",
@@ -411,7 +414,7 @@
     }
   },
   "Bronzino's Galloper Guns": {
-    "urlId": "R21",
+    "id": "R21",
     "type": "Artillery",
     "points": 95,
     "attack": "1/2+bounce",
@@ -438,7 +441,7 @@
     }
   },
   "Asarnil The Dragonlord": {
-    "urlId": "R22",
+    "id": "R22",
     "type": "Hero",
     "points": 190,
     "attack": "+4",
@@ -478,7 +481,7 @@
     }
   },
   "Gotrek and Felix": {
-    "urlId": "R23",
+    "id": "R23",
     "type": "Hero",
     "points": 100,
     "attack": "+2",
@@ -489,7 +492,7 @@
       "Ruglud's Armoured Orcs",
       "Oglah Khan's Wolfboyz",
       "Mengil Manhide's Manflayers",
-      "Asarnil the Dragonlord"
+      "Asarnil The Dragonlord"
     ],
     "incompatibleFactions": [
       "Tomb Kings",
@@ -514,7 +517,7 @@
     }
   },
   "The Witch Hunters": {
-    "urlId": "R24",
+    "id": "R24",
     "type": "Hero",
     "points": 90,
     "attack": "+1",
