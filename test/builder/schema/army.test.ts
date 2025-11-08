@@ -13,6 +13,10 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
   const standsNames = Object.keys(army.stands ?? {})
   const magicItemNames = Object.keys(magicItems)
 
+  it('should have same name in factions file', () => {
+    expect(army.name).toBe(faction.name)
+  })
+
   it('should have general', () => {
     expect(units.some(([_, u]) => u.type === 'General')).toBeTruthy()
   })

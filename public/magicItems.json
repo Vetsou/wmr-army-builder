@@ -5,7 +5,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot"
+      "Chariots"
     ]
   },
   "Banner of Shielding": {
@@ -20,7 +20,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot"
+      "Chariots"
     ]
   },
   "Banner of Fortitude": {
@@ -34,7 +34,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot"
+      "Chariots"
     ]
   },
   "Banner of Steadfastness": {
@@ -49,7 +49,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot"
+      "Chariots"
     ]
   },
   "Banner of Fortune": {
@@ -58,7 +58,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot"
+      "Chariots"
     ]
   },
   "Sword of Destruction": {
@@ -67,7 +67,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot",
+      "Chariots",
       "General",
       "Hero",
       "Wizard"
@@ -79,7 +79,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot",
+      "Chariots",
       "General",
       "Hero",
       "Wizard"
@@ -91,7 +91,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot",
+      "Chariots",
       "General",
       "Hero",
       "Wizard"
@@ -103,7 +103,7 @@
     "allowedUnits": [
       "Infantry",
       "Cavalry",
-      "Chariot",
+      "Chariots",
       "General",
       "Hero",
       "Wizard"
