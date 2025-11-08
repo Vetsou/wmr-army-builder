@@ -77,7 +77,7 @@
     "Rocket Launcher": {
       "type": "Artillery",
       "points": 55,
-      "attack": "1/d6",
+      "attack": "1/D6",
       "armor": "-",
       "hits": 2,
       "size": 1,

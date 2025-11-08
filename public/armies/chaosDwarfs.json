@@ -79,7 +79,7 @@
     "Death Rocket": {
       "type": "Artillery",
       "points": 60,
-      "attack": "1/d6",
+      "attack": "1/D6",
       "armor": "6+",
       "hits": 2,
       "size": 1,

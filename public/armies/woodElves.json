@@ -23,15 +23,6 @@
       "max": 3,
       "extraStands": ["Wardancers"]
     },
-    "Wardancers": {
-      "type": "Infantry",
-      "points": 30,
-      "attack": "4",
-      "armor": "-/5+",
-      "hits": 3,
-      "size": 1,
-      "max": 4
-    },
     "Waywatchers": {
       "type": "Infantry",
       "points": 60,

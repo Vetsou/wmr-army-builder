@@ -94,8 +94,8 @@
       "command": 9,
       "armyMax": 1,
       "upgrades": [
-        "Wyvern",
-        "Chariot"
+        "Zombie Dragon",
+        "Liche Chariot"
       ]
     },
     "Liche Priest": {
@@ -106,8 +106,8 @@
       "command": 8,
       "max": 2,
       "upgrades": [
-        "Wyvern",
-        "Chariot"
+        "Zombie Dragon",
+        "Liche Chariot"
       ]
     }
   },

@@ -111,7 +111,7 @@
       "armyMax": 1,
       "upgrades": [
         "Chaos Dragon",
-        "Chariot Mount"
+        "Chariot"
       ]
     },
     "Hero": {
@@ -123,7 +123,7 @@
       "max": 1,
       "upgrades": [
         "Chaos Dragon",
-        "Chariot Mount"
+        "Chariot"
       ]
     },
     "Sorcerer": {
@@ -135,7 +135,7 @@
       "max": 1,
       "upgrades": [
         "Chaos Dragon",
-        "Chariot Mount"
+        "Chariot"
       ]
     }
   },

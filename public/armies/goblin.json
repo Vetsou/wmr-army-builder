@@ -50,7 +50,7 @@
     "Pump Wagon": {
       "type": "Chariots",
       "points": 50,
-      "attack": "d6",
+      "attack": "D6",
       "armor": "5+",
       "hits": 3,
       "size": 1,
