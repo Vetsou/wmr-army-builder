@@ -2,6 +2,7 @@
   "name": "Albion",
   "units": {
     "Warriors": {
+      "id": "U1",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Slingers": {
+      "id": "U2",
       "type": "Infantry",
       "points": 40,
       "attack": "2/1",
@@ -22,6 +24,7 @@
       "max": 6
     },
     "Ogres": {
+      "id": "U3",
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -31,6 +34,7 @@
       "max": 2
     },
     "Wolfhounds": {
+      "id": "U4",
       "type": "Cavalry",
       "points": 40,
       "attack": "3",
@@ -40,6 +44,7 @@
       "max": 6
     },
     "Cavalry": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -49,6 +54,7 @@
       "max": 4
     },
     "Chariots": {
+      "id": "U6",
       "type": "Chariots",
       "points": 95,
       "attack": "3",
@@ -59,6 +65,7 @@
       "max": 4
     },
     "Giant": {
+      "id": "U7",
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -68,6 +75,7 @@
       "max": 1
     },
     "Giant Eagles": {
+      "id": "U8",
       "type": "Monster",
       "points": 70,
       "attack": "2",
@@ -78,6 +86,7 @@
       "flying": true
     },
     "Fenbeast": {
+      "id": "U9",
       "type": "Monster",
       "points": 0,
       "attack": "6",
@@ -87,6 +96,7 @@
       "armyMax": 1
     },
     "General": {
+      "id": "U10",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -98,6 +108,7 @@
       ]
     },
     "Hero": {
+      "id": "U11",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -109,6 +120,7 @@
       ]
     },
     "Druid": {
+      "id": "U12",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",

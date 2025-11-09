@@ -2,6 +2,7 @@
   "name": "Dogs of War",
   "units": {
     "Pikemen": {
+      "id": "U1",
       "type": "Infantry",
       "points": 50,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Crossbowmen": {
+      "id": "U2",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -21,6 +23,7 @@
       "min": 2
     },
     "Handgunners": {
+      "id": "U3",
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -31,6 +34,7 @@
       "max": 2
     },
     "Swordmen": {
+      "id": "U4",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -40,6 +44,7 @@
       "max": 4
     },
     "Ogres": {
+      "id": "U5",
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -49,6 +54,7 @@
       "max": 1
     },
     "Dwarfs": {
+      "id": "U6",
       "type": "Infantry",
       "points": 110,
       "attack": "3",
@@ -58,6 +64,7 @@
       "max": 2
     },
     "Marauders": {
+      "id": "U7",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -67,6 +74,7 @@
       "max": 2
     },
     "Light Cavalry": {
+      "id": "U8",
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -76,6 +84,7 @@
       "max": 4
     },
     "Knights": {
+      "id": "U9",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -85,6 +94,7 @@
       "max": 2
     },
     "Galloper Guns": {
+      "id": "U10",
       "type": "Artillery",
       "points": 85,
       "attack": "1/2+bounce",
@@ -94,6 +104,7 @@
       "max": 1
     },
     "Giant": {
+      "id": "U11",
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -103,6 +114,7 @@
       "max": 1
     },
     "Birdmen": {
+      "id": "U12",
       "type": "Infantry",
       "points": 85,
       "attack": "2/1",
@@ -113,6 +125,7 @@
       "flying": true
     },
     "General": {
+      "id": "U13",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -124,6 +137,7 @@
       ]
     },
     "Hero": {
+      "id": "U14",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -135,6 +149,7 @@
       ]
     },
     "Paymaster": {
+      "id": "U15",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -147,6 +162,7 @@
       ]
     },
     "Wizard": {
+      "id": "U16",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",

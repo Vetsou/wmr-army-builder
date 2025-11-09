@@ -2,6 +2,7 @@
   "name": "Wood Elves",
   "units": {
     "Glade Guard": {
+      "id": "U1",
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -14,6 +15,7 @@
       "extraStands": ["Wardancers"]
     },
     "Eternal Guard": {
+      "id": "U2",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -24,6 +26,7 @@
       "extraStands": ["Wardancers"]
     },
     "Waywatchers": {
+      "id": "U3",
       "type": "Infantry",
       "points": 60,
       "attack": "1/2",
@@ -34,6 +37,7 @@
       "max": 1
     },
     "Dryads": {
+      "id": "U4",
       "type": "Infantry",
       "points": 60,
       "attack": "4",
@@ -43,6 +47,7 @@
       "min": 1
     },
     "Glade Riders": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 90,
       "attack": "3/1",
@@ -53,6 +58,7 @@
       "max": 3
     },
     "Wild Riders": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -63,6 +69,7 @@
       "max": 2
     },
     "Warhawk Riders": {
+      "id": "U7",
       "type": "Monster",
       "points": 85,
       "attack": "2/1",
@@ -73,6 +80,7 @@
       "flying": true
     },
     "Treekin": {
+      "id": "U8",
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -82,6 +90,7 @@
       "max": 2
     },
     "Treeman": {
+      "id": "U9",
       "type": "Monster",
       "points": 130,
       "attack": "6",
@@ -91,6 +100,7 @@
       "max": 1
     },
     "General": {
+      "id": "U10",
       "type": "General",
       "points": 155,
       "attack": "+2",
@@ -104,6 +114,7 @@
       ]
     },
     "Noble": {
+      "id": "U11",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -117,6 +128,7 @@
       ]
     },
     "Treeman Ancient": {
+      "id": "U12",
       "type": "Hero",
       "points": 130,
       "attack": "+3",
@@ -125,6 +137,7 @@
       "armyMax": 1
     },
     "Branchwraith": {
+      "id": "U13",
       "type": "Hero",
       "points": 90,
       "attack": "+2",
@@ -133,6 +146,7 @@
       "max": 1
     },
     "Spell Weaver": {
+      "id": "U14",
       "type": "Wizard",
       "points": 80,
       "attack": "+0",

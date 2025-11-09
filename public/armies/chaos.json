@@ -2,6 +2,7 @@
   "name": "Chaos",
   "units": {
     "Chaos Warriors": {
+      "id": "U1",
       "type": "Infantry",
       "points": 140,
       "attack": "4",
@@ -11,6 +12,7 @@
       "min": 1
     },
     "Chaos Marauders": {
+      "id": "U2",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -20,6 +22,7 @@
       "min": 1
     },
     "Ogres": {
+      "id": "U3",
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -29,6 +32,7 @@
       "max": 1
     },
     "Trolls": {
+      "id": "U4",
       "type": "Infantry",
       "points": 110,
       "attack": "5",
@@ -38,6 +42,7 @@
       "max": 3
     },
     "Marauder Horsemen": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -47,6 +52,7 @@
       "max": 4
     },
     "Chaos Knights": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 200,
       "attack": "4",
@@ -56,6 +62,7 @@
       "max": 4
     },
     "Chaos Hounds": {
+      "id": "U7",
       "type": "Cavalry",
       "points": 40,
       "attack": "3",
@@ -65,6 +72,7 @@
       "max": 2
     },
     "Chaos Chariots": {
+      "id": "U8",
       "type": "Chariots",
       "points": 95,
       "attack": "3",
@@ -74,6 +82,7 @@
       "max": 3
     },
     "Harpies": {
+      "id": "U9",
       "type": "Monster",
       "points": 65,
       "attack": "2",
@@ -84,6 +93,7 @@
       "flying": true
     },
     "Dragon Ogres": {
+      "id": "U10",
       "type": "Monster",
       "points": 230,
       "attack": "6",
@@ -93,6 +103,7 @@
       "max": 1
     },
     "Chaos Spawn": {
+      "id": "U11",
       "type": "Monster",
       "points": 110,
       "attack": "3/3",
@@ -103,6 +114,7 @@
       "max": 2
     },
     "General": {
+      "id": "U12",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -115,6 +127,7 @@
       ]
     },
     "Hero": {
+      "id": "U13",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -127,6 +140,7 @@
       ]
     },
     "Sorcerer": {
+      "id": "U14",
       "type": "Wizard",
       "points": 90,
       "attack": "+1",

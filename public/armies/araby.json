@@ -2,6 +2,7 @@
   "name": "Araby",
   "units": {
     "Spearmen": {
+      "id": "U1",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Bowmen": {
+      "id": "U2",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -20,6 +22,7 @@
       "min": 2
     },
     "Guards": {
+      "id": "U3",
       "type": "Infantry",
       "points": 65,
       "attack": "3",
@@ -29,6 +32,7 @@
       "max": 4
     },
     "Knights": {
+      "id": "U4",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -37,6 +41,7 @@
       "size": 3
     },
     "Desert Riders": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -46,6 +51,7 @@
       "range": "15cm"
     },
     "Camel Riders": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 100,
       "attack": "3/1",
@@ -55,6 +61,7 @@
       "max": 2
     },
     "Magic Carpets": {
+      "id": "U7",
       "type": "Cavalry",
       "points": 85,
       "attack": "1/2",
@@ -66,6 +73,7 @@
       "flying": true
     },
     "Elephants": {
+      "id": "U8",
       "type": "Monster",
       "points": 200,
       "attack": "5",
@@ -75,6 +83,7 @@
       "max": 1
     },
     "General": {
+      "id": "U9",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -88,6 +97,7 @@
       ]
     },
     "Hero": {
+      "id": "U10",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -101,6 +111,7 @@
       ]
     },
     "Wizard": {
+      "id": "U11",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",

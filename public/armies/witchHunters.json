@@ -2,6 +2,7 @@
   "name": "Witch Hunters",
   "units": {
     "Zealots": {
+      "id": "U1",
       "type": "Infantry",
       "points": 35,
       "attack": "3",
@@ -12,6 +13,7 @@
       "extraStands": ["Warhounds"]
     },
     "Halberdiers": {
+      "id": "U2",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -21,6 +23,7 @@
       "max": 4
     },
     "Crossbowmen": {
+      "id": "U3",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -31,6 +34,7 @@
       "max": 2
     },
     "Handgunners": {
+      "id": "U4",
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -41,6 +45,7 @@
       "extraStands": ["Warhounds"]
     },
     "Flagellants": {
+      "id": "U5",
       "type": "Infantry",
       "points": 70,
       "attack": "5",
@@ -51,6 +56,7 @@
       "extraStands": ["Warhounds"]
     },
     "Warhounds": {
+      "id": "U6",
       "type": "Infantry",
       "points": 20,
       "attack": "3",
@@ -59,6 +65,7 @@
       "size": 1
     },
     "Knights": {
+      "id": "U7",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -68,6 +75,7 @@
       "max": 1
     },
     "Pistoliers": {
+      "id": "U8",
       "type": "Cavalry",
       "points": 95,
       "attack": "3/1",
@@ -79,6 +87,7 @@
       "extraStands": ["Warhounds"]
     },
     "Cannon": {
+      "id": "U9",
       "type": "Artillery",
       "points": 85,
       "attack": "1/2+bounce",
@@ -89,6 +98,7 @@
       "max": 1
     },
     "General": {
+      "id": "U10",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -97,6 +107,7 @@
       "armyMax": 1
     },
     "Hero": {
+      "id": "U11",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -105,6 +116,7 @@
       "max": 2
     },
     "Warrior Priest": {
+      "id": "U12",
       "type": "Wizard",
       "points": 55,
       "attack": "+1",

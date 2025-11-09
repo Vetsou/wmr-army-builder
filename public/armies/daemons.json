@@ -2,6 +2,7 @@
   "name": "Daemons",
   "units": {
     "Daemon Hordes": {
+      "id": "U1",
       "type": "Infantry",
       "points": 75,
       "attack": "4",
@@ -11,6 +12,7 @@
       "min": 3
     },
     "Daemon Swarm": {
+      "id": "U2",
       "type": "Infantry",
       "points": 45,
       "attack": "2",
@@ -20,6 +22,7 @@
       "max": 4
     },
     "Daemon Cavalry": {
+      "id": "U3",
       "type": "Cavalry",
       "points": 110,
       "attack": "4",
@@ -29,6 +32,7 @@
       "max": 3
     },
     "Daemon Hounds": {
+      "id": "U4",
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -38,6 +42,7 @@
       "max": 2
     },
     "Daemon Chariots": {
+      "id": "U5",
       "type": "Chariots",
       "points": 95,
       "attack": "3",
@@ -47,6 +52,7 @@
       "max": 3
     },
     "Daemon Beasts": {
+      "id": "U6",
       "type": "Monster",
       "points": 200,
       "attack": "5",
@@ -56,6 +62,7 @@
       "max": 1
     },
     "Daemon Flyers": {
+      "id": "U7",
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -66,6 +73,7 @@
       "flying": true
     },
     "Greater Daemon": {
+      "id": "U8",
       "type": "Monster",
       "points": 280,
       "attack": "8",
@@ -76,6 +84,7 @@
       "flying": true
     },
     "Daemon Overlord": {
+      "id": "U9",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -88,6 +97,7 @@
       ]
     },
     "Daemon Lord Hero": {
+      "id": "U10",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -100,6 +110,7 @@
       ]
     },
     "Daemon Sorcerer": {
+      "id": "U11",
       "type": "Wizard",
       "points": 90,
       "attack": "+1",

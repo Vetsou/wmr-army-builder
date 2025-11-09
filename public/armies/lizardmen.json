@@ -2,6 +2,7 @@
   "name": "Lizardmen",
   "units": {
     "Skinks": {
+      "id": "U1",
       "type": "Infantry",
       "points": 35,
       "attack": "2/1",
@@ -13,6 +14,7 @@
       "extraStands": ["Salamanders"]
     },
     "Saurus": {
+      "id": "U2",
       "type": "Infantry",
       "points": 75,
       "attack": "4",
@@ -22,6 +24,7 @@
       "min": 2
     },
     "Temple Guard": {
+      "id": "U3",
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -31,6 +34,7 @@
       "max": 1
     },
     "Kroxigor": {
+      "id": "U4",
       "type": "Infantry",
       "points": 135,
       "attack": "5",
@@ -40,6 +44,7 @@
       "max": 2
     },
     "Cold One Riders": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 140,
       "attack": "4",
@@ -49,6 +54,7 @@
       "max": 2
     },
     "Terradons": {
+      "id": "U6",
       "type": "Monster",
       "points": 85,
       "attack": "2/1",
@@ -60,6 +66,7 @@
       "flying": true
     },
     "Stegadon": {
+      "id": "U7",
       "type": "Monster",
       "points": 225,
       "attack": "10/3",
@@ -70,6 +77,7 @@
       "max": 1
     },
     "Slann Mage Palanquin": {
+      "id": "U8",
       "type": "General",
       "points": 95,
       "attack": "+2",
@@ -88,6 +96,7 @@
       ]
     },
     "Saurus Hero": {
+      "id": "U9",
       "type": "Hero",
       "points": 45,
       "attack": "+2",
@@ -96,6 +105,7 @@
       "max": 1
     },
     "Skink Hero": {
+      "id": "U10",
       "type": "Hero",
       "points": 70,
       "attack": "+0",
@@ -107,6 +117,7 @@
       ]
     },
     "Skink Shaman": {
+      "id": "U11",
       "type": "Wizard",
       "points": 30,
       "attack": "+0",

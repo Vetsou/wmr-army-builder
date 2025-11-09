@@ -9,6 +9,7 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
   const army = await readPublicFile<IArmySchema>(`/armies/${faction.fileName}.json`)
 
   const units = Object.entries(army.units)
+
   const upgradeNames = Object.keys(army.upgrades ?? {})
   const standsNames = Object.keys(army.stands ?? {})
   const magicItemNames = Object.keys(magicItems)
@@ -26,8 +27,15 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
     expectTypeOf(army.units).toEqualTypeOf<Record<string, ISchemaUnit>>()
   })
 
+  it('units should have unique ids', () => {
+    const unitIds = units.map(([_, u]) => u.id)
+    const uniqueIds = new Set(unitIds)
+    expect(uniqueIds.size, `Duplicate unit IDs found in ${army.name} army`).toBe(unitIds.length)
+  })
+
   describe.each(units)('Unit $0', async (name, unit) => {
     it('should have core fields', async () => {
+      expect(unit.id, `Invalid unit id "${unit.id}". Expected e.g. ("U1", "U10")`).toMatch(/^U\d+$/)
       expect(name).toBeDefined()
       expectTypeOf(name).toEqualTypeOf<string>()
       expect(unit.size).toBeDefined()
@@ -41,13 +49,13 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
     })
 
     it.runIf(unit.range)('should have valid range', () => {
-      // Match "15cm", "30cm", "60cm"
-      expect(unit.range).toMatch(/^\d+\s*cm$/)
+      expect(unit.range, `Invalid "range" format "${unit.range}". Expected e.g. ("15cm", "30cm", "60cm")`)
+        .toMatch(/^\d+\s*cm$/)
     })
 
     it.runIf(unit.armor)('should have valid armor format', () => {
-      // Match "4+", "-", "4+/-", "5+/6+"
-      expect(unit.armor).toMatch(/^(\d\+|-)(\s*\/\s*(\d\+|-))?$/)
+      expect(unit.armor, `Invalid "armor" format "${unit.armor}". Expected e.g. ("4+", "-", "4+/-", "5+/6+")`)
+        .toMatch(/^(\d\+|-)(\s*\/\s*(\d\+|-))?$/)
     })
 
     const isCommandUnit = ['General', 'Hero', 'Wizard'].includes(unit.type)
@@ -55,8 +63,8 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
       expect(unit.size).toBe(1)
       expect(unit.command).toBeDefined()
 
-      // Match "+4", "+0", "+2"
-      expect(unit.attack).toMatch(/^\+\d+$/)
+      expect(unit.attack, `Invalid command unit attack format "${unit.attack}". Expected e.g. format (e.g. "+1", "+4")`)
+        .toMatch(/^\+\d+$/)
     })
 
     it.runIf(unit.upgrades)('should have correct upgrades', () => {
