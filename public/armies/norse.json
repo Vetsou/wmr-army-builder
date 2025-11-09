@@ -133,6 +133,7 @@
   },
   "upgrades": {
     "Were Kin": {
+      "id": "UPG1",
       "type": "Special",
       "attack": "+1",
       "cost": 40,
@@ -140,6 +141,7 @@
       "terror": true
     },
     "Horn of Resounding": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 20,

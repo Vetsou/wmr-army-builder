@@ -8,6 +8,7 @@ declare global {
    * Schema definition for a magic item as it appears in army data files.
    */
   interface ISchemaMagicItem {
+    id: string
     type: MagicItemType
 
     /**

@@ -176,6 +176,7 @@
   },
   "upgrades": {
     "Griffon": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -183,6 +184,7 @@
       "terror": true
     },
     "Pay Wagon": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 20,

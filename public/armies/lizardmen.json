@@ -128,6 +128,7 @@
   },
   "upgrades": {
     "Stegadon Mount": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+5",
       "cost": 90,
@@ -135,6 +136,7 @@
       "terror": true
     },
     "Carnosaur": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 65,
@@ -144,6 +146,7 @@
   },
   "stands": {
     "Salamanders": {
+      "id": "S1",
       "type": "Infantry",
       "points": 25,
       "attack": "2/2",

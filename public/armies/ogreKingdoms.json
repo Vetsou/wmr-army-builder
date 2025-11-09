@@ -143,6 +143,7 @@
   },
   "upgrades": {
     "Bull Rhinox": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 65,

@@ -129,6 +129,7 @@
   },
   "upgrades": {
     "Winged Nightmare": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -136,6 +137,7 @@
       "terror": true
     },
     "Black Coach": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 40,

@@ -155,6 +155,7 @@
   },
   "upgrades": {
     "Chaos Dragon": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+3",
       "cost": 100,
@@ -162,6 +163,7 @@
       "terror": true
     },
     "Chariot": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,

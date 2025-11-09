@@ -121,12 +121,14 @@
   },
   "upgrades": {
     "Giant Eagle": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 20,
       "max": 1
     },
     "Dragon": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+3/+3",
       "range": "20cm",
@@ -135,6 +137,7 @@
       "terror": true
     },
     "Chariot": {
+      "id": "UPG3",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,

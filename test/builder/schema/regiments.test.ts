@@ -5,9 +5,19 @@ import { readPublicFile } from '$test/ioUtils'
 const factionNames = await readPublicFile<IFaction[]>('/factions.json').map(f => f.name)
 const regiments = await readPublicFile<Record<string, ISchemaRegiment>>('/regimentsOfRenown.json')
 
+describe('Regiments', () => {
+  it('should have unique ids', () => {
+    const regimentEntries = Object.entries(regiments)
+    const regimentIds = regimentEntries.map(([_, r]) => r.id)
+
+    const uniqueIds = new Set(regimentIds)
+    expect(uniqueIds.size, 'Duplicate unit IDs found in magic items').toBe(regimentIds.length)
+  })
+})
+
 describe.each(Object.entries(regiments))('$0 regiment', (name, regiment) => {
   it('should have core fields', () => {
-    expect(regiment.id.startsWith('R')).toBe(true)
+    expect(regiment.id, `Invalid regiment id "${regiment.id}". Expected e.g. ("R1", "R12")`).toMatch(/^R\d+$/)
     expect(name).toBeDefined()
     expectTypeOf(name).toEqualTypeOf<string>()
     expect(regiment.size).toBeDefined()

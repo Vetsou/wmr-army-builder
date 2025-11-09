@@ -146,6 +146,7 @@
   },
   "upgrades": {
     "Great Taurus": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -153,6 +154,7 @@
       "terror": true
     },
     "Lammasu": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+1",
       "cost": 20,

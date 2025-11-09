@@ -1,5 +1,6 @@
 {
   "Battle Banner": {
+    "id": "MI1",
     "type": "Magic Standard",
     "cost": 30,
     "allowedUnits": [
@@ -9,6 +10,7 @@
     ]
   },
   "Banner of Shielding": {
+    "id": "MI2",
     "type": "Magic Standard",
     "stat": "armor",
     "cost": {
@@ -24,6 +26,7 @@
     ]
   },
   "Banner of Fortitude": {
+    "id": "MI3",
     "type": "Magic Standard",
     "stat": "hits",
     "cost": {
@@ -38,6 +41,7 @@
     ]
   },
   "Banner of Steadfastness": {
+    "id": "MI4",
     "type": "Magic Standard",
     "stat": "armor",
     "cost": {
@@ -53,6 +57,7 @@
     ]
   },
   "Banner of Fortune": {
+    "id": "MI5",
     "type": "Magic Standard",
     "cost": 15,
     "allowedUnits": [
@@ -62,6 +67,7 @@
     ]
   },
   "Sword of Destruction": {
+    "id": "MI6",
     "type": "Magic Weapon",
     "cost": 10,
     "allowedUnits": [
@@ -74,6 +80,7 @@
     ]
   },
   "Sword of Fate": {
+    "id": "MI7",
     "type": "Magic Weapon",
     "cost": 5,
     "allowedUnits": [
@@ -86,6 +93,7 @@
     ]
   },
   "Sword of Cleaving": {
+    "id": "MI8",
     "type": "Magic Weapon",
     "cost": 10,
     "allowedUnits": [
@@ -98,6 +106,7 @@
     ]
   },
   "Sword of Might": {
+    "id": "MI9",
     "type": "Magic Weapon",
     "cost": 10,
     "allowedUnits": [
@@ -110,6 +119,7 @@
     ]
   },
   "Crown of Command": {
+    "id": "MI10",
     "type": "Device of Power",
     "cost": 70,
     "allowedUnits": [
@@ -117,6 +127,7 @@
     ]
   },
   "Helm of Dominion": {
+    "id": "MI11",
     "type": "Device of Power",
     "cost": 40,
     "allowedUnits": [
@@ -124,6 +135,7 @@
     ]
   },
   "Orb of Majesty": {
+    "id": "MI12",
     "type": "Device of Power",
     "cost": 30,
     "allowedUnits": [
@@ -131,6 +143,7 @@
     ]
   },
   "Sceptre of Sovereignty": {
+    "id": "MI13",
     "type": "Device of Power",
     "cost": 30,
     "allowedUnits": [
@@ -138,6 +151,7 @@
     ]
   },
   "Ring of Magic": {
+    "id": "MI14",
     "type": "Device of Power",
     "cost": 30,
     "allowedUnits": [
@@ -145,6 +159,7 @@
     ]
   },
   "Staff of Spellbinding": {
+    "id": "MI15",
     "type": "Device of Power",
     "cost": 30,
     "allowedUnits": [
@@ -152,6 +167,7 @@
     ]
   },
   "Scroll of Dispelling": {
+    "id": "MI16",
     "type": "Device of Power",
     "cost": 20,
     "allowedUnits": [
@@ -159,6 +175,7 @@
     ]
   },
   "Wand of Power": {
+    "id": "MI17",
     "type": "Device of Power",
     "cost": 10,
     "allowedUnits": [
@@ -166,6 +183,7 @@
     ]
   },
   "Rod of Repetition": {
+    "id": "MI18",
     "type": "Device of Power",
     "cost": 10,
     "allowedUnits": [

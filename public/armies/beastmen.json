@@ -148,6 +148,7 @@
   },
   "upgrades": {
     "Tuskgor Chariot": {
+      "id": "UPG1",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,

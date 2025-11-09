@@ -117,18 +117,21 @@
   },
   "upgrades": {
     "Unicorn": {
+      "id": "UPG1",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Pegasus": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Hippogriff": {
+      "id": "UPG3",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -136,6 +139,7 @@
       "terror": true
     },
     "Grail Reliquae": {
+      "id": "UPG4",
       "type": "Special",
       "cost": 60,
       "armyMax": 1

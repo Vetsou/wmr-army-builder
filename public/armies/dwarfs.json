@@ -113,6 +113,7 @@
   },
   "upgrades": {
     "Anvil": {
+      "id": "UPG1",
       "type": "Special",
       "attack": "+1",
       "cost": 50,

@@ -163,24 +163,28 @@
   },
   "upgrades": {
     "Giant Stag": {
+      "id": "UPG1",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Unicorn": {
+      "id": "UPG2",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Warhawk": {
+      "id": "UPG3",
       "type": "Monstrous Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Forest Dragon": {
+      "id": "UPG4",
       "type": "Monstrous Mount",
       "attack": "+3",
       "cost": 100,
@@ -190,6 +194,7 @@
   },
   "stands": {
     "Wardancers": {
+      "id": "S1",
       "type": "Infantry",
       "points": 30,
       "attack": "4",

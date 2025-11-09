@@ -124,12 +124,14 @@
   },
   "upgrades": {
     "Bear": {
+      "id": "UPG1",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Yozhin": {
+      "id": "UPG2",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 40,

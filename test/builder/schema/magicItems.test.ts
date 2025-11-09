@@ -17,8 +17,19 @@ const validUnitTypes: UnitType[] = [
   'Special'
 ]
 
+describe('Magic items', () => {
+  it('should have unique ids', () => {
+    const itemEntries = Object.entries(magicItems)
+    const itemIds = itemEntries.map(([_, mi]) => mi.id)
+
+    const uniqueIds = new Set(itemIds)
+    expect(uniqueIds.size, 'Duplicate unit IDs found in magic items').toBe(itemIds.length)
+  })
+})
+
 describe.each(Object.entries(magicItems))('$0 magic item', (name, magicItem) => {
   it('should have core fields', () => {
+    expect(magicItem.id, `Invalid regiment id "${magicItem.id}". Expected e.g. ("MI1", "MI23")`).toMatch(/^MI\d+$/)
     expect(name).toBeDefined()
     expectTypeOf(name).toEqualTypeOf<string>()
     expect(magicItem.type).toBeDefined()

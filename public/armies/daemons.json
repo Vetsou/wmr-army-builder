@@ -125,11 +125,13 @@
   },
   "upgrades": {
     "Daemonic Wings": {
+      "id": "UPG1",
       "type": "Special",
       "cost": 10,
       "max": 1
     },
     "Favour of the Gods": {
+      "id": "UPG2",
       "type": "Special",
       "attack": "+1",
       "cost": 50,

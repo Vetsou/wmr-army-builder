@@ -127,6 +127,7 @@
   },
   "stands": {
     "Warhounds": {
+      "id": "S1",
       "type": "Infantry",
       "points": 20,
       "attack": "3",

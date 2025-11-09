@@ -140,6 +140,7 @@
   },
   "upgrades": {
     "Griffon": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -147,6 +148,7 @@
       "terror": true
     },
     "War Altar": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 15,
@@ -155,6 +157,7 @@
   },
   "stands": {
     "Skirmishers": {
+      "id": "S1",
       "type": "Infantry",
       "points": 45,
       "attack": "4",

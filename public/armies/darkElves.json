@@ -128,6 +128,7 @@
   },
   "upgrades": {
     "Manticore": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -135,12 +136,14 @@
       "terror": true
     },
     "Chariot": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Cauldron of Blood": {
+      "id": "UPG3",
       "type": "Special Mount",
       "attack": "+2",
       "cost": 15,

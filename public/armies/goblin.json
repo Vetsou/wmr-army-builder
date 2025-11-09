@@ -136,12 +136,14 @@
   },
   "upgrades": {
     "Wolf Chariot": {
+      "id": "UPG1",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Wyvern": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,

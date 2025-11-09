@@ -9,10 +9,12 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
   const army = await readPublicFile<IArmySchema>(`/armies/${faction.fileName}.json`)
 
   const units = Object.entries(army.units)
+  const upgrades = Object.entries(army.upgrades ?? {})
+  const stands = Object.entries(army.stands ?? {})
 
+  const magicItemNames = Object.keys(magicItems)
   const upgradeNames = Object.keys(army.upgrades ?? {})
   const standsNames = Object.keys(army.stands ?? {})
-  const magicItemNames = Object.keys(magicItems)
 
   it('should have same name in factions file', () => {
     expect(army.name).toBe(faction.name)
@@ -31,6 +33,12 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
     const unitIds = units.map(([_, u]) => u.id)
     const uniqueIds = new Set(unitIds)
     expect(uniqueIds.size, `Duplicate unit IDs found in ${army.name} army`).toBe(unitIds.length)
+  })
+
+  it('upgrades should have unique ids', () => {
+    const upgradeIds = upgrades.map(([_, u]) => u.id)
+    const uniqueIds = new Set(upgradeIds)
+    expect(uniqueIds.size, `Duplicate unit IDs found in ${army.name} army`).toBe(upgradeIds.length)
   })
 
   describe.each(units)('Unit $0', async (name, unit) => {
@@ -86,6 +94,34 @@ describe.each(factions)('$name army', async (faction: IFaction) => {
       for (const stand of unit.extraStands ?? []) {
         expect(standsNames).toContain(stand)
       }
+    })
+  })
+
+  describe.each(upgrades)('Upgrade $0', (name, upgrade) => {
+    it('should have core fields', () => {
+      expect(upgrade.id, `Invalid upgrade id "${upgrade.id}". Expected e.g. ("UPG1", "UPG17")`).toMatch(/^UPG\d+$/)
+      expect(name).toBeDefined()
+      expectTypeOf(name).toEqualTypeOf<string>()
+      expect(upgrade.type).toBeDefined()
+      expectTypeOf(upgrade.type).toEqualTypeOf<UpgradeType>()
+      expect(upgrade.cost).toBeDefined()
+      expectTypeOf(upgrade.cost).toEqualTypeOf<number>()
+    })
+  })
+
+  describe.each(stands)('Stand $0', (name, stand) => {
+    it('should have core fields', () => {
+      expect(stand.id, `Invalid unit id "${stand.id}". Expected e.g. ("S1", "S24")`).toMatch(/^S\d+$/)
+      expect(name).toBeDefined()
+      expectTypeOf(name).toEqualTypeOf<string>()
+      expect(stand.size).toBeDefined()
+      expectTypeOf(stand.size).toEqualTypeOf<number>()
+      expect(stand.type).toBeDefined()
+      expectTypeOf(stand.type).toEqualTypeOf<UnitType>()
+      expect(stand.points).toBeDefined()
+      expectTypeOf(stand.points).toEqualTypeOf<number>()
+      expect(stand.attack).toBeDefined()
+      expectTypeOf(stand.attack).toEqualTypeOf<string>()
     })
   })
 })
