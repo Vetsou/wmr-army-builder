@@ -2,6 +2,7 @@
   "name": "Tomb Kings",
   "units": {
     "Skeletons": {
+      "id": "U1",
       "type": "Infantry",
       "points": 30,
       "attack": "2",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Skeleton Bowmen": {
+      "id": "U2",
       "type": "Infantry",
       "points": 45,
       "attack": "2/1",
@@ -21,6 +23,7 @@
       "min": 2
     },
     "Skeleton Cavalry": {
+      "id": "U3",
       "type": "Cavalry",
       "points": 60,
       "attack": "2",
@@ -29,6 +32,7 @@
       "size": 3
     },
     "Skeleton Chariots": {
+      "id": "U4",
       "type": "Chariots",
       "points": 110,
       "attack": "3/1",
@@ -39,6 +43,7 @@
       "max": 3
     },
     "Carrion": {
+      "id": "U5",
       "type": "Monster",
       "points": 65,
       "attack": "2",
@@ -49,6 +54,7 @@
       "flying": true
     },
     "Bone Giant": {
+      "id": "U6",
       "type": "Monster",
       "points": 110,
       "attack": "6",
@@ -58,6 +64,7 @@
       "max": 1
     },
     "Sphinx": {
+      "id": "U7",
       "type": "Monster",
       "points": 135,
       "attack": "4",
@@ -67,6 +74,7 @@
       "max": 1
     },
     "Skull Chukka": {
+      "id": "U8",
       "type": "Artillery",
       "points": 85,
       "attack": "1/3",
@@ -77,6 +85,7 @@
       "max": 1
     },
     "Bone Thrower": {
+      "id": "U9",
       "type": "Artillery",
       "points": 65,
       "attack": "1/2 per stand",
@@ -87,6 +96,7 @@
       "max": 1
     },
     "Tomb King": {
+      "id": "U10",
       "type": "General",
       "points": 130,
       "attack": "+2",
@@ -94,11 +104,12 @@
       "command": 9,
       "armyMax": 1,
       "upgrades": [
-        "Wyvern",
-        "Chariot"
+        "Zombie Dragon",
+        "Liche Chariot"
       ]
     },
     "Liche Priest": {
+      "id": "U11",
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
@@ -106,13 +117,14 @@
       "command": 8,
       "max": 2,
       "upgrades": [
-        "Wyvern",
-        "Chariot"
+        "Zombie Dragon",
+        "Liche Chariot"
       ]
     }
   },
   "upgrades": {
     "Zombie Dragon": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+3",
       "cost": 100,
@@ -120,6 +132,7 @@
       "terror": true
     },
     "Liche Chariot": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,

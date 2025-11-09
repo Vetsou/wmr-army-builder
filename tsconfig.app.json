@@ -18,6 +18,7 @@
     "moduleDetection": "force",
     "baseUrl": ".",
     "paths": {
+      "$lib/*": ["src/lib/*"],
       "$builder/*": ["src/lib/builder/*"],
       "$validator/*": ["src/lib/builder/validator/*"],
       "$components/*": ["src/lib/components/*"],

@@ -2,6 +2,7 @@
   "name": "Kislev",
   "units": {
     "Winged Lancers": {
+      "id": "U1",
       "type": "Cavalry",
       "points": 100,
       "attack": "3",
@@ -11,6 +12,7 @@
       "max": 4
     },
     "Horse Archers": {
+      "id": "U2",
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -21,6 +23,7 @@
       "min": 2
     },
     "Cossacks": {
+      "id": "U3",
       "type": "Cavalry",
       "points": 95,
       "attack": "3/1",
@@ -31,6 +34,7 @@
       "max": 2
     },
     "Bowmen": {
+      "id": "U4",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -40,6 +44,7 @@
       "range": "30cm"
     },
     "Red Guard": {
+      "id": "U5",
       "type": "Infantry",
       "points": 90,
       "attack": "3/1",
@@ -50,6 +55,7 @@
       "max": 1
     },
     "Axemen": {
+      "id": "U6",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -59,6 +65,7 @@
       "min": 2
     },
     "Bears": {
+      "id": "U7",
       "type": "Infantry",
       "points": 90,
       "attack": "5",
@@ -68,6 +75,7 @@
       "max": 1
     },
     "War Wagons": {
+      "id": "U8",
       "type": "Artillery",
       "points": 125,
       "attack": "4/4",
@@ -77,6 +85,7 @@
       "max": 1
     },
     "General": {
+      "id": "U9",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -88,6 +97,7 @@
       ]
     },
     "Hero": {
+      "id": "U10",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -99,6 +109,7 @@
       ]
     },
     "Shaman": {
+      "id": "U11",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
@@ -113,12 +124,14 @@
   },
   "upgrades": {
     "Bear": {
+      "id": "UPG1",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Yozhin": {
+      "id": "UPG2",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 40,

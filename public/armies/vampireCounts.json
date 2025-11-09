@@ -2,6 +2,7 @@
   "name": "Vampire Counts",
   "units": {
     "Skeletons": {
+      "id": "U1",
       "type": "Infantry",
       "points": 30,
       "attack": "2",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Zombies": {
+      "id": "U2",
       "type": "Infantry",
       "points": 35,
       "attack": "2",
@@ -20,6 +22,7 @@
       "min": 2
     },
     "Ghouls": {
+      "id": "U3",
       "type": "Infantry",
       "points": 55,
       "attack": "4",
@@ -28,6 +31,7 @@
       "size": 3
     },
     "Grave Guard": {
+      "id": "U4",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -37,6 +41,7 @@
       "max": 4
     },
     "Ethereal Host": {
+      "id": "U5",
       "type": "Infantry",
       "points": 90,
       "attack": "3",
@@ -46,6 +51,7 @@
       "max": 2
     },
     "Black Knights": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -55,6 +61,7 @@
       "max": 4
     },
     "Dire Wolves": {
+      "id": "U7",
       "type": "Cavalry",
       "points": 40,
       "attack": "2",
@@ -64,6 +71,7 @@
       "max": 4
     },
     "Fell Bats": {
+      "id": "U8",
       "type": "Monster",
       "points": 65,
       "attack": "2",
@@ -74,6 +82,7 @@
       "flying": true
     },
     "Vampire Lord": {
+      "id": "U9",
       "type": "General",
       "points": 150,
       "attack": "+2",
@@ -93,6 +102,7 @@
       ]
     },
     "Vampire": {
+      "id": "U10",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -105,6 +115,7 @@
       ]
     },
     "Necromancer": {
+      "id": "U11",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
@@ -118,6 +129,7 @@
   },
   "upgrades": {
     "Winged Nightmare": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -125,6 +137,7 @@
       "terror": true
     },
     "Black Coach": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 40,

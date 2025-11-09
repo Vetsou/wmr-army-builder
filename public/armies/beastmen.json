@@ -2,6 +2,7 @@
   "name": "Beastmen",
   "units": {
     "Beastherd": {
+      "id": "U1",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Herdkin": {
+      "id": "U2",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -20,6 +22,7 @@
       "min": 2
     },
     "Bestigors": {
+      "id": "U3",
       "type": "Infantry",
       "points": 75,
       "attack": "4",
@@ -29,6 +32,7 @@
       "max": 2
     },
     "Minotaurs": {
+      "id": "U4",
       "type": "Infantry",
       "points": 80,
       "attack": "5",
@@ -38,6 +42,7 @@
       "max": 2
     },
     "Centigors": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 75,
       "attack": "3/1",
@@ -48,6 +53,7 @@
       "max": 2
     },
     "Chaos Hounds": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 40,
       "attack": "3",
@@ -57,6 +63,7 @@
       "max": 6
     },
     "Tuskgor Chariots": {
+      "id": "U7",
       "type": "Chariots",
       "points": 95,
       "attack": "3",
@@ -66,6 +73,7 @@
       "max": 4
     },
     "Dragon Ogres": {
+      "id": "U8",
       "type": "Monster",
       "points": 230,
       "attack": "6",
@@ -75,6 +83,7 @@
       "max": 1
     },
     "Chaos Spawn": {
+      "id": "U9",
       "type": "Monster",
       "points": 110,
       "attack": "3/3",
@@ -85,6 +94,7 @@
       "max": 2
     },
     "Dragon Ogre Shaggoth": {
+      "id": "U10",
       "type": "Monster",
       "points": 160,
       "attack": "8",
@@ -94,6 +104,7 @@
       "max": 1
     },
     "Beastlord": {
+      "id": "U11",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -105,6 +116,7 @@
       ]
     },
     "Doombull": {
+      "id": "U12",
       "type": "Hero",
       "points": 80,
       "attack": "+2",
@@ -113,6 +125,7 @@
       "armyMax": 1
     },
     "Wargor": {
+      "id": "U13",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -124,6 +137,7 @@
       ]
     },
     "Bray Shaman": {
+      "id": "U14",
       "type": "Wizard",
       "points": 80,
       "attack": "+0",
@@ -134,6 +148,7 @@
   },
   "upgrades": {
     "Tuskgor Chariot": {
+      "id": "UPG1",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,

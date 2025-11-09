@@ -2,6 +2,7 @@
   "name": "Nippon",
   "units": {
     "Ashigaru": {
+      "id": "U1",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 1
     },
     "Ashigaru Bowmen": {
+      "id": "U2",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -20,6 +22,7 @@
       "range": "30cm"
     },
     "Ashigaru Teppo": {
+      "id": "U3",
       "type": "Infantry",
       "points": 65,
       "attack": "3/1",
@@ -29,6 +32,7 @@
       "range": "30cm"
     },
     "Samurai": {
+      "id": "U4",
       "type": "Infantry",
       "points": 80,
       "attack": "4",
@@ -38,6 +42,7 @@
       "min": 2
     },
     "Mikata (Ronin & Monks)": {
+      "id": "U5",
       "type": "Infantry",
       "points": 70,
       "attack": "5",
@@ -47,6 +52,7 @@
       "max": 2
     },
     "Ninja": {
+      "id": "U6",
       "type": "Infantry",
       "points": 60,
       "attack": "3/1",
@@ -57,6 +63,7 @@
       "max": 2
     },
     "Oni": {
+      "id": "U7",
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -66,6 +73,7 @@
       "max": 1
     },
     "Samurai Cavalry": {
+      "id": "U8",
       "type": "Cavalry",
       "points": 110,
       "attack": "4",
@@ -75,6 +83,7 @@
       "max": 3
     },
     "Komainu": {
+      "id": "U9",
       "type": "Cavalry",
       "points": 40,
       "attack": "2",
@@ -84,6 +93,7 @@
       "max": 3
     },
     "Tengu": {
+      "id": "U10",
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -94,6 +104,7 @@
       "flying": true
     },
     "Shogun": {
+      "id": "U11",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -105,6 +116,7 @@
       ]
     },
     "Daimyo": {
+      "id": "U12",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -116,6 +128,7 @@
       ]
     },
     "Shugenja": {
+      "id": "U13",
       "type": "Hero",
       "points": 90,
       "attack": "+1",
@@ -133,6 +146,7 @@
   },
   "upgrades": {
     "Tatsu": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -140,6 +154,7 @@
       "terror": true
     },
     "Shrine": {
+      "id": "UPG2",
       "type": "Special",
       "cost": 50,
       "armyMax": 1

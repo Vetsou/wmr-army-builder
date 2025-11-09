@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url'
 const DIR_NAME = dirname(fileURLToPath(import.meta.url))
 
 const aliases = {
+  '$lib': resolve(DIR_NAME, 'src/lib'),
   '$builder': resolve(DIR_NAME, 'src/lib/builder'),
   '$validator': resolve(DIR_NAME, 'src/lib/builder/validator'),
   '$components': resolve(DIR_NAME, 'src/lib/components'),

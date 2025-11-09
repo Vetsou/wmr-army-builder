@@ -2,6 +2,7 @@
   "name": "Ogre Kingdoms",
   "units": {
     "Bull Ogres": {
+      "id": "U1",
       "type": "Infantry",
       "points": 105,
       "attack": "4",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Leadbelchers": {
+      "id": "U2",
       "type": "Infantry",
       "points": 90,
       "attack": "3/2",
@@ -21,6 +23,7 @@
       "max": 2
     },
     "Ironguts": {
+      "id": "U3",
       "type": "Infantry",
       "points": 140,
       "attack": "4",
@@ -30,6 +33,7 @@
       "max": 2
     },
     "Yhetees": {
+      "id": "U4",
       "type": "Infantry",
       "points": 90,
       "attack": "5",
@@ -39,6 +43,7 @@
       "max": 2
     },
     "Gnoblars": {
+      "id": "U5",
       "type": "Infantry",
       "points": 30,
       "attack": "2/1",
@@ -49,6 +54,7 @@
       "max": 4
     },
     "Rhinox Riders": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 200,
       "attack": "5",
@@ -58,6 +64,7 @@
       "max": 1
     },
     "Gorgers": {
+      "id": "U7",
       "type": "Monster",
       "points": 110,
       "attack": "5",
@@ -67,6 +74,7 @@
       "max": 1
     },
     "Sabretusks": {
+      "id": "U8",
       "type": "Cavalry",
       "points": 40,
       "attack": "3",
@@ -76,6 +84,7 @@
       "max": 1
     },
     "Slave Giant": {
+      "id": "U9",
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -85,6 +94,7 @@
       "max": 1
     },
     "Scrap Launcher": {
+      "id": "U10",
       "type": "Artillery",
       "points": 75,
       "attack": "1/3",
@@ -95,6 +105,7 @@
       "max": 1
     },
     "Tyrant": {
+      "id": "U11",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -106,6 +117,7 @@
       ]
     },
     "Bruiser": {
+      "id": "U12",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -117,6 +129,7 @@
       ]
     },
     "Butcher": {
+      "id": "U13",
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
@@ -130,6 +143,7 @@
   },
   "upgrades": {
     "Bull Rhinox": {
+      "id": "UPG1",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 65,

@@ -2,6 +2,7 @@
   "name": "Norse",
   "units": {
     "Bondsmen": {
+      "id": "U1",
       "type": "Infantry",
       "points": 60,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 2
     },
     "Huscarls": {
+      "id": "U2",
       "type": "Infantry",
       "points": 110,
       "attack": "4",
@@ -21,6 +23,7 @@
       "max": 4
     },
     "Huntsmen": {
+      "id": "U3",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -30,6 +33,7 @@
       "range": "30cm"
     },
     "Berserkers": {
+      "id": "U4",
       "type": "Infantry",
       "points": 70,
       "attack": "5",
@@ -39,6 +43,7 @@
       "max": 1
     },
     "Ulfwerener": {
+      "id": "U5",
       "type": "Infantry",
       "points": 115,
       "attack": "4",
@@ -48,6 +53,7 @@
       "max": 1
     },
     "Cavalry": {
+      "id": "U6",
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -57,6 +63,7 @@
       "max": 4
     },
     "Storm Giant": {
+      "id": "U7",
       "type": "Monster",
       "points": 135,
       "attack": "8",
@@ -66,6 +73,7 @@
       "max": 1
     },
     "War Mammoth": {
+      "id": "U8",
       "type": "Monster",
       "points": 180,
       "attack": "8",
@@ -75,6 +83,7 @@
       "max": 1
     },
     "Valkyries": {
+      "id": "U9",
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -85,6 +94,7 @@
       "flying": true
     },
     "Jarl": {
+      "id": "U10",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -96,6 +106,7 @@
       ]
     },
     "Hero": {
+      "id": "U11",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -107,6 +118,7 @@
       ]
     },
     "Shaman": {
+      "id": "U12",
       "type": "Wizard",
       "points": 90,
       "attack": "+1",
@@ -121,6 +133,7 @@
   },
   "upgrades": {
     "Were Kin": {
+      "id": "UPG1",
       "type": "Special",
       "attack": "+1",
       "cost": 40,
@@ -128,6 +141,7 @@
       "terror": true
     },
     "Horn of Resounding": {
+      "id": "UPG2",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 20,

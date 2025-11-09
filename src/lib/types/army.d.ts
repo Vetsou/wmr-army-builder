@@ -32,7 +32,7 @@ declare global {
    * Describes the unit's profile, type, restrictions, and upgrade options.
    */
   interface ISchemaUnit {
-    urlId?: string
+    id: string
     type: UnitType
 
     // --- Core Stats ---

@@ -2,6 +2,7 @@
   "name": "Bretonnia",
   "units": {
     "Bowmen": {
+      "id": "U1",
       "type": "Infantry",
       "points": 55,
       "attack": "3/1",
@@ -11,6 +12,7 @@
       "range": "30cm"
     },
     "Men-at-arms": {
+      "id": "U2",
       "type": "Infantry",
       "points": 45,
       "attack": "3",
@@ -20,6 +22,7 @@
       "min": 1
     },
     "Peasants": {
+      "id": "U3",
       "type": "Infantry",
       "points": 30,
       "attack": "3",
@@ -32,6 +35,7 @@
       ]
     },
     "Knights": {
+      "id": "U4",
       "type": "Cavalry",
       "points": 110,
       "attack": "3",
@@ -41,6 +45,7 @@
       "min": 1
     },
     "Grail Knights": {
+      "id": "U5",
       "type": "Cavalry",
       "points": 120,
       "attack": "3",
@@ -50,6 +55,7 @@
       "max": 1
     },
     "Pegasus Knights": {
+      "id": "U6",
       "type": "Monster",
       "points": 80,
       "attack": "2",
@@ -60,6 +66,7 @@
       "flying": true
     },
     "Trebuchet": {
+      "id": "U7",
       "type": "Artillery",
       "points": 100,
       "attack": "1/4",
@@ -70,6 +77,7 @@
       "max": 1
     },
     "General": {
+      "id": "U8",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -82,6 +90,7 @@
       ]
     },
     "Hero": {
+      "id": "U9",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -93,6 +102,7 @@
       ]
     },
     "Enchantress": {
+      "id": "U10",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
@@ -107,18 +117,21 @@
   },
   "upgrades": {
     "Unicorn": {
+      "id": "UPG1",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Pegasus": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+1",
       "cost": 15,
       "max": 1
     },
     "Hippogriff": {
+      "id": "UPG3",
       "type": "Monstrous Mount",
       "attack": "+2",
       "cost": 80,
@@ -126,6 +139,7 @@
       "terror": true
     },
     "Grail Reliquae": {
+      "id": "UPG4",
       "type": "Special",
       "cost": 60,
       "armyMax": 1

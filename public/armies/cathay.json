@@ -2,6 +2,7 @@
   "name": "Cathay",
   "units": {
     "Bannermen": {
+      "id": "U1",
       "type": "Infantry",
       "points": 50,
       "attack": "3",
@@ -11,6 +12,7 @@
       "min": 3
     },
     "Crossbows": {
+      "id": "U2",
       "type": "Infantry",
       "points": 40,
       "attack": "2/1",
@@ -21,6 +23,7 @@
       "min": 1
     },
     "Handguns": {
+      "id": "U3",
       "type": "Infantry",
       "points": 50,
       "attack": "2/1",
@@ -30,6 +33,7 @@
       "range": "30cm"
     },
     "Terracotta Warriors": {
+      "id": "U4",
       "type": "Infantry",
       "points": 30,
       "attack": "2",
@@ -39,6 +43,7 @@
       "max": 6
     },
     "Maneaters": {
+      "id": "U5",
       "type": "Infantry",
       "points": 140,
       "attack": "4",
@@ -48,6 +53,7 @@
       "max": 1
     },
     "Chariots": {
+      "id": "U6",
       "type": "Chariots",
       "points": 110,
       "attack": "3/1",
@@ -57,6 +63,7 @@
       "max": 1
     },
     "Imperial Cavalry": {
+      "id": "U7",
       "type": "Cavalry",
       "points": 90,
       "attack": "3",
@@ -66,6 +73,7 @@
       "max": 2
     },
     "Hu Cavalry": {
+      "id": "U8",
       "type": "Cavalry",
       "points": 60,
       "attack": "2/1",
@@ -75,9 +83,10 @@
       "max": 3
     },
     "Rocket Launcher": {
+      "id": "U9",
       "type": "Artillery",
       "points": 55,
-      "attack": "1/d6",
+      "attack": "1/D6",
       "armor": "-",
       "hits": 2,
       "size": 1,
@@ -85,6 +94,7 @@
       "max": 1
     },
     "Triple Bows": {
+      "id": "U10",
       "type": "Artillery",
       "points": 65,
       "attack": "1/2",
@@ -95,6 +105,7 @@
       "max": 1
     },
     "General": {
+      "id": "U11",
       "type": "General",
       "points": 125,
       "attack": "+2",
@@ -107,6 +118,7 @@
       ]
     },
     "Hero": {
+      "id": "U12",
       "type": "Hero",
       "points": 80,
       "attack": "+1",
@@ -119,6 +131,7 @@
       ]
     },
     "Sorcerer": {
+      "id": "U13",
       "type": "Wizard",
       "points": 45,
       "attack": "+0",
@@ -134,12 +147,14 @@
   },
   "upgrades": {
     "Chariot": {
+      "id": "UPG1",
       "type": "Chariot Mount",
       "attack": "+1",
       "cost": 10,
       "max": 1
     },
     "Celestial Dragon": {
+      "id": "UPG2",
       "type": "Monstrous Mount",
       "attack": "+3",
       "cost": 100,
@@ -147,12 +162,14 @@
       "terror": true
     },
     "Tiger": {
+      "id": "UPG3",
       "type": "Special Mount",
       "attack": "+2",
       "cost": 20,
       "max": 1
     },
     "Qilin": {
+      "id": "UPG4",
       "type": "Special Mount",
       "attack": "+1",
       "cost": 15,

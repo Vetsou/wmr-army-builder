@@ -37,6 +37,7 @@ export const createSchemaUnit = (
   unit: Partial<ISchemaUnit>
 ): ISchemaUnit => {
   return {
+    id: unit.id ?? 'U1',
     attack: unit.attack ?? '2',
     max: unit.max,
     min: unit.min,
@@ -68,6 +69,7 @@ export const createSchemaItem = (
   item: Partial<ISchemaMagicItem>
 ): ISchemaMagicItem => {
   return {
+    id: item.id ?? 'MI1',
     type: item.type ?? 'Magic Weapon',
     cost: item.cost ?? 100,
     allowedUnits: item.allowedUnits ?? ['Infantry'],
@@ -79,6 +81,7 @@ export const createSchemaUpgrade = (
   upgrade: Partial<ISchemaUpgrade>
 ): ISchemaUpgrade => {
   return {
+    id: upgrade.id ?? 'UPG1',
     type: upgrade.type ?? 'Chariot Mount',
     cost: upgrade.cost ?? 25,
     max: upgrade.max,

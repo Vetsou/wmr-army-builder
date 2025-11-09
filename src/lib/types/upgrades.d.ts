@@ -8,6 +8,7 @@ declare global {
    * Base upgrade definition as stored in an army's schema file.
    */
   interface ISchemaUpgrade {
+    id: string
     type: UpgradeType
     attack?: string
     range?: string
