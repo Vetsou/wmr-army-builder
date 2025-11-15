@@ -84,7 +84,8 @@ export function decodeArmyFromUrl(
 
       if (isUpgrade) {
         const [upgradeKey, upgradeData] = armyUpgrades.find(([, u]) => u.id === attachId) || []
-        if (!upgradeKey || !upgradeData) continue
+        const canAdd = schemaData.upgrades?.find(name => upgradeKey === name)
+        if (!upgradeKey || !upgradeData || !canAdd) continue
 
         for (let i = 0; i < attachCount; i++) UnitMutator.equipUpgrade(builderState, schemaKey, upgradeKey, upgradeData)
         continue
@@ -100,7 +101,8 @@ export function decodeArmyFromUrl(
 
       if (isStand) {
         const [standKey, standData] = armyStands.find(([, s]) => s.id === attachId) || []
-        if (!standKey || !standData) continue
+        const canAdd = schemaData.extraStands?.find(name => standKey === name)
+        if (!standKey || !standData || !canAdd) continue
 
         for (let i = 0; i < attachCount; i++) UnitMutator.addStand(builderState, schemaKey, standKey, standData)
         continue
