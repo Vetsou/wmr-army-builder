@@ -2,6 +2,7 @@ import type { Readable } from 'svelte/store'
 
 
 interface ILookupData {
+  readonly armyUnits: Record<string , ISchemaUnit>
   readonly magicItems: Record<string, ISchemaMagicItem>
   readonly armyUpgrades?: Record<string, ISchemaUpgrade>
   readonly armyStands?: Record<string, ISchemaUnit>

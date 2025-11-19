@@ -32,6 +32,7 @@ export const resetState = (
       upgrades: Object.fromEntries(Object.keys(armySchema.upgrades ?? {}).map(name => [name, 0]))
     },
     lookup: {
+      armyUnits: armySchema.units,
       magicItems: magicItems,
       armyUpgrades: armySchema.upgrades,
       armyStands: armySchema.stands

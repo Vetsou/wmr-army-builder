@@ -69,4 +69,4 @@
   </div>
 </div>
 
-<RegimentSelectModal bind:showModal processedRegiment={ selectedRegiment } schemaUnits={ units } />
+<RegimentSelectModal bind:showModal processedRegiment={ selectedRegiment } />

@@ -132,23 +132,35 @@ describe('encodeArmyToUrl', () => {
 
 describe('decodeArmyFromUrl', () => {
   let store: Writable<IBuilderState>
-  let armySchema: IArmySchema
-  let magicItems: Record<string, ISchemaMagicItem>
   let schemaRegiments: Record<string, ISchemaRegiment>
 
   beforeEach(() => {
-    store = DataGenerator.createBuilderState({})
-    armySchema = DataGenerator.createArmySchema({
-      name: 'TestArmy',
-      units: {
-        warriors: DataGenerator.createSchemaUnit({ id: 'U42', points: 25, upgrades: ['sword'], extraStands: ['rangers'] }),
-        archers: DataGenerator.createSchemaUnit({ id: 'U45', points: 50, upgrades: ['sword'], extraStands: ['rangers'] })
+    store = DataGenerator.createBuilderState({
+      regimentCountAs: {
+        units: {
+          warriors: 0,
+          archers: 0
+        },
+        upgrades: {
+          sword: 0
+        }
       },
-      upgrades: { sword: DataGenerator.createSchemaUpgrade({ id: 'UPG7', cost: 100 }) },
-      stands: { rangers: DataGenerator.createSchemaUnit({ id: 'S9', points: 30 }) }
+      lookup: {
+        magicItems: { banner: DataGenerator.createSchemaItem({ id: 'MI13', cost: 50 }) },
+        armyUpgrades: { sword: DataGenerator.createSchemaUpgrade({ id: 'UPG7', cost: 100 }) },
+        armyStands: { rangers: DataGenerator.createSchemaUnit({ id: 'S9', points: 30 }) },
+        armyUnits: {
+          warriors: DataGenerator.createSchemaUnit({ id: 'U42', points: 25, max: 5, upgrades: ['sword'], extraStands: ['rangers'] }),
+          archers: DataGenerator.createSchemaUnit({ id: 'U45', points: 50, max: 5, upgrades: ['sword'], extraStands: ['rangers'] })
+        }
+      }
     })
-    magicItems = { banner: DataGenerator.createSchemaItem({ id: 'MI13', cost: 50 }) }
-    schemaRegiments = { regiment: DataGenerator.createRegimentSchema({ id: 'R11', points: 80 }) }
+
+    schemaRegiments = {
+      regiment: DataGenerator.createRegimentSchema({ id: 'R11', points: 80, countAsRules: { any: { type: 'any', costType: 'any' } }}),
+      lord: DataGenerator.createRegimentSchema({ id: 'R4', points: 100, countAsRules: { any: { type: 'Infantry&Chariot Mount', costType: 'any' } }}),
+      engineers: DataGenerator.createRegimentSchema({ id: 'R7', points: 45 })
+    }
   })
 
   it('decodes simple unit', () => {
@@ -156,7 +168,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=3'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -166,15 +178,15 @@ describe('decodeArmyFromUrl', () => {
 
   it('decodes simple regiment', () => {
     // Arrange
-    const encoded = 'R11=2'
+    const encoded = 'R7=2'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
-    expect(state.units.regiment.count).toBe(2)
-    expect(state.armyCost).toBe(160)
+    expect(state.units.engineers.count).toBe(2)
+    expect(state.armyCost).toBe(90)
   })
 
   it('decodes unit with item', () => {
@@ -182,7 +194,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=2[MI13]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -197,7 +209,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=3[MI13x2,UPG7x3]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -212,7 +224,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=2[MI13x3,UPG7x3]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -226,7 +238,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=2[MI13,UPG7x2]&U45=3[S9x3,MI13x2]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -244,7 +256,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U7=2' // Unit with id 'U7' doesn't exist in schema
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -258,7 +270,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=1[MI2]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -272,7 +284,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=1[UPG3]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -286,7 +298,7 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'U42=1[S4]'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
@@ -300,12 +312,43 @@ describe('decodeArmyFromUrl', () => {
     const encoded = 'R34=3'
 
     // Act
-    Serialization.decodeArmyFromUrl(store, encoded, armySchema, magicItems, schemaRegiments)
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
 
     // Assert
     const state = get(store)
     const regimentCount = Object.keys(state.units).length
     expect(regimentCount).toBe(0)
     expect(state.armyCost).toBe(0)
+  })
+
+  it('should decode regiment with "countAs" unit rule data', () => {
+    // Arrange
+    const encoded = 'R11=1(CA=U42)'
+
+    // Act
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
+
+    // Assert
+    const state = get(store)
+    const regimentCount = Object.keys(state.units).length
+    expect(regimentCount).toBe(1)
+    expect(state.armyCost).toBe(80)
+    expect(state.regimentCountAs.units.warriors).toBe(1)
+    expect(state.regimentCountAs.upgrades.sword).toBe(0)
+  })
+
+  it('should decode regiment with "countAs" unit&upgrade rule data', () => {
+    // Arrange
+    const encoded = 'R4=2(CA=U42/UPG7)'
+    
+    // Act
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
+
+    // Assert
+    const state = get(store)
+    expect(state.units.lord.count).toBe(2)
+    expect(state.armyCost).toBe(200)
+    expect(state.regimentCountAs.units.warriors).toBe(2)
+    expect(state.regimentCountAs.upgrades.sword).toBe(2)
   })
 })

@@ -30,12 +30,12 @@ export const removeUnit = (
       if (isRegiment(armyUnit)) {
         const armyRegiment = armyUnit as IArmyRegiment
         if (armyRegiment.countAsUnit) {
-          s.regimentCountAs.units[armyRegiment.countAsUnit]--
+          s.regimentCountAs.units[armyRegiment.countAsUnit] -= count
           UnitValidator.validateUnit(s, armyRegiment.countAsUnit)
         }
 
         if (armyRegiment.countAsUpgrade) {
-          s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade]--
+          s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade] -= count
           UnitValidator.validateUnit(s, armyRegiment.countAsUpgrade)
         }
       }

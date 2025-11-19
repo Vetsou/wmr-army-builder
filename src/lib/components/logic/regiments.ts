@@ -59,7 +59,6 @@ const filterUpgradesByTags = (
 
 export const getRegimentCountAsRuleUnits = (
   state: IBuilderState,
-  schemaUnits: Record<string, ISchemaUnit>,
   regiment: ISchemaRegiment
 ): CountAsRuleResult => {
   if (!regiment.countAsRules) return { units: [], upgrades: [] }
@@ -67,7 +66,7 @@ export const getRegimentCountAsRuleUnits = (
   const countAsRule = regiment.countAsRules[state.armyName] ?? regiment.countAsRules.any
 
   let result: CountAsRuleResult = {
-    units: Object.entries(schemaUnits).filter(([_, u]) => u.max || u.armyMax),
+    units: Object.entries(state.lookup.armyUnits).filter(([_, u]) => u.max || u.armyMax),
     upgrades: []
   }
 

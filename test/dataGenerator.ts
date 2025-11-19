@@ -15,9 +15,10 @@ export const createBuilderState = (
     },
     armyErrors: [],
     lookup: {
-      magicItems: {},
-      armyUpgrades: {},
-      armyStands: {}
+      armyUnits: state.lookup?.armyUnits ?? {},
+      magicItems: state.lookup?.magicItems ?? {},
+      armyUpgrades: state.lookup?.armyUpgrades ?? {},
+      armyStands: state.lookup?.armyStands ?? {}
     }
   })
 }
