@@ -10,7 +10,17 @@ import * as UnitMutator from '$builder/mutator/unit'
 describe('encodeArmyToUrl', () => {
   let store: Writable<IBuilderState>
 
-  beforeEach(() => store = DataGenerator.createBuilderState({}))
+  beforeEach(() => store = DataGenerator.createBuilderState({
+    lookup: {
+      armyUnits: { testUnit1: DataGenerator.createSchemaUnit({ id: 'U1' }) },
+      armyUpgrades: { testUpgrade1: DataGenerator.createSchemaUpgrade({ id: 'UPG2' }) },
+      magicItems: {}
+    },
+    regimentCountAs: {
+      units: { testUnit1: 0 },
+      upgrades: { testUpgrade1: 0 }
+    }
+  }))
 
   it('returns empty string for empty state', () => {
     // Assert
@@ -27,6 +37,49 @@ describe('encodeArmyToUrl', () => {
 
     // Assert
     expect(urlParams).toBe('U1=2')
+  })
+
+  it('encodes regiment unit', () => {
+    // Arrange
+    const schemaRegiment = DataGenerator.createRegimentSchema({ id: 'R1' })
+    ArmyMutator.addRegiment(store, 'RegimentA', schemaRegiment, {}, 3)
+
+    // Act
+    const urlParams = Serialization.encodeArmyToUrl(store)
+
+    // Assert
+    expect(urlParams).toBe('R1=3')
+  })
+
+  it('encodes regiment unit with "countAs" rule', () => {
+    // Arrange
+    const schemaRegiment = DataGenerator.createRegimentSchema({ id: 'R1' })
+    ArmyMutator.addRegiment(store, 'RegimentA', schemaRegiment, { unitName: 'testUnit1', upgradeName: 'testUpgrade1' }, 3)
+
+    // Act
+    const urlParams = Serialization.encodeArmyToUrl(store)
+
+    // Assert
+    expect(decodeURIComponent(urlParams)).toBe('R1=3(CA=U1/UPG2)')
+  })
+
+  it('should skip items/upgrades for regiment', () => {
+    // Arrange
+    const schemaRegiment = DataGenerator.createRegimentSchema({ id: 'R1' })
+    ArmyMutator.addRegiment(store, 'RegimentA', schemaRegiment, {}, 3)
+
+    const schemaItem = DataGenerator.createSchemaItem({ id: 'MI75' })
+    UnitMutator.equipItem(store, 'RegimentA', 'ItemA', schemaItem)
+
+    const schemaUpgrade = DataGenerator.createSchemaUpgrade({ id: 'UPG77' })
+    UnitMutator.equipUpgrade(store, 'RegimentA', 'UpgradeA', schemaUpgrade)
+    UnitMutator.equipUpgrade(store, 'RegimentA', 'UpgradeA', schemaUpgrade)
+
+    // Act
+    const urlParams = Serialization.encodeArmyToUrl(store)
+
+    // Assert
+    expect(urlParams).toBe('R1=3')
   })
 
   it('encodes unit with item', () => {
@@ -56,18 +109,6 @@ describe('encodeArmyToUrl', () => {
 
     // Assert
     expect(decodeURIComponent(urlParams)).toBe('U19=14[UPG17x2]')
-  })
-
-  it('encodes regiment unit', () => {
-    // Arrange
-    const schemaUnit = DataGenerator.createArmyUnit({ id: 'R17' })
-    ArmyMutator.addRegiment(store, 'RegimentA', schemaUnit, {}, 7)
-
-    // Act
-    const urlParams = Serialization.encodeArmyToUrl(store)
-
-    // Assert
-    expect(decodeURIComponent(urlParams)).toBe('R17=7')
   })
 
   it('encodes unit with multiple upgrades and items', () => {
@@ -186,6 +227,21 @@ describe('decodeArmyFromUrl', () => {
     // Assert
     const state = get(store)
     expect(state.units.engineers.count).toBe(2)
+    expect(state.armyCost).toBe(90)
+  })
+
+  it('should not add items/upgrades for regiment', () => {
+    // Arrange
+    const encoded = 'R7=2[MI13x2,UPG7x3]'
+
+    // Act
+    Serialization.decodeArmyFromUrl(store, encoded, schemaRegiments)
+
+    // Assert
+    const state = get(store)
+    expect(state.units.engineers.count).toBe(2)
+    expect(state.units.engineers.equippedItems.banner).toBeUndefined()
+    expect(state.units.engineers.equippedUpgrades.sword).toBeUndefined()
     expect(state.armyCost).toBe(90)
   })
 

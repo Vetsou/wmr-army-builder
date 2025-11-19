@@ -5,9 +5,64 @@ import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
-export function encodeArmyToUrl(
+type DecodedRegimentCountAsData = {
+  unitName?: string
+  upgradeName?: string
+}
+
+const decodeRegimentFromUrl = (
+  state: IBuilderState,
+  schemaData: ISchemaRegiment,
+  caUnitId?: string,
+  caUpgradeId?: string
+): DecodedRegimentCountAsData | null => {
+  const allowed = getRegimentCountAsRuleUnits(state, schemaData)
+
+  const requiresUnit = allowed.units.length > 0
+  const requiresUpgrade = allowed.upgrades.length > 0
+  const unrestricted = !requiresUnit && !requiresUpgrade
+
+  if (!unrestricted) {
+    const caUnit = requiresUnit ? allowed.units.find(([_, data]) => data.id === caUnitId) : []
+    const caUpgrade = requiresUpgrade ? allowed.upgrades.find(([_, data]) => data.id === caUpgradeId) : []
+
+    // Regiment has countAs rule defined but missing countAs URL data
+    if (!caUnit || !caUpgrade) return null
+
+    return {
+      unitName: caUnit[0],
+      upgradeName: caUpgrade[0]
+    }
+  }
+
+  return {}
+}
+
+const encodeRegimentCountAs = (
+  state: IBuilderState,
+  unit: IArmyUnit | IArmyRegiment
+): string => {
+  if (!unit.id.startsWith('R')) return ''
+
+  const regiment = unit as IArmyRegiment
+
+  const caUnitName = regiment.countAsUnit
+  const caUpgradeName = regiment.countAsUpgrade
+
+  const caUnitId = caUnitName && state.lookup.armyUnits[caUnitName]
+    ? state.lookup.armyUnits[caUnitName].id
+    : ''
+
+  const caUpgradeId = caUpgradeName && state.lookup.armyUpgrades && state.lookup.armyUpgrades[caUpgradeName]
+    ? state.lookup.armyUpgrades[caUpgradeName].id
+    : ''
+
+  return (caUnitId || caUpgradeId) ? `(CA=${caUnitId}/${caUpgradeId})` : ''
+}
+
+export const encodeArmyToUrl = (
   builderState: Writable<IBuilderState>
-): string {
+): string => {
   const state = get(builderState)
 
   const params = new URLSearchParams()
@@ -28,27 +83,17 @@ export function encodeArmyToUrl(
       attachments.push(stand.count > 1 ? `${stand.id}x${stand.count}` : stand.id)
     })
 
+    const caStr = encodeRegimentCountAs(state, unit)
+
     const isRegiment = unit.id.startsWith('R')
-    let caStr = ''
+    const attachStr = (!isRegiment && attachments.length > 0) ? `[${attachments.join(',')}]` : ''
 
-    if (isRegiment) {
-      const regiment = unit as IArmyRegiment
-
-      const caUnitName = regiment.countAsUnit
-      const caUpgradeName = regiment.countAsUpgrade
-
-      const caUnitId = caUnitName && state.lookup.armyUnits[caUnitName]
-        ? state.lookup.armyUnits[caUnitName].id
-        : ''
-
-      const caUpgradeId = caUpgradeName && state.lookup.armyUpgrades && state.lookup.armyUpgrades[caUpgradeName]
-        ? state.lookup.armyUpgrades[caUpgradeName].id
-        : ''
-
-      if (caUnitId || caUpgradeId) caStr = `(CA=${caUnitId}/${caUpgradeId})`
-    }
-
-    const attachStr = attachments.length > 0 ? `[${attachments.join(',')}]` : ''
+    /**
+     * Encode string like this: 3(CA=U1/UPG3)[UPG1,MI2x2]
+     * '3' - Unit count
+     * '(CA=U1/UPG3)' - Regiment count as data could also be '(CA=U1)' if only unit is encoded
+     * '[UPG1,MI2x2]' - Unit items/upgrades/stands
+     */
     params.set(unit.id, `${unit.count}${caStr}${attachStr}`)
   }
 
@@ -83,8 +128,8 @@ export function decodeArmyFromUrl(
 
     // Regex groups assign
     const unitCount = parseInt(match[1], 10)
-    const caUnitId = match[2] || null
-    const caUpgradeId = match[3] || null
+    const caUnitId = match[2]
+    const caUpgradeId = match[3]
     const attachments = match[4] ? match[4].split(',') : []
 
     const isRegiment = unitId.startsWith('R')
@@ -102,35 +147,22 @@ export function decodeArmyFromUrl(
       ArmyMutator.addUnit(builderState, schemaKey, schemaData, unitCount)
     } else {
       // We already know that unit is one of SchemaUnit or SchemaRegiment
-      const state = get(builderState)
-      const allowed = getRegimentCountAsRuleUnits(state, schemaData)
+      const regimentCaData = decodeRegimentFromUrl(state, schemaData, caUnitId, caUpgradeId)
 
-      const requiresUnit = allowed.units.length > 0
-      const requiresUpgrade = allowed.upgrades.length > 0
-      const unrestricted = !requiresUnit && !requiresUpgrade
-
-      let countAsUnitName
-      let countAsUpgradeName
-
-      if (!unrestricted) {
-        const caUnit = requiresUnit ? allowed.units.find(([_, data]) => data.id === caUnitId) : []
-        const caUpgrade = requiresUpgrade ? allowed.upgrades.find(([_, data]) => data.id === caUpgradeId) : []
-
-        // Regiment has countAs rule defined but missing countAs URL data
-        if (!caUnit || !caUpgrade) continue
-
-        countAsUnitName = caUnit[0]
-        countAsUpgradeName = caUpgrade[0]
-      }
+      // Regiment has countAs rule defined but missing countAs URL data
+      if (regimentCaData === null) continue
 
       ArmyMutator.addRegiment(
         builderState,
         schemaKey,
         schemaData, {
-          unitName: countAsUnitName,
-          upgradeName: countAsUpgradeName
+          unitName: regimentCaData.unitName,
+          upgradeName: regimentCaData.upgradeName
         },
         unitCount)
+
+      // Regiments can't equip items/upgrades
+      continue
     }
 
     for (const rawAttach of attachments) {
