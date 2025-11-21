@@ -1,11 +1,11 @@
 <script lang="ts">
   import builderStore from '$builder/store'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits } from './logic/regiments'
+  import { getRegimentCountAsRuleUnits } from '$components/logic'
 
 
   type Props = {
-    processedRegiment: { name: string, data: ISchemaRegiment }
+    processedRegiment: { name?: string, data?: ISchemaRegiment }
     showModal: boolean
   }
 
@@ -53,8 +53,9 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
+    // We are sure regiment exists because it's set on modal creation
     builderStore.addRegiment(
-      processedRegiment.name, processedRegiment.data,
+      processedRegiment.name!, processedRegiment.data!,
       { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name }
     )
     onBeforeClose()

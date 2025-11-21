@@ -2,30 +2,14 @@
   import { fetchPublicData } from './io'
 
   import BuilderStore from '$builder/store'
-  import ArmyBuilder from '$components/ArmyBuilder.svelte'
-  import ArmySchema from '$components/ArmySchema.svelte'
-  import ArmyInfo from '$components/ArmyInfo.svelte'
+  import BuilderPanel from '$components/builder/BuilderPanel.svelte'
+  import UrlPanel from '$components/url/UrlPanel.svelte'
 
 
   const { route } = $props()
   const factionFile = route.result.path.params.name
 
-  type ArmyUnitsData = {
-    units: Record<string, ISchemaUnit>
-    regiments: Record<string, ISchemaRegiment>
-  }
-
-  const filterAvailableRegiments = (
-    regimentsOfRenown: Record<string, ISchemaRegiment>,
-    armyName: string
-  ): Record<string, ISchemaRegiment> => {
-    return Object.fromEntries(
-      Object.entries(regimentsOfRenown)
-        .filter(([_, regimentData]) => !regimentData.incompatibleFactions?.includes(armyName))
-    )
-  }
-
-  const loadArmySchema = async (): Promise<ArmyUnitsData> => {
+  const loadArmySchema = async (): Promise<void> => {
     try {
       const [armySchema, magicItems, regimentsOfRenown] = await Promise.all([
         fetchPublicData<IArmySchema>(`/armies/${ factionFile }.json`),
@@ -34,26 +18,27 @@
       ])
 
       if (BuilderStore.getState().armyName !== armySchema.name) {
-        BuilderStore.initNewArmy(armySchema, magicItems)
-      }
-
-      return {
-        units: armySchema.units,
-        regiments: filterAvailableRegiments(regimentsOfRenown, armySchema.name)
+        BuilderStore.initNewArmy(armySchema, magicItems, regimentsOfRenown)
       }
     } catch (err) {
       throw new Error(`Error loading ${ factionFile } army data (${ err })`)
     }
   }
+
+  const PanelList = {
+    builder: BuilderPanel,
+    encoder: UrlPanel
+  }
+
+  let panel = $state<'builder' | 'encoder'>('builder')
+  let PanelComponent =  $derived(PanelList[panel])
 </script>
 
 {#await loadArmySchema()}
   <p>Loading army data...</p>
-{:then armyData}
+{:then}
   <section class="flex justify-evenly items-start">
-    <ArmySchema { ...armyData } />
-    <ArmyInfo />
-    <ArmyBuilder />
+    <PanelComponent />
   </section>
 {:catch error}
   <p>{ error.message }</p>

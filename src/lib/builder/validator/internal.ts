@@ -8,7 +8,7 @@ export const formatError = (
 }
 
 export const isUnitCountIncorrect = (
-  unit: IArmyUnit | IArmyStand,
+  unit: IArmyUnit | IArmyStand | IArmyRegiment,
   takenByRegiments: number,
   armyCost: number
 ): boolean => {

@@ -16,10 +16,21 @@ const addRequiredUnits = (
   })
 }
 
+const filterRegimentsForArmy = (
+  regimentsOfRenown: Record<string, ISchemaRegiment>,
+  armyName: string
+): Record<string, ISchemaRegiment> => {
+  return Object.fromEntries(
+    Object.entries(regimentsOfRenown)
+      .filter(([_, regimentData]) => !regimentData.incompatibleFactions?.includes(armyName))
+  )
+}
+
 export const resetState = (
   state: Writable<IBuilderState>,
   armySchema: IArmySchema,
-  magicItems: Record<string, ISchemaMagicItem>
+  magicItems: Record<string, ISchemaMagicItem>,
+  regiments: Record<string, ISchemaRegiment>
 ): void => {
   state.set({
     armyName: armySchema.name,
@@ -34,6 +45,7 @@ export const resetState = (
     lookup: {
       armyUnits: armySchema.units,
       magicItems: magicItems,
+      regiments: filterRegimentsForArmy(regiments, armySchema.name),
       armyUpgrades: armySchema.upgrades,
       armyStands: armySchema.stands
     }

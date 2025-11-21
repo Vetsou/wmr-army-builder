@@ -108,10 +108,10 @@ export function decodeArmyFromUrl(
   const params = new URLSearchParams(encoded)
 
   const state = get(builderState)
+
   const armyUnits = Object.entries(state.lookup.armyUnits)
   const armyUpgrades = Object.entries(state.lookup.armyUpgrades ?? {})
   const armyStands = Object.entries(state.lookup.armyStands ?? {})
-
   const items = Object.entries(state.lookup.magicItems)
   const regiments = Object.entries(schemaRegiments)
 
@@ -134,19 +134,22 @@ export function decodeArmyFromUrl(
 
     const isRegiment = unitId.startsWith('R')
     const isUnit = unitId.startsWith('U')
+
+    // If ID is not from unit or regiment then it's invalid
     if (!isRegiment && !isUnit) continue
 
-    const schemaEntry = isRegiment 
+    const schemaEntry = isRegiment
       ? regiments.find(([_, r]) => r.id === unitId)
       : armyUnits.find(([_, u]) => u.id === unitId)
 
+    // If we can't find the unit then it's invalid
     if (!schemaEntry) continue
+
     const [schemaKey, schemaData] = schemaEntry
 
     if (isUnit) {
       ArmyMutator.addUnit(builderState, schemaKey, schemaData, unitCount)
     } else {
-      // We already know that unit is one of SchemaUnit or SchemaRegiment
       const regimentCaData = decodeRegimentFromUrl(state, schemaData, caUnitId, caUpgradeId)
 
       // Regiment has countAs rule defined but missing countAs URL data
@@ -165,6 +168,7 @@ export function decodeArmyFromUrl(
       continue
     }
 
+    // Handle items/upgrads/stands for the unit
     for (const rawAttach of attachments) {
       const [attachId, countStr] = rawAttach.split('x')
       const attachCount = countStr ? parseInt(countStr, 10) : 1

@@ -29,8 +29,11 @@ export const setUnitActions = (
 export const setArmyActions = (
   state: Writable<IBuilderState>
 ): Partial<IBuilderStore> => ({
-  initNewArmy: (armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>): void =>
-    ArmyMutator.resetState(state, armySchema, magicItems),
+  initNewArmy: (
+    armySchema: IArmySchema,
+    magicItems: Record<string, ISchemaMagicItem>,
+    regiments: Record<string, ISchemaRegiment>
+  ): void => ArmyMutator.resetState(state, armySchema, magicItems, regiments),
 
   addUnit: (unitKey: string, unitData: ISchemaUnit): void =>
     ArmyMutator.addUnit(state, unitKey, unitData, 1),

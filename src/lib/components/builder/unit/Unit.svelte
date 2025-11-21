@@ -1,6 +1,6 @@
 <script lang="ts">
   import builderStore from '$builder/store'
-  import { getUnitBoundsString } from '../logic'
+  import { getUnitBoundsString } from '$components/logic'
 
   import UnitAugments from './UnitAugments.svelte'
   import SchemaAugments from './SchemaAugments.svelte'

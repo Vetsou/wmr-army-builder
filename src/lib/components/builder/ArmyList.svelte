@@ -1,6 +1,6 @@
 <script lang="ts">
   import builderStore from '$builder/store'
-  import Unit from '$components/unit/Unit.svelte'
+  import Unit from './unit/Unit.svelte'
 </script>
 
 <div class="w-1/3 divide-y bg-gray-100 divide-gray-200 text-center select-none">
