@@ -15,7 +15,7 @@
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
-  let countAsDataResult: CountAsRuleResult =
+  let allowedCountAsData: CountAsRuleResult =
     $state(getRegimentCountAsRuleUnits($builderStore, processedRegiment.data))
 
   // Unit/Upgrade selected by user
@@ -24,7 +24,7 @@
 
   $effect(() => {
     if (showModal) {
-      countAsDataResult = getRegimentCountAsRuleUnits($builderStore, processedRegiment.data)
+      allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, processedRegiment.data)
       dialog?.showModal()
     }
   })
@@ -33,8 +33,8 @@
   const onUpgradeSelect = (name: string, data: ISchemaUpgrade): void => { selectedUpgrade = { name, data } }
 
   const isConfirmDisabled = (): boolean => {
-    const unitRequired = countAsDataResult.units?.length !== 0
-    const upgradeRequired = countAsDataResult.upgrades?.length !== 0
+    const unitRequired = allowedCountAsData.units?.length !== 0
+    const upgradeRequired = allowedCountAsData.upgrades?.length !== 0
 
     const unitSelected = !unitRequired || selectedUnit !== null
     const upgradeSelected = !upgradeRequired || selectedUpgrade !== null
@@ -82,10 +82,10 @@
     </div>
 
     <div class="space-y-2 mt-4">
-      {#if countAsDataResult.units.length !== 0}
+      {#if allowedCountAsData.units.length !== 0}
         <div class="font-medium">Units to select:</div>
 
-        {#each countAsDataResult.units as [name, data], i (i)}
+        {#each allowedCountAsData.units as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={ (): void => onUnitSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer
@@ -96,10 +96,10 @@
         {/each}
       {/if}
 
-      {#if countAsDataResult.upgrades.length !== 0}
+      {#if allowedCountAsData.upgrades.length !== 0}
         <div class="font-medium mt-4">Upgrades to select:</div>
 
-        {#each countAsDataResult.upgrades as [name, data], i (i)}
+        {#each allowedCountAsData.upgrades as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={ (): void => onUpgradeSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer

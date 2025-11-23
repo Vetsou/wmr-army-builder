@@ -67,6 +67,18 @@ export const createArmyUnit = (
   }
 }
 
+export const createRegimentSchema = (
+  regiment: Partial<ISchemaRegiment>
+): ISchemaRegiment => {
+  const schemaUnit = createSchemaUnit({ ...regiment })
+  return {
+    ...schemaUnit,
+    countAsRules: regiment.countAsRules,
+    incompatibleFactions: regiment.incompatibleFactions,
+    incompatibleWith: regiment.incompatibleWith,
+  }
+}
+
 export const createSchemaItem = (
   item: Partial<ISchemaMagicItem>
 ): ISchemaMagicItem => {
