@@ -2,9 +2,11 @@ import type { Readable } from 'svelte/store'
 
 
 interface ILookupData {
-  readonly magicItems: Record<string, ISchemaMagicItem>
-  readonly armyUpgrades?: Record<string, ISchemaUpgrade>
-  readonly armyStands?: Record<string, ISchemaUnit>
+  readonly items: Record<string, ISchemaMagicItem>
+  readonly regiments: Record<string, ISchemaRegiment>
+  readonly units: Record<string, ISchemaUnit>
+  readonly upgrades?: Record<string, ISchemaUpgrade>
+  readonly stands?: Record<string, ISchemaUnit>
 }
 
 interface IRegimentCountAsData {
@@ -33,7 +35,12 @@ declare global {
     getState(): IBuilderState
 
     // Set army actions
-    initNewArmy(armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>): void
+    initNewArmy(
+      armySchema: IArmySchema,
+      items: Record<string, ISchemaMagicItem>,
+      regiments: Record<string, ISchemaRegiment>
+    ): void
+
     addUnit(unitKey: string, unitData: ISchemaUnit): void
     removeUnit(unitKey: string, unitData: IArmyUnit): void
     addRegiment(unitKey: string, unitData: ISchemaRegiment, countAsData: IAddRegimentData): void

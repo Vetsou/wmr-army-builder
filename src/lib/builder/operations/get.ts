@@ -11,7 +11,7 @@ export const getAugmentsActions = (
     if (isRegiment(unitData)) return []
 
     const data = get(state)
-    return Object.entries(data.lookup.magicItems).filter(([itemName, item]) =>
+    return Object.entries(data.lookup.items).filter(([itemName, item]) =>
       item.allowedUnits.includes(unitData.type) || unitData.customItems?.includes(itemName))
   },
 
@@ -19,7 +19,7 @@ export const getAugmentsActions = (
     unitData: ISchemaUnit
   ): [string, ISchemaUpgrade][] => {
     const data = get(state)
-    return Object.entries(data.lookup.armyUpgrades ?? {})
+    return Object.entries(data.lookup.upgrades ?? {})
       .filter(([upgradeName]) => unitData.upgrades?.includes(upgradeName))
   },
 
@@ -27,7 +27,7 @@ export const getAugmentsActions = (
     unitData: ISchemaUnit
   ): [string, ISchemaUnit][] => {
     const data = get(state)
-    return Object.entries(data.lookup.armyStands ?? {})
+    return Object.entries(data.lookup.stands ?? {})
       .filter(([standName]) => unitData.extraStands?.includes(standName))
   }
 })

@@ -15,9 +15,11 @@ export const createBuilderState = (
     },
     armyErrors: [],
     lookup: {
-      magicItems: {},
-      armyUpgrades: {},
-      armyStands: {}
+      items: {},
+      upgrades: {},
+      stands: {},
+      regiments: {},
+      units: {}
     }
   })
 }

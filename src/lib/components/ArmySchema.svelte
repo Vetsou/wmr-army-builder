@@ -4,18 +4,8 @@
   import { getUnitBoundsString } from './logic'
 
 
-  type Props = {
-    units: Record<string, ISchemaUnit>
-    regiments: Record<string, ISchemaRegiment>
-  }
-
-  const { units, regiments }: Props = $props()
-
   let showModal = $state(false)
-  let selectedRegiment: { name: string, data: ISchemaRegiment } = $state({
-    name: Object.keys(regiments)[0],
-    data: Object.values(regiments)[0]
-  })
+  let selectedRegiment: { name?: string, data?: ISchemaRegiment } = $state({})
 
   // Display modal and set it's state
   const toggleCountAsModal = (
@@ -35,7 +25,7 @@
       <div class="w-1/4">Points</div>
       <div class="w-1/4">Min/Max</div>
     </div>
-    {#each Object.entries(units) as [unitName, unitData], i (i)}
+    {#each Object.entries($builderStore.lookup.units) as [unitName, unitData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <div onclick={ (): void => builderStore.addUnit(unitName, unitData) } 
         class="flex hover:bg-gray-200 cursor-pointer"
@@ -55,7 +45,7 @@
       <div class="w-1/4">Points</div>
       <div class="w-1/4">Min/Max</div>
     </div>
-    {#each Object.entries(regiments) as [regimentName, regimentData], i (i)}
+    {#each Object.entries($builderStore.lookup.regiments) as [regimentName, regimentData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <div onclick={ (): void => toggleCountAsModal(regimentName, regimentData) } 
         class="flex hover:bg-gray-200 cursor-pointer"
@@ -69,4 +59,4 @@
   </div>
 </div>
 
-<RegimentSelectModal bind:showModal processedRegiment={ selectedRegiment } schemaUnits={ units } />
+<RegimentSelectModal bind:showModal processedRegiment={ selectedRegiment } />

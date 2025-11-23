@@ -14,9 +14,11 @@ const createBuilderStore = (): IBuilderStore => {
       upgrades: {}
     },
     lookup: { 
-      magicItems: {},
-      armyUpgrades: {},
-      armyStands: {}
+      items: {},
+      upgrades: {},
+      stands: {},
+      regiments: {},
+      units: {}
     }
   })
 

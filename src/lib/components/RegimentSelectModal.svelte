@@ -5,20 +5,18 @@
 
 
   type Props = {
-    readonly schemaUnits: Record<string, ISchemaUnit>
-    processedRegiment: { name: string, data: ISchemaRegiment }
+    processedRegiment: { name?: string, data?: ISchemaRegiment }
     showModal: boolean
   }
 
   let {
     showModal = $bindable<boolean>(),
-    processedRegiment,
-    schemaUnits
+    processedRegiment
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
   let countAsDataResult: CountAsRuleResult =
-    $state(getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data))
+    $state(getRegimentCountAsRuleUnits($builderStore, processedRegiment.data))
 
   // Unit/Upgrade selected by user
   let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
@@ -26,7 +24,7 @@
 
   $effect(() => {
     if (showModal) {
-      countAsDataResult = getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data)
+      countAsDataResult = getRegimentCountAsRuleUnits($builderStore, processedRegiment.data)
       dialog?.showModal()
     }
   })
@@ -59,8 +57,9 @@
     const upgradeName = selectedUpgrade?.name
     const suffix = unitName ? ` (${unitName}${upgradeName ? `/${upgradeName}` : ''})` : ''
 
+    // We are sure regiment exists because you cannot submit the modal without selecting one
     builderStore.addRegiment(
-      `${processedRegiment.name}${suffix}`, processedRegiment.data,
+      `${processedRegiment.name}${suffix}`, processedRegiment.data!,
       { unitName: unitName, upgradeName: upgradeName }
     )
     onBeforeClose()

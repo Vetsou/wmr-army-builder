@@ -22,7 +22,7 @@ const filterByType = (
 
     return {
       units: result.units.filter(([_, u]) => unitType.includes(u.type)),
-      upgrades: Object.entries(state.lookup.armyUpgrades ?? {}).filter(([_, upg]) => upgradeType.includes(upg.type))
+      upgrades: Object.entries(state.lookup.upgrades ?? {}).filter(([_, upg]) => upgradeType.includes(upg.type))
     }
   }
 
@@ -59,15 +59,14 @@ const filterUpgradesByTags = (
 
 export const getRegimentCountAsRuleUnits = (
   state: IBuilderState,
-  schemaUnits: Record<string, ISchemaUnit>,
-  regiment: ISchemaRegiment
+  regiment?: ISchemaRegiment
 ): CountAsRuleResult => {
-  if (!regiment.countAsRules) return { units: [], upgrades: [] }
+  if (!regiment?.countAsRules) return { units: [], upgrades: [] }
 
   const countAsRule = regiment.countAsRules[state.armyName] ?? regiment.countAsRules.any
 
   let result: CountAsRuleResult = {
-    units: Object.entries(schemaUnits).filter(([_, u]) => u.max || u.armyMax),
+    units: Object.entries(state.lookup.units).filter(([_, u]) => u.max || u.armyMax),
     upgrades: []
   }
 
