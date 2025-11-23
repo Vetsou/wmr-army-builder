@@ -30,7 +30,7 @@ const createBuilderStore = (): IBuilderStore => {
     ...Operations.setUnitActions(state),
 
     ...Operations.getAugmentsActions(state)
-  } as IBuilderStore
+  } satisfies IBuilderStore
 }
 
 const builderStore = createBuilderStore()

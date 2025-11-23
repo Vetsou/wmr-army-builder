@@ -6,7 +6,7 @@ import * as ArmyMutator from '../mutator/army'
 
 export const setUnitActions = (
   state: Writable<IBuilderState>
-): Partial<IBuilderStore> => ({
+): IUnitActions => ({
   equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void =>
     UnitMutator.equipItem(state, unitKey, itemKey, itemData),
 
@@ -28,7 +28,7 @@ export const setUnitActions = (
 
 export const setArmyActions = (
   state: Writable<IBuilderState>
-): Partial<IBuilderStore> => ({
+): IArmyActions => ({
   initNewArmy: (
     armySchema: IArmySchema,
     magicItems: Record<string, ISchemaMagicItem>,

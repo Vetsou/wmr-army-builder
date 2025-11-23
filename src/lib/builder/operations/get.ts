@@ -4,7 +4,7 @@ import { isRegiment } from '$builder/types/guards'
 
 export const getAugmentsActions = (
   state: Writable<IBuilderState>
-): Partial<IBuilderStore> => ({
+): IAugmentsActions => ({
   getUnitEquipableItems: (
     unitData: ISchemaUnit
   ): [string, ISchemaMagicItem][] => {
@@ -18,6 +18,8 @@ export const getAugmentsActions = (
   getUnitEquipableUpgrades: (
     unitData: ISchemaUnit
   ): [string, ISchemaUpgrade][] => {
+    if (isRegiment(unitData)) return []
+
     const data = get(state)
     return Object.entries(data.lookup.upgrades ?? {})
       .filter(([upgradeName]) => unitData.upgrades?.includes(upgradeName))
@@ -26,6 +28,8 @@ export const getAugmentsActions = (
   getAttachableStands: (
     unitData: ISchemaUnit
   ): [string, ISchemaUnit][] => {
+    if (isRegiment(unitData)) return []
+
     const data = get(state)
     return Object.entries(data.lookup.stands ?? {})
       .filter(([standName]) => unitData.extraStands?.includes(standName))
