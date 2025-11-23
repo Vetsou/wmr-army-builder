@@ -55,9 +55,13 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
+    const unitName = selectedUnit?.name
+    const upgradeName = selectedUpgrade?.name
+    const suffix = unitName ? ` (${unitName}${upgradeName ? `/${upgradeName}` : ''})` : ''
+
     builderStore.addRegiment(
-      processedRegiment.name, processedRegiment.data,
-      { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name }
+      `${processedRegiment.name}${suffix}`, processedRegiment.data,
+      { unitName: unitName, upgradeName: upgradeName }
     )
     onBeforeClose()
   }
