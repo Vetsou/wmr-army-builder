@@ -36,13 +36,13 @@ const filterUnitsByTags = (
   units: [string, ISchemaUnit][],
   rule: RegimentCountAsRule
 ): [string, ISchemaUnit][] => {
-  const highestCost = rule.costType === 'highest' ? Math.max(...units.map(([_, u]) => u.points)) : null
+  const highestCostUnit = rule.costType === 'highest' ? Math.max(...units.map(([_, u]) => u.points)) : null
 
   return units.filter(([_, u]) => {
     if (rule.tags?.mustFly && !u.flying) return false
     if (rule.tags?.mustBeRanged && u.range === undefined) return false
     if (rule.tags?.requiredSize && u.size !== rule.tags.requiredSize) return false
-    if (rule.costType === 'highest' && u.points !== highestCost) return false
+    if (rule.costType === 'highest' && u.points !== highestCostUnit) return false
     return true
   })
 }
