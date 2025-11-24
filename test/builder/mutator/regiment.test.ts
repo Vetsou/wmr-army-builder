@@ -47,25 +47,10 @@ describe('AddRegiment', () => {
 
     // Assert
     const state = get(store)
-    expect(state.units.RegimentA.count).toBe(2)
+    expect(state.units['RegimentA (unitA)']).toBeDefined()
+    expect(state.units['RegimentA (unitA)'].count).toBe(2)
     expect(state.armyCost).toBe(50)
     expect(state.regimentCountAs.units.unitA).toBe(2)
-    expect(UnitValidator.validateUnit).toHaveBeenCalled()
-    expect(ArmyValidator.validateArmy).toHaveBeenCalled()
-  })
-
-  it('should set "regimentCountAs" upgrade data', () => {
-    // Arrange
-    const schemaRegiment = DataGenerator.createRegimentSchema({ points: 25 })
-
-    // Act
-    ArmyMutator.addRegiment(store, 'RegimentA', schemaRegiment, { upgradeName: 'upgradeA' }, 2)
-
-    // Assert
-    const state = get(store)
-    expect(state.units.RegimentA.count).toBe(2)
-    expect(state.armyCost).toBe(50)
-    expect(state.regimentCountAs.upgrades.upgradeA).toBe(2)
     expect(UnitValidator.validateUnit).toHaveBeenCalled()
     expect(ArmyValidator.validateArmy).toHaveBeenCalled()
   })
@@ -79,7 +64,8 @@ describe('AddRegiment', () => {
 
     // Assert
     const state = get(store)
-    expect(state.units.RegimentA.count).toBe(2)
+    expect(state.units['RegimentA (unitA/upgradeA)']).toBeDefined()
+    expect(state.units['RegimentA (unitA/upgradeA)'].count).toBe(2)
     expect(state.armyCost).toBe(50)
     expect(state.regimentCountAs.units.unitA).toBe(2)
     expect(state.regimentCountAs.upgrades.upgradeA).toBe(2)

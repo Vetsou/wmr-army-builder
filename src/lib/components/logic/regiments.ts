@@ -59,8 +59,9 @@ const filterUpgradesByTags = (
 
 export const getRegimentCountAsRuleUnits = (
   state: IBuilderState,
-  regiment?: ISchemaRegiment
+  regimentName: string
 ): CountAsRuleResult => {
+  const regiment = state.lookup.regiments[regimentName]
   if (!regiment?.countAsRules) return { units: [], upgrades: [] }
 
   const countAsRule = regiment.countAsRules[state.armyName] ?? regiment.countAsRules.any

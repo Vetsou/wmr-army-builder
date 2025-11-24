@@ -37,9 +37,9 @@ declare global {
       regiments: Record<string, ISchemaRegiment>
     ): void
 
-    addUnit(unitKey: string, unitData: ISchemaUnit): void
-    removeUnit(unitKey: string, unitData: IArmyUnit): void
-    addRegiment(unitKey: string, unitData: ISchemaRegiment, countAsData: IAddRegimentData): void
+    addUnit(unitKey: string): void
+    removeUnit(unitKey: string): void
+    addRegiment(unitKey: string, countAsData: IAddRegimentData): void
   }
 
   interface IUnitActions {

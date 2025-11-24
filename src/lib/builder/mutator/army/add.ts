@@ -2,6 +2,7 @@ import type { Writable } from 'svelte/store'
 import { mutateArmy } from './internal'
 
 import * as UnitValidator from '$validator/unit'
+import * as ArmyValidator from '$validator/army'
 
 
 export const addUnit = (
@@ -26,9 +27,14 @@ export const addRegiment = (
   countAsData: { unitName?: string, upgradeName?: string },
   count: number
 ): void => {
+  const { unitName, upgradeName } = countAsData
+  const suffix = unitName ? ` (${unitName}${upgradeName ? `/${upgradeName}` : ''})` : ''
+
   mutateArmy(
-    builderState, unitKey, unitData,
+    builderState, `${unitKey}${suffix}`, unitData,
     (s, armyRegiment: IArmyRegiment) => {
+      const prevArmyCost = s.armyCost
+
       armyRegiment.count += count
       s.armyCost += unitData.points * count
 
@@ -39,7 +45,7 @@ export const addRegiment = (
 
       if (countAsData.upgradeName) {
         s.regimentCountAs.upgrades[countAsData.upgradeName] += count
-        UnitValidator.validateUnit(s, countAsData.upgradeName)
+        ArmyValidator.validateArmy(s, prevArmyCost)
       }
 
       armyRegiment.countAsUnit = countAsData.unitName

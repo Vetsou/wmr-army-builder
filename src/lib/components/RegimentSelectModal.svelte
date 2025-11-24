@@ -5,18 +5,18 @@
 
 
   type Props = {
-    processedRegiment: { name?: string, data?: ISchemaRegiment }
+    selectedRegimentName: string
     showModal: boolean
   }
 
   let {
     showModal = $bindable<boolean>(),
-    processedRegiment
+    selectedRegimentName
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
   let allowedCountAsData: CountAsRuleResult =
-    $state(getRegimentCountAsRuleUnits($builderStore, processedRegiment.data))
+    $state(getRegimentCountAsRuleUnits($builderStore, selectedRegimentName))
 
   // Unit/Upgrade selected by user
   let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
@@ -24,7 +24,7 @@
 
   $effect(() => {
     if (showModal) {
-      allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, processedRegiment.data)
+      allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, selectedRegimentName)
       dialog?.showModal()
     }
   })
@@ -53,15 +53,8 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
-    const unitName = selectedUnit?.name
-    const upgradeName = selectedUpgrade?.name
-    const suffix = unitName ? ` (${unitName}${upgradeName ? `/${upgradeName}` : ''})` : ''
-
     // We are sure regiment exists because you cannot submit the modal without selecting one
-    builderStore.addRegiment(
-      `${processedRegiment.name}${suffix}`, processedRegiment.data!,
-      { unitName: unitName, upgradeName: upgradeName }
-    )
+    builderStore.addRegiment(selectedRegimentName, { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
     onBeforeClose()
   }
 </script>
@@ -74,7 +67,7 @@
 >
   <div class="bg-white rounded-2xl p-6 w-full min-w-md">
     <div class="text-lg font-semibold mb-4">
-      Unit name: { processedRegiment.name }
+      Unit name: { selectedRegimentName }
     </div>
     
     <div>

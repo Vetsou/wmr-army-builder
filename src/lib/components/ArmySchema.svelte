@@ -5,14 +5,13 @@
 
 
   let showModal = $state(false)
-  let selectedRegiment: { name?: string, data?: ISchemaRegiment } = $state({})
+  let selectedRegimentName: string = $state('')
 
   // Display modal and set it's state
   const toggleCountAsModal = (
-    regimentName: string, 
-    regimentData: ISchemaRegiment
+    regimentName: string
   ): void => {
-    selectedRegiment = { name: regimentName, data: regimentData }
+    selectedRegimentName = regimentName
     showModal = true
   }
 </script>
@@ -27,7 +26,7 @@
     </div>
     {#each Object.entries($builderStore.lookup.units) as [unitName, unitData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ (): void => builderStore.addUnit(unitName, unitData) } 
+      <div onclick={ (): void => builderStore.addUnit(unitName) } 
         class="flex hover:bg-gray-200 cursor-pointer"
       >
         <div class="w-1/4">{ unitName }</div>
@@ -47,7 +46,7 @@
     </div>
     {#each Object.entries($builderStore.lookup.regiments) as [regimentName, regimentData], i (i)}
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ (): void => toggleCountAsModal(regimentName, regimentData) } 
+      <div onclick={ (): void => toggleCountAsModal(regimentName) } 
         class="flex hover:bg-gray-200 cursor-pointer"
       >
         <div class="w-1/4">{ regimentName }</div>
@@ -59,4 +58,4 @@
   </div>
 </div>
 
-<RegimentSelectModal bind:showModal processedRegiment={ selectedRegiment } />
+<RegimentSelectModal bind:showModal { selectedRegimentName } />
