@@ -37,7 +37,7 @@ export const removeUnit = (
 export const removeRegiment = (
   builderState: Writable<IBuilderState>,
   unitKey: string,
-  unitData: IArmyRegiment,
+  unitData: ISchemaRegiment,
   countAsData: { unitName?: string, upgradeName?: string },
   count: number
 ): void => {
