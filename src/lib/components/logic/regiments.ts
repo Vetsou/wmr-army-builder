@@ -22,7 +22,7 @@ const filterByType = (
 
     return {
       units: result.units.filter(([_, u]) => unitType.includes(u.type)),
-      upgrades: Object.entries(state.lookup.armyUpgrades ?? {}).filter(([_, upg]) => upgradeType.includes(upg.type))
+      upgrades: Object.entries(state.lookup.upgrades ?? {}).filter(([_, upg]) => upgradeType.includes(upg.type))
     }
   }
 
@@ -36,13 +36,13 @@ const filterUnitsByTags = (
   units: [string, ISchemaUnit][],
   rule: RegimentCountAsRule
 ): [string, ISchemaUnit][] => {
-  const highestCost = rule.costType === 'highest' ? Math.max(...units.map(([_, u]) => u.points)) : null
+  const highestCostUnit = rule.costType === 'highest' ? Math.max(...units.map(([_, u]) => u.points)) : null
 
   return units.filter(([_, u]) => {
     if (rule.tags?.mustFly && !u.flying) return false
     if (rule.tags?.mustBeRanged && u.range === undefined) return false
     if (rule.tags?.requiredSize && u.size !== rule.tags.requiredSize) return false
-    if (rule.costType === 'highest' && u.points !== highestCost) return false
+    if (rule.costType === 'highest' && u.points !== highestCostUnit) return false
     return true
   })
 }
@@ -59,15 +59,15 @@ const filterUpgradesByTags = (
 
 export const getRegimentCountAsRuleUnits = (
   state: IBuilderState,
-  schemaUnits: Record<string, ISchemaUnit>,
-  regiment: ISchemaRegiment
+  regimentName: string
 ): CountAsRuleResult => {
-  if (!regiment.countAsRules) return { units: [], upgrades: [] }
+  const regiment = state.lookup.regiments[regimentName]
+  if (!regiment?.countAsRules) return { units: [], upgrades: [] }
 
   const countAsRule = regiment.countAsRules[state.armyName] ?? regiment.countAsRules.any
 
   let result: CountAsRuleResult = {
-    units: Object.entries(schemaUnits).filter(([_, u]) => u.max || u.armyMax),
+    units: Object.entries(state.lookup.units).filter(([_, u]) => u.max || u.armyMax),
     upgrades: []
   }
 
@@ -82,4 +82,16 @@ export const getRegimentCountAsRuleUnits = (
     units: filterUnitsByTags(result.units, countAsRule),
     upgrades: filterUpgradesByTags(result.upgrades, countAsRule)
   }
+}
+
+export const getRegimentCountAsRuleUnitsForRemove = (
+  state: IBuilderState,
+  regimentName: string
+): CountAsRuleResult => {
+  const result =  getRegimentCountAsRuleUnits(state, regimentName)
+
+  result.units = result.units.filter(([n]) => state.regimentCountAs.units[n] > 0)
+  result.upgrades = result.upgrades.filter(([n]) => state.regimentCountAs.upgrades[n] > 0)
+
+  return result
 }

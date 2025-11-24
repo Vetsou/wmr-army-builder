@@ -6,8 +6,11 @@ export const equipUpgrade = (
   state: Writable<IBuilderState>,
   unitKey: string,
   upgradeKey: string,
-  upgradeData: ISchemaUpgrade
+  upgradeData?: ISchemaUpgrade
 ): void => {
+  // Impossible since it's called by button attached to upgrade component
+  if (!upgradeData) return
+
   mutateUnit(state, unitKey, (s, unit) => {
     let unitUpgrade = unit.equippedUpgrades[upgradeKey]
 

@@ -15,9 +15,11 @@ export const createBuilderState = (
     },
     armyErrors: [],
     lookup: {
-      magicItems: {},
-      armyUpgrades: {},
-      armyStands: {}
+      items: {},
+      upgrades: {},
+      stands: {},
+      regiments: {},
+      units: {}
     }
   })
 }
@@ -62,6 +64,18 @@ export const createArmyUnit = (
     equippedItems: unit.equippedItems ?? {},
     addedStands: unit.addedStands ?? {},
     equippedUpgrades: unit.equippedUpgrades ?? {}
+  }
+}
+
+export const createRegimentSchema = (
+  regiment: Partial<ISchemaRegiment>
+): ISchemaRegiment => {
+  const schemaUnit = createSchemaUnit({ ...regiment })
+  return {
+    ...schemaUnit,
+    countAsRules: regiment.countAsRules,
+    incompatibleFactions: regiment.incompatibleFactions,
+    incompatibleWith: regiment.incompatibleWith,
   }
 }
 

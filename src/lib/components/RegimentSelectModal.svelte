@@ -1,24 +1,24 @@
 <script lang="ts">
   import builderStore from '$builder/store'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits } from './logic/regiments'
+  import { getRegimentCountAsRuleUnits, getRegimentCountAsRuleUnitsForRemove } from './logic/regiments'
 
 
   type Props = {
-    readonly schemaUnits: Record<string, ISchemaUnit>
-    processedRegiment: { name: string, data: ISchemaRegiment }
+    selectedRegimentName: string
     showModal: boolean
+    mode: 'add' | 'remove'
   }
 
   let {
     showModal = $bindable<boolean>(),
-    processedRegiment,
-    schemaUnits
+    selectedRegimentName,
+    mode
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
-  let countAsDataResult: CountAsRuleResult =
-    $state(getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data))
+  let allowedCountAsData: CountAsRuleResult =
+    $state(getRegimentCountAsRuleUnits($builderStore, selectedRegimentName))
 
   // Unit/Upgrade selected by user
   let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
@@ -26,7 +26,12 @@
 
   $effect(() => {
     if (showModal) {
-      countAsDataResult = getRegimentCountAsRuleUnits($builderStore, schemaUnits, processedRegiment.data)
+      if (mode === 'add') {
+        allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, selectedRegimentName)
+      } else {
+        allowedCountAsData = getRegimentCountAsRuleUnitsForRemove($builderStore, selectedRegimentName)
+      }
+
       dialog?.showModal()
     }
   })
@@ -35,8 +40,8 @@
   const onUpgradeSelect = (name: string, data: ISchemaUpgrade): void => { selectedUpgrade = { name, data } }
 
   const isConfirmDisabled = (): boolean => {
-    const unitRequired = countAsDataResult.units?.length !== 0
-    const upgradeRequired = countAsDataResult.upgrades?.length !== 0
+    const unitRequired = allowedCountAsData.units?.length !== 0
+    const upgradeRequired = allowedCountAsData.upgrades?.length !== 0
 
     const unitSelected = !unitRequired || selectedUnit !== null
     const upgradeSelected = !upgradeRequired || selectedUpgrade !== null
@@ -55,10 +60,15 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
-    builderStore.addRegiment(
-      processedRegiment.name, processedRegiment.data,
-      { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name }
-    )
+    if (mode === 'add') {
+      builderStore.addRegiment(
+        selectedRegimentName,
+        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    } else {
+      builderStore.removeRegiment(
+        selectedRegimentName,
+        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    }
     onBeforeClose()
   }
 </script>
@@ -71,18 +81,22 @@
 >
   <div class="bg-white rounded-2xl p-6 w-full min-w-md">
     <div class="text-lg font-semibold mb-4">
-      Unit name: { processedRegiment.name }
+      Unit name: { selectedRegimentName }
     </div>
     
     <div>
-      Select units that you want to count as max/min limits for this regiment.
+      {#if mode === 'add'}
+        Select unit that you want to count as max/min limits for this regiment.
+      {:else}
+        Select unit that you want to remove count as limits from, for this regiment.
+      {/if}
     </div>
 
     <div class="space-y-2 mt-4">
-      {#if countAsDataResult.units.length !== 0}
+      {#if allowedCountAsData.units.length !== 0}
         <div class="font-medium">Units to select:</div>
 
-        {#each countAsDataResult.units as [name, data], i (i)}
+        {#each allowedCountAsData.units as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={ (): void => onUnitSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer
@@ -93,10 +107,10 @@
         {/each}
       {/if}
 
-      {#if countAsDataResult.upgrades.length !== 0}
+      {#if allowedCountAsData.upgrades.length !== 0}
         <div class="font-medium mt-4">Upgrades to select:</div>
 
-        {#each countAsDataResult.upgrades as [name, data], i (i)}
+        {#each allowedCountAsData.upgrades as [name, data], i (i)}
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
           <div onclick={ (): void => onUpgradeSelect(name, data) }
             class="p-2 border rounded-md cursor-pointer

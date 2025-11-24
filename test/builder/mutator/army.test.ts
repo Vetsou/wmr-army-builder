@@ -97,7 +97,7 @@ describe('ResetState', () => {
     ArmyMutator.addUnit(store, 'UnitC', schemaUnit, 7)
 
     // Act
-    ArmyMutator.resetState(store, DataGenerator.createArmySchema({}), {})
+    ArmyMutator.resetState(store, DataGenerator.createArmySchema({}), {}, {})
 
     // Assert
     const state = get(store)
@@ -116,7 +116,7 @@ describe('ResetState', () => {
     })
 
     // Act
-    ArmyMutator.resetState(store, schema, {})
+    ArmyMutator.resetState(store, schema, {}, {})
 
     // Assert
     const state = get(store)

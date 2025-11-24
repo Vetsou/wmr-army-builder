@@ -2,9 +2,11 @@ import type { Readable } from 'svelte/store'
 
 
 interface ILookupData {
-  readonly magicItems: Record<string, ISchemaMagicItem>
-  readonly armyUpgrades?: Record<string, ISchemaUpgrade>
-  readonly armyStands?: Record<string, ISchemaUnit>
+  readonly items: Record<string, ISchemaMagicItem>
+  readonly regiments: Record<string, ISchemaRegiment>
+  readonly units: Record<string, ISchemaUnit>
+  readonly upgrades?: Record<string, ISchemaUpgrade>
+  readonly stands?: Record<string, ISchemaUnit>
 }
 
 interface IRegimentCountAsData {
@@ -13,7 +15,7 @@ interface IRegimentCountAsData {
 }
 
 declare global {
-  interface IAddRegimentData {
+  interface ICountAsRegimentData {
     unitName?: string
     upgradeName?: string 
   }
@@ -28,28 +30,44 @@ declare global {
     lookup: ILookupData
   }
 
-  interface IBuilderStore extends Readable<IBuilderState> {
-    // Svelte store
-    getState(): IBuilderState
+  interface IArmyActions {
+    initNewArmy(
+      armySchema: IArmySchema,
+      items: Record<string, ISchemaMagicItem>,
+      regiments: Record<string, ISchemaRegiment>
+    ): void
 
-    // Set army actions
-    initNewArmy(armySchema: IArmySchema, magicItems: Record<string, ISchemaMagicItem>): void
-    addUnit(unitKey: string, unitData: ISchemaUnit): void
-    removeUnit(unitKey: string, unitData: IArmyUnit): void
-    addRegiment(unitKey: string, unitData: ISchemaRegiment, countAsData: IAddRegimentData): void
+    addUnit(unitKey: string): void
+    removeUnit(unitKey: string): void
 
-    // Set unit actions
-    equipItem(unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void
+    addRegiment(unitKey: string, countAsData: ICountAsRegimentData): void
+    removeRegiment(unitKey: string, countAsData: ICountAsRegimentData): void
+  }
+
+  interface IUnitActions {
+    equipItem(unitKey: string, itemKey: string): void
     unequipItem(unitKey: string, itemKey: string): void
-    equipUpgrade(unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade): void
-    unequipUpgrade(unitKey: string, upgradeKey: string): void
-    addStand(unitKey: string, standKey: string, standData: ISchemaUnit): void
-    removeStand(unitKey: string, standKey: string): void
 
-    // Get unit augments
+    equipUpgrade(unitKey: string, upgradeKey: string): void
+    unequipUpgrade(unitKey: string, upgradeKey: string): void
+
+    addStand(unitKey: string, standKey: string): void
+    removeStand(unitKey: string, standKey: string): void
+  }
+
+  interface IAugmentsActions {
     getUnitEquipableItems(unitData: ISchemaUnit): [string, ISchemaMagicItem][]
     getUnitEquipableUpgrades(unitData: ISchemaUnit): [string, ISchemaUpgrade][]
     getAttachableStands(unitData: ISchemaUnit): [string, ISchemaUnit][]
+  }
+
+  interface IBuilderStore 
+    extends Readable<IBuilderState>,
+    IArmyActions,
+    IUnitActions,
+    IAugmentsActions
+  {
+    getState(): IBuilderState
   }
 }
 
