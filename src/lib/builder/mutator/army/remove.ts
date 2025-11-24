@@ -2,6 +2,7 @@ import type { Writable } from 'svelte/store'
 import { mutateArmy } from './internal'
 
 import * as UnitValidator from '$validator/unit'
+import * as ArmyValidator from '$validator/army'
 
 
 const getUnitAugmentsCost = (
@@ -44,6 +45,7 @@ export const removeRegiment = (
   mutateArmy(
     builderState, unitKey, unitData,
     (s, armyUnit: IArmyUnit) => {
+      const prevArmyCost = s.armyCost
       armyUnit.count -= count
       s.armyCost -= unitData.points * count
 
@@ -54,7 +56,7 @@ export const removeRegiment = (
 
       if (countAsData.upgradeName) {
         s.regimentCountAs.upgrades[countAsData.upgradeName] -= count
-        UnitValidator.validateUnit(s, countAsData.upgradeName)
+        ArmyValidator.validateArmy(s, prevArmyCost)
       }
 
       // Regiments don't have items/upgrades/stands
