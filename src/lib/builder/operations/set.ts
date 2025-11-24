@@ -43,6 +43,11 @@ export const setArmyActions = (
 
   addRegiment: (
     unitKey: string,
-    countAsData: IAddRegimentData
+    countAsData: ICountAsRegimentData
   ): void => ArmyMutator.addRegiment(state, unitKey, get(state).lookup.regiments[unitKey], countAsData, 1),
+
+  removeRegiment: (
+    unitKey: string,
+    countAsData: ICountAsRegimentData
+  ): void => ArmyMutator.removeRegiment(state, unitKey, get(state).units[unitKey], countAsData, 1)
 })

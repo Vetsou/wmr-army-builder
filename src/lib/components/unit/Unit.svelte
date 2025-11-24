@@ -1,9 +1,11 @@
 <script lang="ts">
   import builderStore from '$builder/store'
   import { getUnitBoundsString } from '../logic'
+  import { isRegiment } from '$builder/types/guards'
 
   import UnitAugments from './UnitAugments.svelte'
   import SchemaAugments from './SchemaAugments.svelte'
+  import RegimentSelectModal from '../RegimentSelectModal.svelte'
 
 
   type Props = {
@@ -25,11 +27,21 @@
     ev.preventDefault()
     isItemListVisible = !isItemListVisible
   }
+
+  let showModal = $state(false)
+  const removeUnit = (): void => {
+    if (isRegiment(unitData)) {
+      showModal = true
+      return
+    }
+
+    builderStore.removeUnit(unitName)
+  }
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 <div
-  onclick={ (): void => builderStore.removeUnit(unitName) }
+  onclick={ (): void => removeUnit() }
   onmouseenter={ toggleErrorList }
   onmouseleave={ toggleErrorList }
   oncontextmenu={ toggleItemList }
@@ -60,4 +72,8 @@
 
 {#if isItemListVisible}
   <SchemaAugments { unitName } { unitData } />
+{/if}
+
+{#if isRegiment(unitData)}
+  <RegimentSelectModal bind:showModal mode='remove' selectedRegimentName={ unitName } />
 {/if}

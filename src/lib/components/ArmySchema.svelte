@@ -58,4 +58,4 @@
   </div>
 </div>
 
-<RegimentSelectModal bind:showModal { selectedRegimentName } />
+<RegimentSelectModal bind:showModal mode='add' { selectedRegimentName } />

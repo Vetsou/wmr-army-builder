@@ -1,5 +1,4 @@
 import type { Writable } from 'svelte/store'
-import { isRegiment } from '$builder/types/guards'
 import { mutateArmy } from './internal'
 
 import * as UnitValidator from '$validator/unit'
@@ -27,23 +26,38 @@ export const removeUnit = (
       armyUnit.count -= count
       s.armyCost -= unitData.points * count
 
-      if (isRegiment(armyUnit)) {
-        const armyRegiment = armyUnit as IArmyRegiment
-        if (armyRegiment.countAsUnit) {
-          s.regimentCountAs.units[armyRegiment.countAsUnit] -= count
-          UnitValidator.validateUnit(s, armyRegiment.countAsUnit)
-        }
-
-        if (armyRegiment.countAsUpgrade) {
-          s.regimentCountAs.upgrades[armyRegiment.countAsUpgrade] -= count
-          UnitValidator.validateUnit(s, armyRegiment.countAsUpgrade)
-        }
-      }
-
       // Remove items and upgrades if unit is deleted
       if (armyUnit.count === 0) {
         s.armyCost -= getUnitAugmentsCost(armyUnit)
       }
+    }
+  )
+}
+
+export const removeRegiment = (
+  builderState: Writable<IBuilderState>,
+  unitKey: string,
+  unitData: IArmyRegiment,
+  countAsData: { unitName?: string, upgradeName?: string },
+  count: number
+): void => {
+  mutateArmy(
+    builderState, unitKey, unitData,
+    (s, armyUnit: IArmyUnit) => {
+      armyUnit.count -= count
+      s.armyCost -= unitData.points * count
+
+      if (countAsData.unitName) {
+        s.regimentCountAs.units[countAsData.unitName] -= count
+        UnitValidator.validateUnit(s, countAsData.unitName)
+      }
+
+      if (countAsData.upgradeName) {
+        s.regimentCountAs.upgrades[countAsData.upgradeName] -= count
+        UnitValidator.validateUnit(s, countAsData.upgradeName)
+      }
+
+      // Regiments don't have items/upgrades/stands
     }
   )
 }

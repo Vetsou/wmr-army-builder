@@ -1,17 +1,19 @@
 <script lang="ts">
   import builderStore from '$builder/store'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits } from './logic/regiments'
+  import { getRegimentCountAsRuleUnits, getRegimentCountAsRuleUnitsForRemove } from './logic/regiments'
 
 
   type Props = {
     selectedRegimentName: string
     showModal: boolean
+    mode: 'add' | 'remove'
   }
 
   let {
     showModal = $bindable<boolean>(),
-    selectedRegimentName
+    selectedRegimentName,
+    mode
   }: Props = $props()
   
   let dialog: HTMLDialogElement | undefined = $state()
@@ -24,7 +26,12 @@
 
   $effect(() => {
     if (showModal) {
-      allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, selectedRegimentName)
+      if (mode === 'add') {
+        allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, selectedRegimentName)
+      } else {
+        allowedCountAsData = getRegimentCountAsRuleUnitsForRemove($builderStore, selectedRegimentName)
+      }
+
       dialog?.showModal()
     }
   })
@@ -53,8 +60,15 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
-    // We are sure regiment exists because you cannot submit the modal without selecting one
-    builderStore.addRegiment(selectedRegimentName, { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    if (mode === 'add') {
+      builderStore.addRegiment(
+        selectedRegimentName,
+        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    } else {
+      builderStore.removeRegiment(
+        selectedRegimentName,
+        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    }
     onBeforeClose()
   }
 </script>
@@ -71,7 +85,11 @@
     </div>
     
     <div>
-      Select units that you want to count as max/min limits for this regiment.
+      {#if mode === 'add'}
+        Select unit that you want to count as max/min limits for this regiment.
+      {:else}
+        Select unit that you want to remove count as limits from, for this regiment.
+      {/if}
     </div>
 
     <div class="space-y-2 mt-4">

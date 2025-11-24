@@ -15,7 +15,7 @@ interface IRegimentCountAsData {
 }
 
 declare global {
-  interface IAddRegimentData {
+  interface ICountAsRegimentData {
     unitName?: string
     upgradeName?: string 
   }
@@ -39,7 +39,9 @@ declare global {
 
     addUnit(unitKey: string): void
     removeUnit(unitKey: string): void
-    addRegiment(unitKey: string, countAsData: IAddRegimentData): void
+
+    addRegiment(unitKey: string, countAsData: ICountAsRegimentData): void
+    removeRegiment(unitKey: string, countAsData: ICountAsRegimentData): void
   }
 
   interface IUnitActions {

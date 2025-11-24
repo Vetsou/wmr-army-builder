@@ -27,11 +27,8 @@ export const addRegiment = (
   countAsData: { unitName?: string, upgradeName?: string },
   count: number
 ): void => {
-  const { unitName, upgradeName } = countAsData
-  const suffix = unitName ? ` (${unitName}${upgradeName ? `/${upgradeName}` : ''})` : ''
-
   mutateArmy(
-    builderState, `${unitKey}${suffix}`, unitData,
+    builderState, unitKey, unitData,
     (s, armyRegiment: IArmyRegiment) => {
       const prevArmyCost = s.armyCost
 
@@ -47,9 +44,6 @@ export const addRegiment = (
         s.regimentCountAs.upgrades[countAsData.upgradeName] += count
         ArmyValidator.validateArmy(s, prevArmyCost)
       }
-
-      armyRegiment.countAsUnit = countAsData.unitName
-      armyRegiment.countAsUpgrade = countAsData.upgradeName
     }
   )
 }
