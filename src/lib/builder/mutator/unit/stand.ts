@@ -6,8 +6,11 @@ export const addStand = (
   state: Writable<IBuilderState>,
   unitKey: string,
   standKey: string,
-  standData: ISchemaUnit
+  standData?: ISchemaUnit
 ): void => {
+  // Impossible since it's called by button attached to stand component
+  if (!standData) return
+
   mutateUnit(state, unitKey, (s, unit) => {
     let unitStand = unit.addedStands[standKey]
 

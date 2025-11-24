@@ -43,13 +43,13 @@ declare global {
   }
 
   interface IUnitActions {
-    equipItem(unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void
+    equipItem(unitKey: string, itemKey: string): void
     unequipItem(unitKey: string, itemKey: string): void
-    
-    equipUpgrade(unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade): void
+
+    equipUpgrade(unitKey: string, upgradeKey: string): void
     unequipUpgrade(unitKey: string, upgradeKey: string): void
-    
-    addStand(unitKey: string, standKey: string, standData: ISchemaUnit): void
+
+    addStand(unitKey: string, standKey: string): void
     removeStand(unitKey: string, standKey: string): void
   }
 

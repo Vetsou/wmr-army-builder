@@ -7,20 +7,20 @@ import * as ArmyMutator from '../mutator/army'
 export const setUnitActions = (
   state: Writable<IBuilderState>
 ): IUnitActions => ({
-  equipItem: (unitKey: string, itemKey: string, itemData: ISchemaMagicItem): void =>
-    UnitMutator.equipItem(state, unitKey, itemKey, itemData),
+  equipItem: (unitKey: string, itemKey: string): void =>
+    UnitMutator.equipItem(state, unitKey, itemKey, get(state).lookup.items[itemKey]),
 
   unequipItem: (unitKey: string, itemKey: string): void =>
     UnitMutator.unequipItem(state, unitKey, itemKey),
 
-  equipUpgrade: (unitKey: string, upgradeKey: string, upgradeData: ISchemaUpgrade): void =>
-    UnitMutator.equipUpgrade(state, unitKey, upgradeKey, upgradeData),
+  equipUpgrade: (unitKey: string, upgradeKey: string): void =>
+    UnitMutator.equipUpgrade(state, unitKey, upgradeKey, get(state).lookup.upgrades?.[upgradeKey]),
 
   unequipUpgrade: (unitKey: string, upgradeKey: string): void =>
     UnitMutator.unequipUpgrade(state, unitKey, upgradeKey),
 
-  addStand: (unitKey: string, standKey: string, standData: ISchemaUnit): void =>
-    UnitMutator.addStand(state, unitKey, standKey, standData),
+  addStand: (unitKey: string, standKey: string): void =>
+    UnitMutator.addStand(state, unitKey, standKey, get(state).lookup.stands?.[standKey]),
 
   removeStand: (unitKey: string, standKey: string): void =>
     UnitMutator.removeStand(state, unitKey, standKey),
