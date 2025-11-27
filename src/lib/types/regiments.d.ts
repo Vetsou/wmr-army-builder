@@ -52,7 +52,10 @@ declare global {
   /**
    * Regiment of Renown as used inside the army builder context.
    */
-  interface IArmyRegiment extends IArmyUnit, ISchemaRegiment {}
+  interface IArmyRegiment extends IArmyUnit, ISchemaRegiment {
+    countAsUnits: Record <string, number>
+    countAsUpgrades: Record <string, number>
+  }
 }
 
 export {}

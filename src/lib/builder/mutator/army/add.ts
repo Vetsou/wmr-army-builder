@@ -36,11 +36,17 @@ export const addRegiment = (
       s.armyCost += unitData.points * count
 
       if (countAsData.unitName) {
+        armyRegiment.countAsUnits[countAsData.unitName] =
+          (armyRegiment.countAsUnits[countAsData.unitName] ?? 0) + count
+
         s.regimentCountAs.units[countAsData.unitName] += count
         UnitValidator.validateUnit(s, countAsData.unitName)
       }
 
       if (countAsData.upgradeName) {
+        armyRegiment.countAsUpgrades[countAsData.upgradeName] =
+          (armyRegiment.countAsUpgrades[countAsData.upgradeName] ?? 0) + count
+
         s.regimentCountAs.upgrades[countAsData.upgradeName] += count
         ArmyValidator.validateArmy(s, prevArmyCost)
       }

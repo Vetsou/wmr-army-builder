@@ -44,17 +44,21 @@ export const removeRegiment = (
 ): void => {
   mutateArmy(
     builderState, unitKey, unitData,
-    (s, armyUnit: IArmyUnit) => {
+    (s, armyRegiment: IArmyRegiment) => {
       const prevArmyCost = s.armyCost
-      armyUnit.count -= count
+      armyRegiment.count -= count
       s.armyCost -= unitData.points * count
 
       if (countAsData.unitName) {
+        armyRegiment.countAsUnits[countAsData.unitName] -= count
+
         s.regimentCountAs.units[countAsData.unitName] -= count
         UnitValidator.validateUnit(s, countAsData.unitName)
       }
 
       if (countAsData.upgradeName) {
+        armyRegiment.countAsUpgrades[countAsData.upgradeName] -= count
+
         s.regimentCountAs.upgrades[countAsData.upgradeName] -= count
         ArmyValidator.validateArmy(s, prevArmyCost)
       }

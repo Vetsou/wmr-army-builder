@@ -1,16 +1,20 @@
 import type { Writable } from 'svelte/store'
+import { isRegiment } from '$lib/builder/types/guards'
 
 import * as UnitValidator from '$validator/unit'
 import * as ArmyValidator from '$validator/army'
 
 
-type UnitMutationFn = (s: IBuilderState, unit: IArmyUnit | IArmyRegiment) => void
+type UnitMutationFn<T extends IArmyUnit | IArmyRegiment> = (
+  s: IBuilderState,
+  unit: T
+) => void
 
-export const mutateArmy = (
+export const mutateArmy = <T extends IArmyUnit | IArmyRegiment>(
   builderState: Writable<IBuilderState>,
   unitKey: string,
   unitData: ISchemaUnit,
-  mutationFunc: UnitMutationFn
+  mutationFunc: UnitMutationFn<T>
 ): void => {
   builderState.update(s => {
     let armyUnit = s.units[unitKey]
@@ -24,12 +28,19 @@ export const mutateArmy = (
         equippedUpgrades: {},
         addedStands: {}
       }
+
+      // Init regiment specific fields
+      if (isRegiment(armyUnit)) {
+        armyUnit.countAsUnits = {}
+        armyUnit.countAsUpgrades = {}
+      }
+
       s.units[unitKey] = armyUnit
     }
 
     if (!armyUnit) return s
     const prevArmyCost = s.armyCost
-    mutationFunc(s, armyUnit)
+    mutationFunc(s, armyUnit as T)
 
     if (armyUnit.count <= 0) delete s.units[unitKey]
 
