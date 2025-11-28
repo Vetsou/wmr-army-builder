@@ -31,12 +31,6 @@ declare global {
   }
 
   interface IArmyActions {
-    initNewArmy(
-      armySchema: IArmySchema,
-      items: Record<string, ISchemaMagicItem>,
-      regiments: Record<string, ISchemaRegiment>
-    ): void
-
     addUnit(unitKey: string): void
     removeUnit(unitKey: string): void
 

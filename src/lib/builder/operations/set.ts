@@ -29,12 +29,6 @@ export const setUnitActions = (
 export const setArmyActions = (
   state: Writable<IBuilderState>
 ): IArmyActions => ({
-  initNewArmy: (
-    armySchema: IArmySchema,
-    magicItems: Record<string, ISchemaMagicItem>,
-    regiments: Record<string, ISchemaRegiment>
-  ): void => ArmyMutator.resetState(state, armySchema, magicItems, regiments),
-
   addUnit: (unitKey: string): void =>
     ArmyMutator.addUnit(state, unitKey, get(state).lookup.units[unitKey], 1),
 

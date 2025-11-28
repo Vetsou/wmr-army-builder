@@ -1,5 +1,5 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
   import RegimentSelectModal from './RegimentSelectModal.svelte'
   import { getUnitBoundsString } from './logic'
 
@@ -14,6 +14,8 @@
     selectedRegimentName = regimentName
     showModal = true
   }
+
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
 <div class="w-1/3">

@@ -1,26 +1,31 @@
 <script lang="ts">
   import { fetchPublicData } from './io'
 
-  import BuilderStore from '$builder/store'
+  import BuilderContextProvider from '$components/providers/BuilderContextProvider.svelte'
+
   import ArmyBuilder from '$components/ArmyBuilder.svelte'
   import ArmySchema from '$components/ArmySchema.svelte'
   import ArmyInfo from '$components/ArmyInfo.svelte'
 
 
+  type ArmySchemaData = {
+    schema: IArmySchema
+    items: Record<string, ISchemaMagicItem>
+    regiments: Record<string, ISchemaRegiment>
+  }
+
   const { route } = $props()
   const factionFile = route.result.path.params.name
 
-  const loadArmySchema = async (): Promise<void> => {
+  const loadArmySchema = async (): Promise<ArmySchemaData> => {
     try {
-      const [armySchema, magicItems, regimentsOfRenown] = await Promise.all([
+      const [schema, items, regiments] = await Promise.all([
         fetchPublicData<IArmySchema>(`/armies/${ factionFile }.json`),
         fetchPublicData<Record<string, ISchemaMagicItem>>('/magicItems.json'),
         fetchPublicData<Record<string, ISchemaRegiment>>('/regimentsOfRenown.json')
       ])
 
-      if (BuilderStore.getState().armyName !== armySchema.name) {
-        BuilderStore.initNewArmy(armySchema, magicItems, regimentsOfRenown)
-      }
+      return { schema, items, regiments }
     } catch (err) {
       throw new Error(`Error loading ${ factionFile } army data (${ err })`)
     }
@@ -29,12 +34,14 @@
 
 {#await loadArmySchema()}
   <p>Loading army data...</p>
-{:then}
-  <section class="flex justify-evenly items-start">
-    <ArmySchema />
-    <ArmyInfo />
-    <ArmyBuilder />
-  </section>
+{:then { schema, items, regiments }}
+  <BuilderContextProvider { schema } { items } { regiments }>
+    <section class="flex justify-evenly items-start">
+      <ArmySchema />
+      <ArmyInfo />
+      <ArmyBuilder />
+    </section>
+  </BuilderContextProvider>
 {:catch error}
   <p>{ error.message }</p>
 {/await}

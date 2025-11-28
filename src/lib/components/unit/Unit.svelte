@@ -1,5 +1,5 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
   import { getUnitBoundsString } from '../logic'
   import { isRegiment } from '$builder/types/guards'
 
@@ -14,6 +14,7 @@
   }
 
   const { unitName, unitData }: Props = $props()
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 
   const unitHasErrors = (): boolean => unitData.errors.length > 0
 

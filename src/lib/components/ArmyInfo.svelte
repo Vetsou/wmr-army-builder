@@ -1,6 +1,10 @@
 <script lang="ts">
   import { route } from '@mateothegreat/svelte5-router'
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
+
+
+
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
 <div class="text-center font-semibold">

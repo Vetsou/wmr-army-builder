@@ -1,5 +1,5 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
 
 
   type Props = {
@@ -8,6 +8,7 @@
   }
 
   const { unitName, unitData }: Props = $props()
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
 {#each Object.entries(unitData.equippedItems) as [itemName, itemData], i (i)}

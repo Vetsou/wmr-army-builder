@@ -1,5 +1,5 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
   import { fade } from 'svelte/transition'
   import { getRegimentCountAsRuleUnits, getRegimentCountAsRuleUnitsForRemove } from './logic/regiments'
 
@@ -16,6 +16,7 @@
     mode
   }: Props = $props()
   
+  const builderStore = getContext<IBuilderStore>('BuilderState')
   let dialog: HTMLDialogElement | undefined = $state()
   let allowedCountAsData: CountAsRuleResult =
     $state(getRegimentCountAsRuleUnits($builderStore, selectedRegimentName))

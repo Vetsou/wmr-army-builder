@@ -1,6 +1,6 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
   import { getUnitItemCost } from '$components/logic'
+  import { getContext } from 'svelte'
 
 
   type Props = {
@@ -8,6 +8,8 @@
     unitData: IArmyUnit
   }
 
+
+  const builderStore = getContext<IBuilderStore>('BuilderState')
   const { unitName, unitData }: Props = $props()
 </script>
 

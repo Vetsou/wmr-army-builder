@@ -1,6 +1,9 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
   import Unit from '$components/unit/Unit.svelte'
+
+
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
 <div class="w-1/3 divide-y bg-gray-100 divide-gray-200 text-center select-none">

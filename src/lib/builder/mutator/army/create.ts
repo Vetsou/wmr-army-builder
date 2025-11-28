@@ -1,4 +1,4 @@
-import type { Writable } from 'svelte/store'
+import { writable, type Writable } from 'svelte/store'
 import { addUnit } from './add'
 
 
@@ -25,13 +25,12 @@ const filterArmyRegiments = (
   )
 }
 
-export const resetState = (
-  state: Writable<IBuilderState>,
+export const createState = (
   armySchema: IArmySchema,
   items: Record<string, ISchemaMagicItem>,
   regiments: Record<string, ISchemaRegiment>
-): void => {
-  state.set({
+): Writable<IBuilderState> => {
+  const state = writable({
     armyName: armySchema.name,
     armyCost: 0,
     armyCostLimit: 2000,
@@ -51,4 +50,5 @@ export const resetState = (
   })
 
   addRequiredUnits(state, armySchema)
+  return state
 }
