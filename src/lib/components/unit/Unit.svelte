@@ -5,7 +5,7 @@
 
   import UnitAugments from './UnitAugments.svelte'
   import SchemaAugments from './SchemaAugments.svelte'
-  import RegimentSelectModal from '../RegimentSelectModal.svelte'
+  import RegimentModal from '../RegimentModal.svelte'
 
 
   type Props = {
@@ -76,5 +76,5 @@
 {/if}
 
 {#if isRegiment(unitData)}
-  <RegimentSelectModal bind:showModal mode='remove' selectedRegimentName={ unitName } />
+  <RegimentModal bind:showModal mode='remove' selectedRegimentName={ unitName } />
 {/if}

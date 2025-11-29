@@ -1,13 +1,13 @@
 <script lang="ts">
   import { getContext } from 'svelte'
-  import RegimentSelectModal from './RegimentSelectModal.svelte'
+  import RegimentModal from './RegimentModal.svelte'
   import { getUnitBoundsString } from './logic'
 
 
+  // Display modal and set it's state
   let showModal = $state(false)
   let selectedRegimentName: string = $state('')
 
-  // Display modal and set it's state
   const toggleCountAsModal = (
     regimentName: string
   ): void => {
@@ -60,4 +60,4 @@
   </div>
 </div>
 
-<RegimentSelectModal bind:showModal mode='add' { selectedRegimentName } />
+<RegimentModal bind:showModal mode='add' { selectedRegimentName } />

@@ -3,8 +3,8 @@
 
   import BuilderContextProvider from '$components/providers/BuilderContextProvider.svelte'
 
-  import ArmyBuilder from '$components/ArmyBuilder.svelte'
-  import ArmySchema from '$components/ArmySchema.svelte'
+  import ArmyList from '$lib/components/ArmyList.svelte'
+  import SchemaList from '$lib/components/SchemaList.svelte'
   import ArmyInfo from '$components/ArmyInfo.svelte'
 
 
@@ -37,9 +37,9 @@
 {:then { schema, items, regiments }}
   <BuilderContextProvider { schema } { items } { regiments }>
     <section class="flex justify-evenly items-start">
-      <ArmySchema />
+      <SchemaList />
       <ArmyInfo />
-      <ArmyBuilder />
+      <ArmyList />
     </section>
   </BuilderContextProvider>
 {:catch error}

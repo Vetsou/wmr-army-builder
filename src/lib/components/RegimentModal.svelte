@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { getCountAsRuleForAdd, getCountAsRuleForRemove } from './logic/regiments'
   import { getContext } from 'svelte'
   import { fade } from 'svelte/transition'
-  import { getRegimentCountAsRuleUnits, getRegimentCountAsRuleUnitsForRemove } from './logic/regiments'
 
+
+  type SelectedValue<T> = { name: string; data: T } | null
 
   type Props = {
     selectedRegimentName: string
@@ -17,37 +19,31 @@
   }: Props = $props()
   
   const builderStore = getContext<IBuilderStore>('BuilderState')
-  let dialog: HTMLDialogElement | undefined = $state()
-  let allowedCountAsData: CountAsRuleResult =
-    $state(getRegimentCountAsRuleUnits($builderStore, selectedRegimentName))
 
-  // Unit/Upgrade selected by user
-  let selectedUnit: { name: string; data: ISchemaUnit } | null = $state(null)
-  let selectedUpgrade: { name: string; data: ISchemaUpgrade } | null = $state(null)
+  let dialog: HTMLDialogElement | undefined = $state()
+  let allowedCountAsData: CountAsRuleResult = $state(getCountAsRuleForAdd($builderStore, selectedRegimentName))
 
   $effect(() => {
-    if (showModal) {
-      if (mode === 'add') {
-        allowedCountAsData = getRegimentCountAsRuleUnits($builderStore, selectedRegimentName)
-      } else {
-        allowedCountAsData = getRegimentCountAsRuleUnitsForRemove($builderStore, selectedRegimentName)
-      }
+    if (!showModal) return
 
-      dialog?.showModal()
-    }
+    allowedCountAsData = mode === 'add'
+      ? getCountAsRuleForAdd($builderStore, selectedRegimentName)
+      : getCountAsRuleForRemove($builderStore, selectedRegimentName)
+
+    dialog?.showModal()
   })
 
+  // Unit/Upgrade selected by user
+  let selectedUnit: SelectedValue<ISchemaUnit> = $state(null)
+  let selectedUpgrade: SelectedValue<ISchemaUpgrade> = $state(null)
   const onUnitSelect = (name: string, data: ISchemaUnit): void => { selectedUnit = { name, data } }
   const onUpgradeSelect = (name: string, data: ISchemaUpgrade): void => { selectedUpgrade = { name, data } }
 
   const isConfirmDisabled = (): boolean => {
-    const unitRequired = allowedCountAsData.units?.length !== 0
-    const upgradeRequired = allowedCountAsData.upgrades?.length !== 0
+    const needsUnit = allowedCountAsData.units.length > 0
+    const needsUpg = allowedCountAsData.upgrades.length > 0
 
-    const unitSelected = !unitRequired || selectedUnit !== null
-    const upgradeSelected = !upgradeRequired || selectedUpgrade !== null
-
-    return !(unitSelected && upgradeSelected)
+    return (needsUnit && !selectedUnit) || (needsUpg && !selectedUpgrade)
   }
 
   const onBeforeClose = (): void => {
@@ -61,15 +57,15 @@
   const onCancel = (): void => onBeforeClose()
 
   const onConfirm = (): void => {
-    if (mode === 'add') {
-      builderStore.addRegiment(
-        selectedRegimentName,
-        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
-    } else {
-      builderStore.removeRegiment(
-        selectedRegimentName,
-        { unitName: selectedUnit?.name, upgradeName: selectedUpgrade?.name })
+    const caData = {
+      unitName: selectedUnit?.name,
+      upgradeName: selectedUpgrade?.name
     }
+
+    mode === 'add'
+      ? builderStore.addRegiment(selectedRegimentName, caData)
+      : builderStore.removeRegiment(selectedRegimentName, caData)
+
     onBeforeClose()
   }
 </script>

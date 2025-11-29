@@ -3,7 +3,6 @@
   import { getContext } from 'svelte'
 
 
-
   const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 

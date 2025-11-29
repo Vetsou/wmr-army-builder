@@ -8,7 +8,6 @@
     unitData: IArmyUnit
   }
 
-
   const builderStore = getContext<IBuilderStore>('BuilderState')
   const { unitName, unitData }: Props = $props()
 </script>

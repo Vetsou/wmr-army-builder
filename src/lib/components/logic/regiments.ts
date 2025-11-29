@@ -57,7 +57,7 @@ const filterUpgradesByTags = (
   })
 }
 
-export const getRegimentCountAsRuleUnits = (
+export const getCountAsRuleForAdd = (
   state: IBuilderState,
   regimentName: string
 ): CountAsRuleResult => {
@@ -84,11 +84,11 @@ export const getRegimentCountAsRuleUnits = (
   }
 }
 
-export const getRegimentCountAsRuleUnitsForRemove = (
+export const getCountAsRuleForRemove = (
   state: IBuilderState,
   regimentName: string
 ): CountAsRuleResult => {
-  const result =  getRegimentCountAsRuleUnits(state, regimentName)
+  const result =  getCountAsRuleForAdd(state, regimentName)
 
   result.units = result.units.filter(([n]) => state.regimentCountAs.units[n] > 0)
   result.upgrades = result.upgrades.filter(([n]) => state.regimentCountAs.upgrades[n] > 0)
