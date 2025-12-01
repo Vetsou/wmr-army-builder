@@ -18,44 +18,42 @@
   const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
+{#snippet tableHeader()}
+  <div class="flex font-semibold">
+    <div class="w-1/4">Name</div>
+    <div class="w-1/4">Type</div>
+    <div class="w-1/4">Points</div>
+    <div class="w-1/4">Min/Max</div>
+  </div>
+{/snippet}
+
+{#snippet schemaRow(name: string, data: ISchemaUnit | ISchemaRegiment, onclick: () => void)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+  <div
+    onclick={onclick}
+    class="flex hover:bg-gray-200 cursor-pointer"
+  >
+    <div class="w-1/4">{name}</div>
+    <div class="w-1/4">{data.type}</div>
+    <div class="w-1/4">{data.points}</div>
+    <div class="w-1/4">{getUnitBoundsString(data)}</div>
+  </div>
+{/snippet}
+
 <div class="w-1/3">
   <div class="divide-y bg-gray-100 divide-gray-200 text-center select-none">
-    <div class="flex font-semibold">
-      <div class="w-1/4">Name</div>
-      <div class="w-1/4">Type</div>
-      <div class="w-1/4">Points</div>
-      <div class="w-1/4">Min/Max</div>
-    </div>
-    {#each Object.entries($builderStore.lookup.units) as [unitName, unitData], i (i)}
-      <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ (): void => builderStore.addUnit(unitName) } 
-        class="flex hover:bg-gray-200 cursor-pointer"
-      >
-        <div class="w-1/4">{ unitName }</div>
-        <div class="w-1/4">{ unitData.type }</div>
-        <div class="w-1/4">{ unitData.points }</div>
-        <div class="w-1/4">{ getUnitBoundsString(unitData) }</div>
-      </div>
+    {@render tableHeader()}
+
+    {#each Object.entries($builderStore.lookup.units) as [unitName, unitData] (unitName)}
+      {@render schemaRow(unitName, unitData, () => builderStore.addUnit(unitName))}
     {/each}
   </div>
 
   <div class="divide-y bg-gray-100 divide-gray-200 text-center select-none mt-14">
-    <div class="flex font-semibold">
-      <div class="w-1/4">Name</div>
-      <div class="w-1/4">Type</div>
-      <div class="w-1/4">Points</div>
-      <div class="w-1/4">Min/Max</div>
-    </div>
-    {#each Object.entries($builderStore.lookup.regiments) as [regimentName, regimentData], i (i)}
-      <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-      <div onclick={ (): void => toggleCountAsModal(regimentName) } 
-        class="flex hover:bg-gray-200 cursor-pointer"
-      >
-        <div class="w-1/4">{ regimentName }</div>
-        <div class="w-1/4">{ regimentData.type }</div>
-        <div class="w-1/4">{ regimentData.points }</div>
-        <div class="w-1/4">{ getUnitBoundsString(regimentData) }</div>
-      </div>
+    {@render tableHeader()}
+
+    {#each Object.entries($builderStore.lookup.regiments) as [regimentName, regimentData] (regimentName)}
+      {@render schemaRow(regimentName, regimentData, () => toggleCountAsModal(regimentName))}
     {/each}
   </div>
 </div>

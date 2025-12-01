@@ -14,7 +14,7 @@
     <div class="w-1/5">Points</div>
     <div class="w-1/5">Min/Max</div>
   </div>
-  {#each Object.entries($builderStore.units) as [unitName, unitData], i (i)}
+  {#each Object.entries($builderStore.units) as [unitName, unitData] (unitName)}
     <Unit { unitName } { unitData } />
   {/each}
 </div>

@@ -70,6 +70,17 @@
   }
 </script>
 
+{#snippet selectableEntry(name: string, onclick: () => void, isSelected: boolean)}
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+  <div
+    onclick={onclick}
+    class="p-2 border rounded-md cursor-pointer
+      {isSelected ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
+  >
+    {name}
+  </div>
+{/snippet}
+
 <dialog
   bind:this={ dialog }
   transition:fade={ { duration: 150 } }
@@ -92,41 +103,29 @@
     <div class="space-y-2 mt-4">
       {#if allowedCountAsData.units.length !== 0}
         <div class="font-medium">Units to select:</div>
-
-        {#each allowedCountAsData.units as [name, data], i (i)}
-          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={ (): void => onUnitSelect(name, data) }
-            class="p-2 border rounded-md cursor-pointer
-              { selectedUnit?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
-          >
-            { name }
-          </div>
+        {#each allowedCountAsData.units as [name, data] (name)}
+          {@render selectableEntry(name, () => onUnitSelect(name, data), selectedUnit?.name === name)}
         {/each}
       {/if}
 
       {#if allowedCountAsData.upgrades.length !== 0}
         <div class="font-medium mt-4">Upgrades to select:</div>
-
-        {#each allowedCountAsData.upgrades as [name, data], i (i)}
-          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div onclick={ (): void => onUpgradeSelect(name, data) }
-            class="p-2 border rounded-md cursor-pointer
-              { selectedUpgrade?.name === name ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
-          >
-            { name }
-          </div>
+        {#each allowedCountAsData.upgrades as [name, data] (name)}
+          {@render selectableEntry(name, () => onUpgradeSelect(name, data), selectedUpgrade?.name === name)}
         {/each}
       {/if}
     </div>
 
     <div>
-      <button onclick={ (): void => onCancel() }
+      <button
+        onclick={ (): void => onCancel() }
         class="bg-gray-300 text-gray-800 rounded-md px-4 py-2 hover:bg-gray-400 cursor-pointer"
       >
         Cancel
       </button>
 
-      <button onclick={ (): void => onConfirm() } disabled={ isConfirmDisabled() }
+      <button
+        onclick={ (): void => onConfirm() } disabled={ isConfirmDisabled() }
         class="bg-blue-600 text-white rounded-md mt-4 px-4 py-2 hover:bg-blue-700 cursor-pointer
           disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
       >
