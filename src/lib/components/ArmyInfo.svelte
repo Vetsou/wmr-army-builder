@@ -14,7 +14,7 @@
   {#if $builderStore.armyErrors.length > 0}
     <div class="text-red-600">
       <div>Army errors:</div>
-      {#each $builderStore.armyErrors as armyError, i (i)}
+      {#each $builderStore.armyErrors as armyError (armyError)}
         <div>{ armyError }</div>
       {/each}
     </div>
