@@ -1,11 +1,10 @@
 import { writable } from 'svelte/store'
+import { addUnit } from './add'
 
-const _getRequiredUnits = (
-  schemaUnits: Record<string, ISchemaUnit>
-): [string, ISchemaUnit][] => {
-  return Object.entries(schemaUnits)
-    .filter(([_, ud]) => ud.min || ud.type === 'General')
-}
+
+const getRequiredUnits = (
+  lookupUnits: Record<string, ISchemaUnit>
+): [string, ISchemaUnit][] => Object.entries(lookupUnits).filter(([_, ud]) => ud.min || ud.type === 'General')
 
 const filterArmyRegiments = (
   regiments: Record<string, ISchemaRegiment>,
@@ -39,6 +38,17 @@ export const createState = (
       stands: armySchema.stands
     }
   }
+
+  // Add General and min required units
+  state.units.update(u => {
+    const unitsToAdd = getRequiredUnits(state.lookup.units)
+
+    for(const [name, data] of unitsToAdd) {
+      addUnit(state, name, data, data.min ?? 1)
+    }
+
+    return u
+  })
 
   return state
 }

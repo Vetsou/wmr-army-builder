@@ -54,6 +54,6 @@ export const addRegiment = (
   state.units.update(units => (units[unitKey] = armyRegiment, units))
 
   // TODO: Make a single update
-  if (countAsData.unitName) UnitValidator.validateUnit(state, countAsData.unitName)
   postMutationValidate(state, unitKey, preMutationArmyCost)
+  if (countAsData.unitName) UnitValidator.validateUnit(state, countAsData.unitName)
 }

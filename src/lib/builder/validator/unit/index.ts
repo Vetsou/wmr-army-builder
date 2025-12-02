@@ -21,6 +21,25 @@ const unitRules: readonly UnitRule[] = [
   { check: UnitRules.areStandsOutOfBounds }
 ]
 
+export const validateUnitBounds = (
+  state: IBuilderState,
+  unitKey: string
+): void => {
+  const payload: UnitRulePayload = {
+    armyName: state.armyName,
+    regimentsCountAs: state.regimentCountAs,
+    armyCost: get(state.armyCost),
+    armyCostLimit: get(state.armyCostLimit),
+    armyUnits: get(state.units)
+  }
+
+  state.units.update(u => {
+    if (!u[unitKey]) return u
+    u[unitKey].errors = UnitRules.areUnitsOutOfBounds(payload, unitKey)
+    return u
+  })
+}
+
 export const validateUnit = (
   state: IBuilderState,
   unitKey: string

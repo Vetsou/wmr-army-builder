@@ -1,5 +1,5 @@
 import { get } from 'svelte/store'
-import { validateUnit } from '../unit'
+import { validateUnitBounds } from '../unit'
 
 import * as ArmyRules from './rules'
 
@@ -39,7 +39,7 @@ export const validateArmy = (
 
   const armyCrossedCostThreshold = Math.floor(payload.armyCost / 1000) !== Math.floor(prevArmyCost / 1000)
   if (armyCrossedCostThreshold) {
-    Object.keys(payload.armyUnits).forEach(k => validateUnit(state, k))
+    Object.keys(payload.armyUnits).forEach(k => validateUnitBounds(state, k))
   }
 
   state.armyErrors.set(armyRules.flatMap(r => r.check(payload)))

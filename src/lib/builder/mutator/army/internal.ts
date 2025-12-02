@@ -36,6 +36,6 @@ export const postMutationValidate = (
   unitKey: string,
   preMutationArmyCost: number
 ): void => {
-  UnitValidator.validateUnit(state, unitKey)
   ArmyValidator.validateArmy(state, preMutationArmyCost)
+  UnitValidator.validateUnit(state, unitKey)
 }
