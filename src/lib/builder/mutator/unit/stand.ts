@@ -1,5 +1,5 @@
 import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { postMutationValidate } from './internal'
 
 
 export const addStand = (
@@ -11,16 +11,24 @@ export const addStand = (
   // Impossible since it's called by button attached to stand component
   if (!standData) return
 
-  mutateUnit(state, unitKey, (s, unit) => {
-    let unitStand = unit.addedStands[standKey]
+  state.update(s => {
+    const preMutationArmyCost = s.armyCost
+
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return s
+
+    let unitStand = armyUnit.addedStands[standKey]
 
     if (!unitStand) {
       unitStand = { ...standData, count: 0 }
-      unit.addedStands[standKey] = unitStand
+      armyUnit.addedStands[standKey] = unitStand
     }
 
     unitStand.count++
-    s.armyCost += unitStand.points
+    s.armyCost = preMutationArmyCost + unitStand.points
+    postMutationValidate(s, unitKey, preMutationArmyCost)
+
+    return s
   })
 }
 
@@ -29,15 +37,23 @@ export const removeStand = (
   unitKey: string,
   standKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitStand = unit.addedStands[standKey]
-    if (!unitStand) return
+  state.update(s => {
+    const preMutationArmyCost = s.armyCost
+
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return s
+
+    const unitStand = armyUnit.addedStands[standKey]
+    if (!unitStand) return s
 
     unitStand.count--
-    s.armyCost -= unitStand.points
+    s.armyCost = preMutationArmyCost - unitStand.points
 
     if (unitStand.count <= 0) {
-      delete unit.addedStands[standKey]
+      delete armyUnit.addedStands[standKey]
     }
+
+    postMutationValidate(s, unitKey, preMutationArmyCost)
+    return s
   })
 }

@@ -1,5 +1,5 @@
 import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { postMutationValidate } from './internal'
 
 
 export const equipUpgrade = (
@@ -11,16 +11,23 @@ export const equipUpgrade = (
   // Impossible since it's called by button attached to upgrade component
   if (!upgradeData) return
 
-  mutateUnit(state, unitKey, (s, unit) => {
-    let unitUpgrade = unit.equippedUpgrades[upgradeKey]
+  state.subscribe(s => {
+    const preMutationArmyCost = s.armyCost
+
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return s
+
+    let unitUpgrade = armyUnit.equippedUpgrades[upgradeKey]
 
     if (!unitUpgrade) {
       unitUpgrade = { ...upgradeData, count: 0 }
-      unit.equippedUpgrades[upgradeKey] = unitUpgrade
+      armyUnit.equippedUpgrades[upgradeKey] = unitUpgrade
     }
 
     unitUpgrade.count++
-    s.armyCost += upgradeData.cost
+    s.armyCost = preMutationArmyCost + upgradeData.cost
+
+    postMutationValidate(s, unitKey, preMutationArmyCost)
   })
 }
 
@@ -29,15 +36,22 @@ export const unequipUpgrade = (
   unitKey: string,
   upgradeKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitUpgrade = unit.equippedUpgrades[upgradeKey]
+  state.subscribe(s => {
+    const preMutationArmyCost = s.armyCost
+
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return
+
+    const unitUpgrade = armyUnit.equippedUpgrades[upgradeKey]
     if (!unitUpgrade) return
 
     unitUpgrade.count--
-    s.armyCost -= unitUpgrade.cost
+    s.armyCost = preMutationArmyCost - unitUpgrade.cost
 
     if (unitUpgrade.count <= 0) {
-      delete unit.equippedUpgrades[upgradeKey]
+      delete armyUnit.equippedUpgrades[upgradeKey]
     }
+
+    postMutationValidate(s, unitKey, preMutationArmyCost)
   })
 }

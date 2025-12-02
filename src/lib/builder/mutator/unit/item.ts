@@ -1,5 +1,5 @@
 import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { postMutationValidate } from './internal'
 
 
 const getUnitItemCost = (
@@ -21,17 +21,25 @@ export const equipItem = (
   itemKey: string,
   itemData: ISchemaMagicItem
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const costForUnit = getUnitItemCost(unit, itemData)
+  state.update(s => {
+    const preMutationArmyCost = s.armyCost
 
-    let unitItem = unit.equippedItems[itemKey]
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return s
+
+    const costForUnit = getUnitItemCost(armyUnit, itemData)
+
+    let unitItem = armyUnit.equippedItems[itemKey]
     if (!unitItem) {
       unitItem = { ...itemData, costForUnit, count: 0 }
-      unit.equippedItems[itemKey] = unitItem
+      armyUnit.equippedItems[itemKey] = unitItem
     }
 
     unitItem.count++
-    s.armyCost += costForUnit
+    s.armyCost = preMutationArmyCost + costForUnit
+    postMutationValidate(s, unitKey, preMutationArmyCost)
+
+    return s
   })
 }
 
@@ -40,12 +48,20 @@ export const unequipItem = (
   unitKey: string,
   itemKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitItem = unit.equippedItems[itemKey]
+  state.update(s => {
+    const preMutationArmyCost = s.armyCost
+
+    const armyUnit = s.units[unitKey]
+    if (!armyUnit) return s
+
+    const unitItem = armyUnit.equippedItems[itemKey]
 
     unitItem.count--
-    s.armyCost -= unitItem.costForUnit
+    s.armyCost = preMutationArmyCost - unitItem.costForUnit
 
-    if (unitItem.count <= 0) delete unit.equippedItems[itemKey]
+    if (unitItem.count <= 0) delete armyUnit.equippedItems[itemKey]
+    postMutationValidate(s, unitKey, preMutationArmyCost)
+
+    return s
   })
 }
