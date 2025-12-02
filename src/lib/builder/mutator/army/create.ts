@@ -1,19 +1,10 @@
-import { writable, type Writable } from 'svelte/store'
-import { addUnit } from './add'
+import { writable } from 'svelte/store'
 
-
-const addRequiredUnits = (
-  state: Writable<IBuilderState>,
-  armySchema: IArmySchema
-): void => {
-  Object.entries(armySchema.units).forEach(([unitKey, schemaUnit]) => {
-    if (schemaUnit.min) {
-      addUnit(state, unitKey, schemaUnit, schemaUnit.min)
-      return
-    }
-
-    if (schemaUnit.type === 'General') addUnit(state, unitKey, schemaUnit, 1)
-  })
+const _getRequiredUnits = (
+  schemaUnits: Record<string, ISchemaUnit>
+): [string, ISchemaUnit][] => {
+  return Object.entries(schemaUnits)
+    .filter(([_, ud]) => ud.min || ud.type === 'General')
 }
 
 const filterArmyRegiments = (
@@ -29,13 +20,13 @@ export const createState = (
   armySchema: IArmySchema,
   items: Record<string, ISchemaMagicItem>,
   regiments: Record<string, ISchemaRegiment>
-): Writable<IBuilderState> => {
-  const state = writable({
+): IBuilderState => {
+  const state = {
     armyName: armySchema.name,
-    armyCost: 0,
-    armyCostLimit: 2000,
-    units: {},
-    armyErrors: [],
+    armyCost: writable(0),
+    armyCostLimit: writable(2000),
+    units: writable({}),
+    armyErrors: writable([]),
     regimentCountAs: {
       units: Object.fromEntries(Object.keys(armySchema.units).map(name => [name, 0])),
       upgrades: Object.fromEntries(Object.keys(armySchema.upgrades ?? {}).map(name => [name, 0]))
@@ -47,8 +38,7 @@ export const createState = (
       upgrades: armySchema.upgrades,
       stands: armySchema.stands
     }
-  })
+  }
 
-  addRequiredUnits(state, armySchema)
   return state
 }

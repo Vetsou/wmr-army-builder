@@ -51,8 +51,8 @@
 >
   <div class="w-1/5">
     { unitData.count }
-    {#if $builderStore.regimentCountAs.units[unitName] > 0}
-      (+{ $builderStore.regimentCountAs.units[unitName] })
+    {#if builderStore.regimentCountAs.units[unitName] > 0}
+      (+{ builderStore.regimentCountAs.units[unitName] })
     {/if}
   </div>
   <div class="w-1/5">{ unitName }</div>

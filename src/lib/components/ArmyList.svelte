@@ -3,7 +3,7 @@
   import Unit from '$components/unit/Unit.svelte'
 
 
-  const builderStore = getContext<IBuilderStore>('BuilderState')
+  const { units } = getContext<IBuilderStore>('BuilderState')
 </script>
 
 <div class="w-1/3 divide-y bg-gray-100 divide-gray-200 text-center select-none">
@@ -14,7 +14,7 @@
     <div class="w-1/5">Points</div>
     <div class="w-1/5">Min/Max</div>
   </div>
-  {#each Object.entries($builderStore.units) as [unitName, unitData] (unitName)}
+  {#each Object.entries($units) as [unitName, unitData] (unitName)}
     <Unit { unitName } { unitData } />
   {/each}
 </div>

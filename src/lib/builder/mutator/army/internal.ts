@@ -26,8 +26,6 @@ export const getOrCreateUnit = (
       armyUnit.countAsUnits = {}
       armyUnit.countAsUpgrades = {}
     }
-
-    armyUnits[unitKey] = armyUnit
   }
 
   return armyUnit

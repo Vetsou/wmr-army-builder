@@ -1,4 +1,4 @@
-import type { Writable } from 'svelte/store'
+import { get } from 'svelte/store'
 import { postMutationValidate } from './internal'
 
 
@@ -16,52 +16,44 @@ const getUnitItemCost = (
 }
 
 export const equipItem = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   itemKey: string,
   itemData: ISchemaMagicItem
 ): void => {
-  state.update(s => {
-    const preMutationArmyCost = s.armyCost
+  const preMutationArmyCost = get(state.armyCost)
 
-    const armyUnit = s.units[unitKey]
-    if (!armyUnit) return s
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    const costForUnit = getUnitItemCost(armyUnit, itemData)
+  const costForUnit = getUnitItemCost(armyUnit, itemData)
 
-    let unitItem = armyUnit.equippedItems[itemKey]
-    if (!unitItem) {
-      unitItem = { ...itemData, costForUnit, count: 0 }
-      armyUnit.equippedItems[itemKey] = unitItem
-    }
+  let unitItem = armyUnit.equippedItems[itemKey]
+  if (!unitItem) {
+    unitItem = { ...itemData, costForUnit, count: 0 }
+    armyUnit.equippedItems[itemKey] = unitItem
+  }
 
-    unitItem.count++
-    s.armyCost = preMutationArmyCost + costForUnit
-    postMutationValidate(s, unitKey, preMutationArmyCost)
-
-    return s
-  })
+  unitItem.count++
+  state.armyCost.set(preMutationArmyCost + costForUnit)
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
 
 export const unequipItem = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   itemKey: string
 ): void => {
-  state.update(s => {
-    const preMutationArmyCost = s.armyCost
+  const preMutationArmyCost = get(state.armyCost)
 
-    const armyUnit = s.units[unitKey]
-    if (!armyUnit) return s
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    const unitItem = armyUnit.equippedItems[itemKey]
+  const unitItem = armyUnit.equippedItems[itemKey]
 
-    unitItem.count--
-    s.armyCost = preMutationArmyCost - unitItem.costForUnit
+  unitItem.count--
+  state.armyCost.set(preMutationArmyCost - unitItem.costForUnit)
 
-    if (unitItem.count <= 0) delete armyUnit.equippedItems[itemKey]
-    postMutationValidate(s, unitKey, preMutationArmyCost)
-
-    return s
-  })
+  if (unitItem.count <= 0) delete armyUnit.equippedItems[itemKey]
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }

@@ -1,5 +1,5 @@
-import type { Writable } from 'svelte/store'
 import { getOrCreateUnit, postMutationValidate } from './internal'
+import { get } from 'svelte/store'
 
 import * as UnitValidator from '$validator/unit'
 
@@ -15,62 +15,69 @@ const getUnitAugmentsCost = (
 }
 
 export const removeUnit = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   unitData: IArmyUnit,
   count: number
 ): void => {
-  state.update(s => {
-    const preMutationArmyCost = s.armyCost
-    const armyUnit = getOrCreateUnit(s.units, unitKey, unitData)
+  const preMutationArmyCost = get(state.armyCost)
 
+  state.units.update(u => {
+    const armyUnit = getOrCreateUnit(u, unitKey, unitData)
     armyUnit.count -= count
 
-    s.armyCost -= unitData.points * count
-    if (armyUnit.count <= 0) {
-      s.armyCost -= getUnitAugmentsCost(armyUnit)
-      delete s.units[unitKey]
-    }
+    // Update army cost
+    state.armyCost.update(ac => {
+      ac -= unitData.points * count
 
-    postMutationValidate(s, unitKey, preMutationArmyCost)
-    return s
+      if (armyUnit.count <= 0) {
+        ac -= getUnitAugmentsCost(armyUnit)
+        delete u[unitKey]
+      }
+
+      return ac
+    })
+
+    return u
   })
+
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
 
 export const removeRegiment = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   unitData: ISchemaRegiment,
   countAsData: { unitName?: string, upgradeName?: string },
   count: number
 ): void => {
-  state.update(s => {
-    const preMutationArmyCost = s.armyCost
-    const armyRegiment = getOrCreateUnit(s.units, unitKey, unitData) as IArmyRegiment
+  const preMutationArmyCost = get(state.armyCost)
+  const armyRegiment = getOrCreateUnit(get(state.units), unitKey, unitData) as IArmyRegiment
 
-    armyRegiment.count -= count
-    s.armyCost = preMutationArmyCost - unitData.points * count
+  if (countAsData.unitName) {
+    const unitName = countAsData.unitName
 
-    if (countAsData.unitName) {
-      const unitName = countAsData.unitName
+    armyRegiment.countAsUnits[unitName] -= count
+    state.regimentCountAs.units[unitName] -= count
+  }
 
-      armyRegiment.countAsUnits[unitName] -= count
-      s.regimentCountAs.units[unitName] -= count
-    }
+  if (countAsData.upgradeName) {
+    const upgradeName = countAsData.upgradeName
 
-    if (countAsData.upgradeName) {
-      const upgradeName = countAsData.upgradeName
+    armyRegiment.countAsUpgrades[upgradeName] -= count
+    state.regimentCountAs.upgrades[upgradeName] -= count
+  }
 
-      armyRegiment.countAsUpgrades[upgradeName] -= count
-      s.regimentCountAs.upgrades[upgradeName] -= count
-    }
-
-    // Regiments don't have items/upgrades/stands
-
-    // Make it a single update
-    if (countAsData.unitName) UnitValidator.validateUnit(s, countAsData.unitName)
-    postMutationValidate(s, unitKey, preMutationArmyCost)
-
-    return s
+  state.armyCost.set(preMutationArmyCost - unitData.points * count)
+  state.units.update(u => {
+    u[unitKey].count -= count
+    if (u[unitKey].count <= 0) delete u[unitKey]
+    return u
   })
+  
+  // Regiments don't have items/upgrades/stands
+
+  // Make it a single update
+  if (countAsData.unitName) UnitValidator.validateUnit(state, countAsData.unitName)
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }

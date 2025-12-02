@@ -1,5 +1,4 @@
-import type { Readable } from 'svelte/store'
-
+import type { Writable } from 'svelte/store'
 
 interface ILookupData {
   readonly items: Record<string, ISchemaMagicItem>
@@ -9,23 +8,25 @@ interface ILookupData {
   readonly stands?: Record<string, ISchemaUnit>
 }
 
-interface IRegimentCountAsData {
-  units: Record<string, number>
-  upgrades: Record<string, number>
-}
+
 
 declare global {
+  interface IRegimentCountAsData {
+    units: Record<string, number>
+    upgrades: Record<string, number>
+  }
+
   interface ICountAsRegimentData {
     unitName?: string
     upgradeName?: string 
   }
-    
+
   interface IBuilderState {
     armyName: string
-    armyCost: number
-    armyCostLimit: number
-    units: Record<string, IArmyUnit>
-    armyErrors: string[]
+    armyCost: Writable<number>
+    armyCostLimit: Writable<number>
+    units: Writable<Record<string, IArmyUnit>>
+    armyErrors: Writable<string[]>
     regimentCountAs: IRegimentCountAsData
     lookup: ILookupData
   }
@@ -55,13 +56,12 @@ declare global {
     getAttachableStands(unitData: ISchemaUnit): [string, ISchemaUnit][]
   }
 
-  interface IBuilderStore 
-    extends Readable<IBuilderState>,
+  interface IBuilderStore
+    extends IBuilderState,
     IArmyActions,
     IUnitActions,
     IAugmentsActions
   {
-    getState(): IBuilderState
   }
 }
 

@@ -1,10 +1,12 @@
+import type { ArmyRulePayload } from '..'
+
 import { formatError } from '$validator/internal'
 import { ArmyErrors } from '../messages'
 
 
 const isUpgradeCountIncorrect = (
   upgrade: IArmyUpgrade,
-  takenByRegiment: number, 
+  takenByRegiment: number,
   armyCost: number
 ): boolean => {
   const countMultiplier = Math.ceil(armyCost / 1000)
@@ -18,11 +20,11 @@ const isUpgradeCountIncorrect = (
 }
 
 const getArmyUpgradeCount = (
-  state: IBuilderState
+  payload: ArmyRulePayload
 ): Record<string, IArmyUpgrade> => {
   const upgradeCountMap: Record<string, IArmyUpgrade> = {}
 
-  for (const unit of Object.values(state.units)) {
+  for (const unit of Object.values(payload.armyUnits)) {
     for (const [upgradeKey, upgrade] of Object.entries(unit.equippedUpgrades)) {
       if (!upgradeCountMap[upgradeKey]) {
         upgradeCountMap[upgradeKey] = { ...upgrade, count: 0 }
@@ -36,16 +38,16 @@ const getArmyUpgradeCount = (
 }
 
 export const isArmyUpgradeCountCorrect = (
-  state: IBuilderState
+  payload: ArmyRulePayload
 ): string[] => {
-  const upgradeCount = getArmyUpgradeCount(state)
+  const upgradeCount = getArmyUpgradeCount(payload)
   return Object.entries(upgradeCount)
     .filter(([upgradeKey, upgradeData]) =>
-      isUpgradeCountIncorrect(upgradeData, state.regimentCountAs.upgrades[upgradeKey], state.armyCost))
+      isUpgradeCountIncorrect(upgradeData, payload.regimentsCountAs.upgrades[upgradeKey], payload.armyCost))
     .map(([upgradeKey, upgradeData]) =>
       formatError(
         ArmyErrors.upgradeOutOfBounds,
-        upgradeData.count + state.regimentCountAs.upgrades[upgradeKey],
+        upgradeData.count + payload.regimentsCountAs.upgrades[upgradeKey],
         upgradeKey, upgradeData.armyMax ?? upgradeData.max ?? '-'
       ))
 }

@@ -21,14 +21,14 @@
   const builderStore = getContext<IBuilderStore>('BuilderState')
 
   let dialog: HTMLDialogElement | undefined = $state()
-  let allowedCountAsData: CountAsRuleResult = $state(getCountAsRuleForAdd($builderStore, selectedRegimentName))
+  let allowedCountAsData: CountAsRuleResult = $state(getCountAsRuleForAdd(builderStore, selectedRegimentName))
 
   $effect(() => {
     if (!showModal) return
 
     allowedCountAsData = mode === 'add'
-      ? getCountAsRuleForAdd($builderStore, selectedRegimentName)
-      : getCountAsRuleForRemove($builderStore, selectedRegimentName)
+      ? getCountAsRuleForAdd(builderStore, selectedRegimentName)
+      : getCountAsRuleForRemove(builderStore, selectedRegimentName)
 
     dialog?.showModal()
   })

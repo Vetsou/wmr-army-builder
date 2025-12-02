@@ -1,5 +1,3 @@
-import { get } from 'svelte/store'
-
 import * as Operations from './operations'
 import * as ArmyMutator from './mutator/army'
 
@@ -12,9 +10,7 @@ export const createBuilderContext = (
   const state = ArmyMutator.createState(armySchema, items, regiments)
 
   return {
-    subscribe: state.subscribe,
-    getState: () => get(state),
-
+    ...state,
     ...Operations.setArmyActions(state),
     ...Operations.setUnitActions(state),
 

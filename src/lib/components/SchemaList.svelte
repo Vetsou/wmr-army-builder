@@ -44,7 +44,7 @@
   <div class="divide-y bg-gray-100 divide-gray-200 text-center select-none">
     {@render tableHeader()}
 
-    {#each Object.entries($builderStore.lookup.units) as [unitName, unitData] (unitName)}
+    {#each Object.entries(builderStore.lookup.units) as [unitName, unitData] (unitName)}
       {@render schemaRow(unitName, unitData, () => builderStore.addUnit(unitName))}
     {/each}
   </div>
@@ -52,7 +52,7 @@
   <div class="divide-y bg-gray-100 divide-gray-200 text-center select-none mt-14">
     {@render tableHeader()}
 
-    {#each Object.entries($builderStore.lookup.regiments) as [regimentName, regimentData] (regimentName)}
+    {#each Object.entries(builderStore.lookup.regiments) as [regimentName, regimentData] (regimentName)}
       {@render schemaRow(regimentName, regimentData, () => toggleCountAsModal(regimentName))}
     {/each}
   </div>
