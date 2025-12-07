@@ -27,7 +27,7 @@ export const hasIncompatibleRegiments = (
           const armyName = badUnitName.slice(1, endIdx).trim()
           const unitName = badUnitName.slice(endIdx + 1).trim()
 
-          if (payload.armyName === armyName && payload.armyUnits[unitName]) {
+          if (payload.armyName === armyName && payload.armyUnits[unitName] && name < badUnitName) {
             errors.push(formatError(ArmyErrors.incompatibleRegiments, name, unitName))
           }
 
@@ -35,7 +35,7 @@ export const hasIncompatibleRegiments = (
         }
       }
 
-      if (regiments.has(badUnitName)) {
+      if (regiments.has(badUnitName) && name < badUnitName) {
         errors.push(formatError(ArmyErrors.incompatibleRegiments, name, badUnitName))
       }
     }
