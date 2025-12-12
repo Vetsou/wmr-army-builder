@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { get, type Writable } from 'svelte/store'
+import { get } from 'svelte/store'
 
 import * as DataGenerator from '$test/dataGenerator'
 import * as ArmyMutator from '$builder/mutator/army'
@@ -13,7 +13,7 @@ import * as UnitValidator from '$builder/validator/unit'
 import * as ArmyValidator from '$builder/validator/army'
 
 
-let store: Writable<IBuilderState>
+let store: IBuilderState
 
 beforeEach(() => {
   store = DataGenerator.createBuilderState({})
@@ -31,10 +31,11 @@ describe('EquipItem', () => {
     UnitMutator.equipItem(store, 'UnitA', 'ItemA', schemaItem)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(60)
-    expect(state.units.UnitA.equippedItems.ItemA.count).toBe(1)
-    expect(state.units.UnitA.equippedItems.ItemA.type).toBe('Device of Power')
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(60)
+    expect(units.UnitA.equippedItems.ItemA.count).toBe(1)
+    expect(units.UnitA.equippedItems.ItemA.type).toBe('Device of Power')
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(2)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(2)
   })
@@ -51,10 +52,11 @@ describe('EquipItem', () => {
     UnitMutator.equipItem(store, 'UnitA', 'ItemA', schemaItem)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(80)
-    expect(state.units.UnitA.equippedItems.ItemA.count).toBe(3)
-    expect(Object.values(state.units.UnitA.equippedItems).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(80)
+    expect(units.UnitA.equippedItems.ItemA.count).toBe(3)
+    expect(Object.values(units.UnitA.equippedItems).length).toBe(1)
   })
 })
 
@@ -73,10 +75,11 @@ describe('UnequipItem', () => {
     UnitMutator.unequipItem(store, 'UnitA', 'ItemA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(70)
-    expect(state.units.UnitA.equippedItems.ItemA.count).toBe(2)
-    expect(Object.values(state.units.UnitA.equippedItems).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(70)
+    expect(units.UnitA.equippedItems.ItemA.count).toBe(2)
+    expect(Object.values(units.UnitA.equippedItems).length).toBe(1)
   })
 
   it('removes item if count is zero', () => {
@@ -90,10 +93,11 @@ describe('UnequipItem', () => {
     UnitMutator.unequipItem(store, 'UnitA', 'ItemA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(50)
-    expect(state.units.UnitA.equippedItems.ItemA).toBeUndefined()
-    expect(Object.values(state.units.UnitA.equippedItems).length).toBe(0)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(50)
+    expect(units.UnitA.equippedItems.ItemA).toBeUndefined()
+    expect(Object.values(units.UnitA.equippedItems).length).toBe(0)
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(3)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(3)
   })
@@ -111,10 +115,11 @@ describe('EquipUpgrade', () => {
     UnitMutator.equipUpgrade(store, 'UnitA', 'UpgradeA', schemaUpgrade)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(60)
-    expect(state.units.UnitA.equippedUpgrades.UpgradeA.count).toBe(1)
-    expect(Object.values(state.units.UnitA.equippedUpgrades).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(60)
+    expect(units.UnitA.equippedUpgrades.UpgradeA.count).toBe(1)
+    expect(Object.values(units.UnitA.equippedUpgrades).length).toBe(1)
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(2)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(2)
   })
@@ -131,10 +136,11 @@ describe('EquipUpgrade', () => {
     UnitMutator.equipUpgrade(store, 'UnitA', 'UpgradeA', schemaUpgrade)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(125)
-    expect(state.units.UnitA.equippedUpgrades.UpgradeA.count).toBe(3)
-    expect(Object.values(state.units.UnitA.equippedUpgrades).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(125)
+    expect(units.UnitA.equippedUpgrades.UpgradeA.count).toBe(3)
+    expect(Object.values(units.UnitA.equippedUpgrades).length).toBe(1)
   })
 })
 
@@ -153,10 +159,11 @@ describe('UnequipUpgrade', () => {
     UnitMutator.unequipUpgrade(store, 'UnitA', 'UpgradeA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(100)
-    expect(state.units.UnitA.equippedUpgrades.UpgradeA.count).toBe(2)
-    expect(Object.values(state.units.UnitA.equippedUpgrades).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(100)
+    expect(units.UnitA.equippedUpgrades.UpgradeA.count).toBe(2)
+    expect(Object.values(units.UnitA.equippedUpgrades).length).toBe(1)
   })
 
   it('removes upgrade if count is zero', () => {
@@ -170,10 +177,11 @@ describe('UnequipUpgrade', () => {
     UnitMutator.unequipUpgrade(store, 'UnitA', 'UpgradeA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(50)
-    expect(state.units.UnitA.equippedUpgrades.UpgradeA).toBeUndefined()
-    expect(Object.values(state.units.UnitA.equippedUpgrades).length).toBe(0)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(50)
+    expect(units.UnitA.equippedUpgrades.UpgradeA).toBeUndefined()
+    expect(Object.values(units.UnitA.equippedUpgrades).length).toBe(0)
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(3)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(3)
   })
@@ -191,9 +199,8 @@ describe('AddStand', () => {
     UnitMutator.addStand(store, 'UnitA', 'StandA', standUnit)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(40)
-    expect(state.units.UnitA.addedStands.StandA.count).toBe(1)
+    expect(get(store.armyCost)).toBe(40)
+    expect(get(store.units).UnitA.addedStands.StandA.count).toBe(1)
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(2)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(2)
   })
@@ -210,10 +217,11 @@ describe('AddStand', () => {
     UnitMutator.addStand(store, 'UnitA', 'StandA', standUnit)
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(90)
-    expect(state.units.UnitA.addedStands.StandA.count).toBe(3)
-    expect(Object.values(state.units.UnitA.addedStands).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(90)
+    expect(units.UnitA.addedStands.StandA.count).toBe(3)
+    expect(Object.values(units.UnitA.addedStands).length).toBe(1)
   })
 })
 
@@ -232,10 +240,11 @@ describe('RemoveStand', () => {
     UnitMutator.removeStand(store, 'UnitA', 'StandA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(80)
-    expect(state.units.UnitA.addedStands.StandA.count).toBe(2)
-    expect(Object.values(state.units.UnitA.addedStands).length).toBe(1)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(80)
+    expect(units.UnitA.addedStands.StandA.count).toBe(2)
+    expect(Object.values(units.UnitA.addedStands).length).toBe(1)
   })
 
   it('removes stand if count is zero', () => {
@@ -249,10 +258,11 @@ describe('RemoveStand', () => {
     UnitMutator.removeStand(store, 'UnitA', 'StandA')
 
     // Assert
-    const state = get(store)
-    expect(state.armyCost).toBe(30)
-    expect(state.units.UnitA.addedStands.StandA).toBeUndefined()
-    expect(Object.values(state.units.UnitA.addedStands).length).toBe(0)
+    const units = get(store.units)
+
+    expect(get(store.armyCost)).toBe(30)
+    expect(units.UnitA.addedStands.StandA).toBeUndefined()
+    expect(Object.values(units.UnitA.addedStands).length).toBe(0)
     expect(UnitValidator.validateUnit).toHaveBeenCalledTimes(3)
     expect(ArmyValidator.validateArmy).toHaveBeenCalledTimes(3)
   })

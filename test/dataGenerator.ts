@@ -1,19 +1,29 @@
-import { writable, type Writable } from 'svelte/store'
+import { writable } from 'svelte/store'
 
+
+interface IBuilderStatePartial {
+  armyName?: string
+  armyCost?: number
+  armyCostLimit?: number
+  units?: Record<string, IArmyUnit>
+  armyErrors?: string[]
+  regimentCountAs?: IRegimentCountAsData
+  lookup?: ILookupData
+}
 
 export const createBuilderState = (
-  state: Partial<IBuilderState>
-): Writable<IBuilderState> => {
-  return writable<IBuilderState>({
-    armyName: state.armyName ?? 'Test Army',
-    armyCost: state.armyCost ?? 0,
-    armyCostLimit: state.armyCostLimit ?? 2000,
-    units: {},
+  partial: IBuilderStatePartial
+): IBuilderState => {
+  return {
+    armyName: partial.armyName ?? 'Test Army',
+    armyCost: writable(partial.armyCost ?? 0),
+    armyCostLimit: writable(partial.armyCostLimit ?? 2000),
+    units: writable({}),
     regimentCountAs: {
-      units: state.regimentCountAs?.units ?? {},
-      upgrades: state.regimentCountAs?.upgrades ?? {}
+      units: partial.regimentCountAs?.units ?? {},
+      upgrades: partial.regimentCountAs?.upgrades ?? {}
     },
-    armyErrors: [],
+    armyErrors: writable([]),
     lookup: {
       items: {},
       upgrades: {},
@@ -21,7 +31,7 @@ export const createBuilderState = (
       regiments: {},
       units: {}
     }
-  })
+  }
 }
 
 export const createArmySchema = (

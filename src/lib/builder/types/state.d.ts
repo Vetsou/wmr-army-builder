@@ -1,16 +1,15 @@
 import type { Writable } from 'svelte/store'
 
-interface ILookupData {
-  readonly items: Record<string, ISchemaMagicItem>
-  readonly regiments: Record<string, ISchemaRegiment>
-  readonly units: Record<string, ISchemaUnit>
-  readonly upgrades?: Record<string, ISchemaUpgrade>
-  readonly stands?: Record<string, ISchemaUnit>
-}
-
-
 
 declare global {
+  interface ILookupData {
+    readonly items: Record<string, ISchemaMagicItem>
+    readonly regiments: Record<string, ISchemaRegiment>
+    readonly units: Record<string, ISchemaUnit>
+    readonly upgrades?: Record<string, ISchemaUpgrade>
+    readonly stands?: Record<string, ISchemaUnit>
+  }
+
   interface IRegimentCountAsData {
     units: Record<string, number>
     upgrades: Record<string, number>

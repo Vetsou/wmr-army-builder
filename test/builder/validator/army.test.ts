@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { get, type Writable } from 'svelte/store'
+import { get } from 'svelte/store'
 
 import { ArmyErrors } from '$validator/army/messages'
 import { formatError } from '$validator/internal'
@@ -9,7 +9,7 @@ import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
-let store: Writable<IBuilderState>
+let store: IBuilderState
 
 beforeEach(() => {
   store = DataGenerator.createBuilderState({
@@ -30,9 +30,9 @@ describe('ValidateArmy', () => {
     ArmyMutator.addUnit(store, 'unitA', schemaUnit, 1)
 
     // Assert
-    const state = get(store)
-    expect(state.armyErrors.length).toBe(1)
-    expect(state.armyErrors).toStrictEqual([ArmyErrors.armyCostExceedsLimit])
+    const armyErrors = get(store.armyErrors)
+    expect(armyErrors.length).toBe(1)
+    expect(armyErrors).toStrictEqual([ArmyErrors.armyCostExceedsLimit])
   })
 
   it('adds error if no general', () => {
@@ -43,9 +43,9 @@ describe('ValidateArmy', () => {
     ArmyMutator.addUnit(store, 'unitA', schemaUnit, 1)
 
     // Assert
-    const state = get(store)
-    expect(state.armyErrors.length).toBe(1)
-    expect(state.armyErrors).toStrictEqual([ArmyErrors.armyNeedsGeneral])
+    const armyErrors = get(store.armyErrors)
+    expect(armyErrors.length).toBe(1)
+    expect(armyErrors).toStrictEqual([ArmyErrors.armyNeedsGeneral])
   })
 
   it('adds error if duplicate magic items', () => {
@@ -59,9 +59,9 @@ describe('ValidateArmy', () => {
     UnitMutator.equipItem(store, 'unitA', 'itemA', schemaItem)
 
     // Assert
-    const state = get(store)
-    expect(state.armyErrors.length).toBe(1)
-    expect(state.armyErrors).toStrictEqual([formatError(ArmyErrors.duplicateMagicItem, 'itemA')])
+    const armyErrors = get(store.armyErrors)
+    expect(armyErrors.length).toBe(1)
+    expect(armyErrors).toStrictEqual([formatError(ArmyErrors.duplicateMagicItem, 'itemA')])
   })
 
   it('adds error if stand count is out of bounds', () => {
@@ -81,9 +81,9 @@ describe('ValidateArmy', () => {
     UnitMutator.addStand(store, 'unitB', 'standB', unitStandArmyMax)
 
     // Assert
-    const state = get(store)
-    expect(state.armyErrors.length).toBe(2)
-    expect(state.armyErrors).toStrictEqual([
+    const armyErrors = get(store.armyErrors)
+    expect(armyErrors.length).toBe(2)
+    expect(armyErrors).toStrictEqual([
       formatError(ArmyErrors.standOutOfBounds, 2, 'standA'),
       formatError(ArmyErrors.standOutOfBounds, 3, 'standB'),
     ])
@@ -106,9 +106,9 @@ describe('ValidateArmy', () => {
     UnitMutator.equipUpgrade(store, 'unitB', 'upgradeB', schemaUpgradeArmyMax)
 
     // Assert
-    const state = get(store)
-    expect(state.armyErrors.length).toBe(2)
-    expect(state.armyErrors).toStrictEqual([
+    const armyErrors = get(store.armyErrors)
+    expect(armyErrors.length).toBe(2)
+    expect(armyErrors).toStrictEqual([
       formatError(ArmyErrors.upgradeOutOfBounds, 3, 'upgradeA', 2),
       formatError(ArmyErrors.upgradeOutOfBounds, 2, 'upgradeB', 1),
     ])
