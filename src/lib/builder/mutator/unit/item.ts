@@ -1,5 +1,5 @@
-import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { get } from 'svelte/store'
+import { postMutationValidate } from './internal'
 
 
 const getUnitItemCost = (
@@ -16,36 +16,44 @@ const getUnitItemCost = (
 }
 
 export const equipItem = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   itemKey: string,
   itemData: ISchemaMagicItem
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const costForUnit = getUnitItemCost(unit, itemData)
+  const preMutationArmyCost = get(state.armyCost)
 
-    let unitItem = unit.equippedItems[itemKey]
-    if (!unitItem) {
-      unitItem = { ...itemData, costForUnit, count: 0 }
-      unit.equippedItems[itemKey] = unitItem
-    }
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    unitItem.count++
-    s.armyCost += costForUnit
-  })
+  const costForUnit = getUnitItemCost(armyUnit, itemData)
+
+  let unitItem = armyUnit.equippedItems[itemKey]
+  if (!unitItem) {
+    unitItem = { ...itemData, costForUnit, count: 0 }
+    armyUnit.equippedItems[itemKey] = unitItem
+  }
+
+  unitItem.count++
+  state.armyCost.set(preMutationArmyCost + costForUnit)
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
 
 export const unequipItem = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   itemKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitItem = unit.equippedItems[itemKey]
+  const preMutationArmyCost = get(state.armyCost)
 
-    unitItem.count--
-    s.armyCost -= unitItem.costForUnit
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    if (unitItem.count <= 0) delete unit.equippedItems[itemKey]
-  })
+  const unitItem = armyUnit.equippedItems[itemKey]
+
+  unitItem.count--
+  state.armyCost.set(preMutationArmyCost - unitItem.costForUnit)
+
+  if (unitItem.count <= 0) delete armyUnit.equippedItems[itemKey]
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }

@@ -1,8 +1,9 @@
+import type { ArmyRulePayload } from '..'
 import { ArmyErrors } from '../messages'
 
 
 export const isArmyCostExceedingLimit = (
-  state: IBuilderState
+  payload: ArmyRulePayload
 ): string[] => {
-  return state.armyCost > state.armyCostLimit ? [ArmyErrors.armyCostExceedsLimit] : []
+  return payload.armyCost > payload.armyCostLimit ? [ArmyErrors.armyCostExceedsLimit] : []
 }

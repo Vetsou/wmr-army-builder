@@ -1,41 +1,41 @@
-import type { Writable } from 'svelte/store'
+import { isRegiment } from '$lib/builder/types/guards'
 
 import * as UnitValidator from '$validator/unit'
 import * as ArmyValidator from '$validator/army'
 
 
-type UnitMutationFn = (s: IBuilderState, unit: IArmyUnit | IArmyRegiment) => void
-
-export const mutateArmy = (
-  builderState: Writable<IBuilderState>,
+export const getOrCreateUnit = (
+  armyUnits: Record<string, IArmyUnit>,
   unitKey: string,
   unitData: ISchemaUnit,
-  mutationFunc: UnitMutationFn
-): void => {
-  builderState.update(s => {
-    let armyUnit = s.units[unitKey]
+): IArmyUnit => {
+  let armyUnit = armyUnits[unitKey]
 
-    if (!armyUnit) {
-      armyUnit = {
-        ...unitData,
-        count: 0,
-        errors: [],
-        equippedItems: {},
-        equippedUpgrades: {},
-        addedStands: {}
-      }
-      s.units[unitKey] = armyUnit
+  if (!armyUnit) {
+    armyUnit = {
+      ...unitData,
+      count: 0,
+      errors: [],
+      equippedItems: {},
+      equippedUpgrades: {},
+      addedStands: {}
     }
 
-    if (!armyUnit) return s
-    const prevArmyCost = s.armyCost
-    mutationFunc(s, armyUnit)
+    // Init regiment specific fields
+    if (isRegiment(armyUnit)) {
+      armyUnit.countAsUnits = {}
+      armyUnit.countAsUpgrades = {}
+    }
+  }
 
-    if (armyUnit.count <= 0) delete s.units[unitKey]
+  return armyUnit
+}
 
-    UnitValidator.validateUnit(s, unitKey)
-    ArmyValidator.validateArmy(s, prevArmyCost)
-
-    return s
-  })
+export const postMutationValidate = (
+  state: IBuilderState,
+  unitKey: string,
+  preMutationArmyCost: number
+): void => {
+  ArmyValidator.validateArmy(state, preMutationArmyCost)
+  UnitValidator.validateUnit(state, unitKey)
 }

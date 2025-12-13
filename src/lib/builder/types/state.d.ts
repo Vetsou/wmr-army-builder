@@ -1,42 +1,36 @@
-import type { Readable } from 'svelte/store'
+import type { Writable } from 'svelte/store'
 
-
-interface ILookupData {
-  readonly items: Record<string, ISchemaMagicItem>
-  readonly regiments: Record<string, ISchemaRegiment>
-  readonly units: Record<string, ISchemaUnit>
-  readonly upgrades?: Record<string, ISchemaUpgrade>
-  readonly stands?: Record<string, ISchemaUnit>
-}
-
-interface IRegimentCountAsData {
-  units: Record<string, number>
-  upgrades: Record<string, number>
-}
 
 declare global {
+  interface ILookupData {
+    readonly items: Record<string, ISchemaMagicItem>
+    readonly regiments: Record<string, ISchemaRegiment>
+    readonly units: Record<string, ISchemaUnit>
+    readonly upgrades?: Record<string, ISchemaUpgrade>
+    readonly stands?: Record<string, ISchemaUnit>
+  }
+
+  interface IRegimentCountAsData {
+    units: Record<string, number>
+    upgrades: Record<string, number>
+  }
+
   interface ICountAsRegimentData {
     unitName?: string
     upgradeName?: string 
   }
-    
+
   interface IBuilderState {
     armyName: string
-    armyCost: number
-    armyCostLimit: number
-    units: Record<string, IArmyUnit>
-    armyErrors: string[]
+    armyCost: Writable<number>
+    armyCostLimit: Writable<number>
+    units: Writable<Record<string, IArmyUnit>>
+    armyErrors: Writable<string[]>
     regimentCountAs: IRegimentCountAsData
     lookup: ILookupData
   }
 
   interface IArmyActions {
-    initNewArmy(
-      armySchema: IArmySchema,
-      items: Record<string, ISchemaMagicItem>,
-      regiments: Record<string, ISchemaRegiment>
-    ): void
-
     addUnit(unitKey: string): void
     removeUnit(unitKey: string): void
 
@@ -61,13 +55,12 @@ declare global {
     getAttachableStands(unitData: ISchemaUnit): [string, ISchemaUnit][]
   }
 
-  interface IBuilderStore 
-    extends Readable<IBuilderState>,
+  interface IBuilderStore
+    extends IBuilderState,
     IArmyActions,
     IUnitActions,
     IAugmentsActions
   {
-    getState(): IBuilderState
   }
 }
 

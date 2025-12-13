@@ -1,5 +1,5 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
 
 
   type Props = {
@@ -8,40 +8,39 @@
   }
 
   const { unitName, unitData }: Props = $props()
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 </script>
 
-{#each Object.entries(unitData.equippedItems) as [itemName, itemData], i (i)}
+{#snippet entry(name: string, data: IArmyMagicItem | IArmyUpgrade | IArmyStand, onclick: () => void, cost: number)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-  <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ (): void => builderStore.unequipItem(unitName, itemName) }
+  <div
+    class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
+    { onclick }
   >
-    <div>{ itemName }</div>
-    <div>{ itemData.type }</div>
-    <div>{ itemData.costForUnit * itemData.count }</div>
-    <div>{ itemData.count }</div>
+    <div>{ name }</div>
+    <div>{ data.type }</div>
+    <div>{ cost }</div>
+    <div>{ data.count }</div>
   </div>
+{/snippet}
+
+{#each Object.entries(unitData.equippedItems) as [itemName, itemData] (itemName)}
+  {@render
+    entry(itemName, itemData,
+      () => builderStore.unequipItem(unitName, itemName),
+      itemData.costForUnit * itemData.count)}
 {/each}
 
-{#each Object.entries(unitData.equippedUpgrades) as [upgradeName, upgradeData], i (i)}
-  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-  <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ (): void => builderStore.unequipUpgrade(unitName, upgradeName) }
-  >
-    <div>{ upgradeName }</div>
-    <div>{ upgradeData.type }</div>
-    <div>{ upgradeData.cost * upgradeData.count }</div>
-    <div>{ upgradeData.count }</div>
-  </div>
+{#each Object.entries(unitData.equippedUpgrades) as [upgradeName, upgradeData] (upgradeName)}
+  {@render
+    entry(upgradeName, upgradeData,
+      () => builderStore.unequipUpgrade(unitName, upgradeName),
+      upgradeData.cost * upgradeData.count)}
 {/each}
 
-{#each Object.entries(unitData.addedStands) as [standName, standData], i (i)}
-  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-  <div class="flex flex-row-reverse gap-x-4 select-none cursor-pointer hover:bg-gray-200"
-    onclick={ (): void => builderStore.removeStand(unitName, standName) }
-  >
-    <div>{ standName }</div>
-    <div>{ standData.type }</div>
-    <div>{ standData.points * standData.count }</div>
-    <div>{ standData.count }</div>
-  </div>
+{#each Object.entries(unitData.addedStands) as [standName, standData] (standName)}
+  {@render
+    entry(standName, standData,
+      () => builderStore.removeStand(unitName, standName),
+      standData.points * standData.count)}
 {/each}

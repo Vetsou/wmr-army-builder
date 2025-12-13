@@ -1,15 +1,17 @@
+import type { ArmyRulePayload } from '..'
+
 import { isRegiment } from '$builder/types/guards'
 import { formatError } from '$validator/internal'
 import { ArmyErrors } from '../messages'
 
 
 export const hasIncompatibleRegiments = (
-  state: IBuilderState
+  payload: ArmyRulePayload
 ): string[] => {
   const regiments = new Map<string, IArmyRegiment>()
   const errors: string[] = []
 
-  for (const [name, unit] of Object.entries(state.units)) {
+  for (const [name, unit] of Object.entries(payload.armyUnits)) {
     if (isRegiment(unit)) regiments.set(name, unit)
   }
 
@@ -25,7 +27,7 @@ export const hasIncompatibleRegiments = (
           const armyName = badUnitName.slice(1, endIdx).trim()
           const unitName = badUnitName.slice(endIdx + 1).trim()
 
-          if (state.armyName === armyName && state.units[unitName]) {
+          if (payload.armyName === armyName && payload.armyUnits[unitName] && name < badUnitName) {
             errors.push(formatError(ArmyErrors.incompatibleRegiments, name, unitName))
           }
 
@@ -33,7 +35,7 @@ export const hasIncompatibleRegiments = (
         }
       }
 
-      if (regiments.has(badUnitName)) {
+      if (regiments.has(badUnitName) && name < badUnitName) {
         errors.push(formatError(ArmyErrors.incompatibleRegiments, name, badUnitName))
       }
     }

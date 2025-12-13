@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { get, type Writable } from 'svelte/store'
+import { get } from 'svelte/store'
 
 import * as DataGenerator from '$test/dataGenerator'
 import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
-let store: Writable<IBuilderState>
+let store: IBuilderState
 
 beforeEach(() => {
   store = DataGenerator.createBuilderState({
@@ -27,9 +27,9 @@ describe('ValidateUnit', () => {
     ArmyMutator.addUnit(store, 'unitA', schemaUnit, 2)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(1)
-    expect(state.units.unitA.errors[0]).toBe('unitA count of 2 is out of bounds.')
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(1)
+    expect(units.unitA.errors[0]).toBe('unitA count of 2 is out of bounds.')
   })
 
   it('wont add error if unit count more than max when points more than 1000', () => {
@@ -40,8 +40,8 @@ describe('ValidateUnit', () => {
     ArmyMutator.addUnit(store, 'unitA', schemaUnit, 2)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(0)
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(0)
   })
 
   it('adds error if unit count more than army max', () => {
@@ -52,9 +52,9 @@ describe('ValidateUnit', () => {
     ArmyMutator.addUnit(store, 'unitA', schemaUnit, 3)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(1)
-    expect(state.units.unitA.errors[0]).toBe('unitA count of 3 is out of bounds.')
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(1)
+    expect(units.unitA.errors[0]).toBe('unitA count of 3 is out of bounds.')
   })
 
   it('adds error if unit count lower than item count', () => {
@@ -69,9 +69,9 @@ describe('ValidateUnit', () => {
     UnitMutator.equipItem(store, 'unitA', 'itemA', schemaItem)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(1)
-    expect(state.units.unitA.errors[0]).toBe('2 unitA cannot have 3 item(s).')
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(1)
+    expect(units.unitA.errors[0]).toBe('2 unitA cannot have 3 item(s).')
   })
 
   it('adds error if unit count lower than upgrade count', () => {
@@ -86,9 +86,9 @@ describe('ValidateUnit', () => {
     UnitMutator.equipUpgrade(store, 'unitA', 'upgradeA', schemaUpgrade)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(1)
-    expect(state.units.unitA.errors[0]).toBe('2 unitA cannot have 3 upgrade(s).')
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(1)
+    expect(units.unitA.errors[0]).toBe('2 unitA cannot have 3 upgrade(s).')
   })
 
   it('adds error if unit count lower than stand count', () => {
@@ -103,8 +103,8 @@ describe('ValidateUnit', () => {
     UnitMutator.addStand(store, 'unitA', 'standA', schemaStand)
 
     // Assert
-    const state = get(store)
-    expect(state.units.unitA.errors.length).toBe(1)
-    expect(state.units.unitA.errors[0]).toBe('2 unitA cannot have 3 stand(s).')
+    const units = get(store.units)
+    expect(units.unitA.errors.length).toBe(1)
+    expect(units.unitA.errors[0]).toBe('2 unitA cannot have 3 stand(s).')
   })
 })

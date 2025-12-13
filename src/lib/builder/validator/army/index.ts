@@ -1,9 +1,19 @@
-import { validateUnit } from '../unit'
+import { get } from 'svelte/store'
+import { validateUnitBounds } from '../unit'
+
 import * as ArmyRules from './rules'
 
 
+export type ArmyRulePayload = {
+  armyName: string
+  armyCost: number
+  armyCostLimit: number
+  regimentsCountAs: IRegimentCountAsData
+  armyUnits: Record<string, IArmyUnit>
+}
+
 interface ArmyRule {
-  check(state: IBuilderState): string[]
+  check(payload: ArmyRulePayload): string[]
 }
 
 const armyRules: readonly ArmyRule[] = [
@@ -19,12 +29,18 @@ export const validateArmy = (
   state: IBuilderState,
   prevArmyCost: number
 ): void => {
-  state.armyErrors = []
-
-  const armyCrossedCostThreshold = Math.floor(state.armyCost / 1000) !== Math.floor(prevArmyCost / 1000)
-  if (armyCrossedCostThreshold) {
-    Object.keys(state.units).forEach(k => validateUnit(state, k))
+  const payload: ArmyRulePayload = {
+    armyName: state.armyName,
+    regimentsCountAs: state.regimentCountAs,
+    armyCost: get(state.armyCost),
+    armyCostLimit: get(state.armyCostLimit),
+    armyUnits: get(state.units)
   }
 
-  state.armyErrors = armyRules.flatMap(r => r.check(state))
+  const armyCrossedCostThreshold = Math.floor(payload.armyCost / 1000) !== Math.floor(prevArmyCost / 1000)
+  if (armyCrossedCostThreshold) {
+    Object.keys(payload.armyUnits).forEach(k => validateUnitBounds(state, k))
+  }
+
+  state.armyErrors.set(armyRules.flatMap(r => r.check(payload)))
 }

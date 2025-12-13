@@ -1,11 +1,11 @@
 <script lang="ts">
-  import builderStore from '$builder/store'
+  import { getContext } from 'svelte'
   import { getUnitBoundsString } from '../logic'
   import { isRegiment } from '$builder/types/guards'
 
   import UnitAugments from './UnitAugments.svelte'
   import SchemaAugments from './SchemaAugments.svelte'
-  import RegimentSelectModal from '../RegimentSelectModal.svelte'
+  import RegimentModal from '../RegimentModal.svelte'
 
 
   type Props = {
@@ -14,6 +14,7 @@
   }
 
   const { unitName, unitData }: Props = $props()
+  const builderStore = getContext<IBuilderStore>('BuilderState')
 
   const unitHasErrors = (): boolean => unitData.errors.length > 0
 
@@ -50,8 +51,8 @@
 >
   <div class="w-1/5">
     { unitData.count }
-    {#if $builderStore.regimentCountAs.units[unitName] > 0}
-      (+{ $builderStore.regimentCountAs.units[unitName] })
+    {#if builderStore.regimentCountAs.units[unitName] > 0}
+      (+{ builderStore.regimentCountAs.units[unitName] })
     {/if}
   </div>
   <div class="w-1/5">{ unitName }</div>
@@ -63,7 +64,9 @@
     <div class="absolute rounded px-2 py-1 bg-rose-400 z-50 top-10 left-1/2 
       transform -translate-x-1/2 -translate-y-1/2"
     >
-      {#each unitData.errors as error, i (i)} <div>{ error }</div> {/each}
+      {#each unitData.errors as error (error)}
+        <div>{ error }</div>
+      {/each}
     </div>
   {/if}
 </div>
@@ -75,5 +78,5 @@
 {/if}
 
 {#if isRegiment(unitData)}
-  <RegimentSelectModal bind:showModal mode='remove' selectedRegimentName={ unitName } />
+  <RegimentModal bind:showModal mode='remove' selectedRegimentName={ unitName } />
 {/if}

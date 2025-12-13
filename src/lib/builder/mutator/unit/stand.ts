@@ -1,9 +1,9 @@
-import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { get } from 'svelte/store'
+import { postMutationValidate } from './internal'
 
 
 export const addStand = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   standKey: string,
   standData?: ISchemaUnit
@@ -11,33 +11,42 @@ export const addStand = (
   // Impossible since it's called by button attached to stand component
   if (!standData) return
 
-  mutateUnit(state, unitKey, (s, unit) => {
-    let unitStand = unit.addedStands[standKey]
+  const preMutationArmyCost = get(state.armyCost)
 
-    if (!unitStand) {
-      unitStand = { ...standData, count: 0 }
-      unit.addedStands[standKey] = unitStand
-    }
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    unitStand.count++
-    s.armyCost += unitStand.points
-  })
+  let unitStand = armyUnit.addedStands[standKey]
+
+  if (!unitStand) {
+    unitStand = { ...standData, count: 0 }
+    armyUnit.addedStands[standKey] = unitStand
+  }
+
+  unitStand.count++
+  state.armyCost.set(preMutationArmyCost + unitStand.points)
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
 
 export const removeStand = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   standKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitStand = unit.addedStands[standKey]
-    if (!unitStand) return
+  const preMutationArmyCost = get(state.armyCost)
 
-    unitStand.count--
-    s.armyCost -= unitStand.points
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    if (unitStand.count <= 0) {
-      delete unit.addedStands[standKey]
-    }
-  })
+  const unitStand = armyUnit.addedStands[standKey]
+  if (!unitStand) return
+
+  unitStand.count--
+  state.armyCost.set(preMutationArmyCost - unitStand.points)
+
+  if (unitStand.count <= 0) {
+    delete armyUnit.addedStands[standKey]
+  }
+
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }

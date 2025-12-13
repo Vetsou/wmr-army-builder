@@ -1,9 +1,9 @@
-import type { Writable } from 'svelte/store'
-import { mutateUnit } from './internal'
+import { get } from 'svelte/store'
+import { postMutationValidate } from './internal'
 
 
 export const equipUpgrade = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   upgradeKey: string,
   upgradeData?: ISchemaUpgrade
@@ -11,33 +11,43 @@ export const equipUpgrade = (
   // Impossible since it's called by button attached to upgrade component
   if (!upgradeData) return
 
-  mutateUnit(state, unitKey, (s, unit) => {
-    let unitUpgrade = unit.equippedUpgrades[upgradeKey]
+  const preMutationArmyCost = get(state.armyCost)
 
-    if (!unitUpgrade) {
-      unitUpgrade = { ...upgradeData, count: 0 }
-      unit.equippedUpgrades[upgradeKey] = unitUpgrade
-    }
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    unitUpgrade.count++
-    s.armyCost += upgradeData.cost
-  })
+  let unitUpgrade = armyUnit.equippedUpgrades[upgradeKey]
+
+  if (!unitUpgrade) {
+    unitUpgrade = { ...upgradeData, count: 0 }
+    armyUnit.equippedUpgrades[upgradeKey] = unitUpgrade
+  }
+
+  unitUpgrade.count++
+  state.armyCost.set(preMutationArmyCost + upgradeData.cost)
+
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
 
 export const unequipUpgrade = (
-  state: Writable<IBuilderState>,
+  state: IBuilderState,
   unitKey: string,
   upgradeKey: string
 ): void => {
-  mutateUnit(state, unitKey, (s, unit) => {
-    const unitUpgrade = unit.equippedUpgrades[upgradeKey]
-    if (!unitUpgrade) return
+  const preMutationArmyCost = get(state.armyCost)
 
-    unitUpgrade.count--
-    s.armyCost -= unitUpgrade.cost
+  const armyUnit = get(state.units)[unitKey]
+  if (!armyUnit) return
 
-    if (unitUpgrade.count <= 0) {
-      delete unit.equippedUpgrades[upgradeKey]
-    }
-  })
+  const unitUpgrade = armyUnit.equippedUpgrades[upgradeKey]
+  if (!unitUpgrade) return
+
+  unitUpgrade.count--
+  state.armyCost.set(preMutationArmyCost - unitUpgrade.cost)
+
+  if (unitUpgrade.count <= 0) {
+    delete armyUnit.equippedUpgrades[upgradeKey]
+  }
+
+  postMutationValidate(state, unitKey, preMutationArmyCost)
 }
