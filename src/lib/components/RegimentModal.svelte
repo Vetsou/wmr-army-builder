@@ -73,11 +73,11 @@
 {#snippet selectableEntry(name: string, onclick: () => void, isSelected: boolean)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div
-    onclick={onclick}
+    { onclick }
     class="p-2 border rounded-md cursor-pointer
-      {isSelected ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100'}"
+      { isSelected ? 'bg-blue-100 hover:bg-blue-100' : 'hover:bg-gray-100' }"
   >
-    {name}
+    { name }
   </div>
 {/snippet}
 

@@ -13,7 +13,7 @@
 
 <div class="text-center font-semibold">
   <a href="/" use:route>Return to homepage</a>
-  <div>{armyName }</div>
+  <div>{ armyName }</div>
   <div>Army points: { $armyCost }/{ $armyCostLimit }</div>
 
   {#if $armyErrors.length > 0}

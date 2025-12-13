@@ -30,14 +30,14 @@
 {#snippet schemaRow(name: string, data: ISchemaUnit | ISchemaRegiment, onclick: () => void)}
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div
-    onclick={onclick}
+    { onclick }
     class="flex hover:bg-gray-200 cursor-pointer"
   >
-    <div class="w-1/4">{name}</div>
-    <div class="w-1/4">{data.type}</div>
-    <div class="w-1/4">{data.points}</div>
-    <div class="w-1/4">{getUnitBoundsString(data)}</div>
-  </div>
+    <div class="w-1/4">{ name }</div>
+    <div class="w-1/4">{ data.type }</div>
+    <div class="w-1/4">{ data.points }</div>
+    <div class="w-1/4">{ getUnitBoundsString(data) }</div>
+  </div> 
 {/snippet}
 
 <div class="w-1/3">
