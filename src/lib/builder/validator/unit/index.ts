@@ -3,11 +3,11 @@ import * as UnitRules from './rules'
 
 
 export type UnitRulePayload = {
-  armyName: string
-  armyCost: number
-  armyCostLimit: number
-  regimentsCountAs: IRegimentCountAsData
-  armyUnits: Record<string, IArmyUnit>
+  readonly armyName: string
+  readonly armyCost: number
+  readonly armyCostLimit: number
+  readonly regimentsCountAs: IRegimentCountAsData
+  readonly armyUnits: Record<string, IArmyUnit>
 }
 
 interface UnitRule {
