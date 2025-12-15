@@ -5,9 +5,16 @@ import * as ArmyMutator from './mutator/army'
 export const createBuilderContext = (
   armySchema: IArmySchema,
   items: Record<string, ISchemaMagicItem>,
-  regiments: Record<string, ISchemaRegiment>
+  regiments: Record<string, ISchemaRegiment>,
+  urlParams: Record<string, string> | undefined
 ): IBuilderStore => {
-  const state = ArmyMutator.createState(armySchema, items, regiments)
+  let state: IBuilderState
+
+  if (urlParams && Object.keys(urlParams).length > 0) {
+    state = ArmyMutator.createStateFromUrl(armySchema, items, regiments, urlParams)
+  } else {
+    state = ArmyMutator.createDefaultState(armySchema, items, regiments)
+  }
 
   return {
     ...state,

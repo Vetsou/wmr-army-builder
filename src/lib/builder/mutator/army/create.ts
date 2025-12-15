@@ -1,3 +1,4 @@
+import { decodeArmyFromUrl } from '$builder/serialize/url'
 import { writable } from 'svelte/store'
 import { addUnit } from './add'
 
@@ -15,12 +16,12 @@ const filterArmyRegiments = (
   )
 }
 
-export const createState = (
+const createEmptyState = (
   armySchema: IArmySchema,
   items: Record<string, ISchemaMagicItem>,
   regiments: Record<string, ISchemaRegiment>
 ): IBuilderState => {
-  const state = {
+  return {
     armyName: armySchema.name,
     armyCost: writable(0),
     armyCostLimit: writable(2000),
@@ -38,6 +39,14 @@ export const createState = (
       stands: armySchema.stands
     }
   }
+}
+
+export const createDefaultState = (
+  armySchema: IArmySchema,
+  items: Record<string, ISchemaMagicItem>,
+  regiments: Record<string, ISchemaRegiment>
+): IBuilderState => {
+  const state = createEmptyState(armySchema, items, regiments)
 
   // Add General and min required units
   state.units.update(u => {
@@ -49,6 +58,18 @@ export const createState = (
 
     return u
   })
+
+  return state
+}
+
+export const createStateFromUrl = (
+  armySchema: IArmySchema,
+  items: Record<string, ISchemaMagicItem>,
+  regiments: Record<string, ISchemaRegiment>,
+  urlParams: Record<string, string>
+): IBuilderState => {
+  const state = createEmptyState(armySchema, items, regiments)
+  decodeArmyFromUrl(state, urlParams)
 
   return state
 }

@@ -1,6 +1,9 @@
 import { get, type Writable } from 'svelte/store'
 import { isRegiment } from '../types/guards'
 
+import * as ArmyMutator from '$builder/mutator/army'
+import * as UnitMutator from '$builder/mutator/unit'
+
 
 const getEncodedAttachments = (
   unit: IArmyUnit
@@ -39,6 +42,7 @@ const getEncodedRegimentCountAs = (
     .map(([unitName, count]) => {
       const schemaUnit = lookup.units?.[unitName]
       if (!schemaUnit) return null
+
       return count > 1 ? `${schemaUnit.id}x${count}` : schemaUnit.id
     })
     .filter(Boolean)
@@ -48,6 +52,7 @@ const getEncodedRegimentCountAs = (
     .map(([upgradeName, count]) => {
       const schemaUpgrade = lookup.upgrades?.[upgradeName]
       if (!schemaUpgrade) return null
+
       return count > 1 ? `${schemaUpgrade.id}x${count}` : schemaUpgrade.id
     })
     .filter(Boolean)
@@ -73,9 +78,91 @@ export const encodeArmyToUrl = (
      * '(U1/UPG3)' - Regiment count as data could also be '(CA=U1)' if only unit is encoded
      * '[UPG1,MI2x2]' - Unit items/upgrades/stands
      */
-    console.log(caStr)
     params.set(unit.id, `${unit.count}${caStr}${attachmentsStr}`)
   }
 
   return params.toString()
+}
+
+export const decodeArmyFromUrl = (
+  state: IBuilderState,
+  urlParams: Record<string, string>
+): void => {
+  const schemaRegiments = Object.entries(state.lookup.regiments)
+  const schemaUnits = Object.entries(state.lookup.units)
+
+  const schemaUpgrades = Object.entries(state.lookup.upgrades ?? {})
+  const schemaStands = Object.entries(state.lookup.stands ?? {})
+  const schemaItems = Object.entries(state.lookup.items)
+
+  for (const [unitId, value] of Object.entries(urlParams)) {
+    /**
+     * Param entries should be like:
+     *   "U1=3", "U3=2[UPG1,MI2x2]", "R1=1(U1)"
+     */
+    const match = value.match(/^(\d+)(?:\(([^\/\)]*)(?:\/([^)]*))?\))?(?:\[(.*)\])?$/)
+    if (!match) continue
+
+    // Regex groups
+    const unitCount = parseInt(match[1], 10)
+    const attachments = match[4] ? match[4].split(',') : []
+
+    //const caUnitId = match[2]
+    //const caUpgradeId = match[3]
+
+    const isRegiment = unitId.startsWith('R')
+    const isUnit = unitId.startsWith('U')
+
+    // If ID is not from unit or regiment then it's invalid
+    if (!isRegiment && !isUnit) continue
+
+    const schemaEntry = isRegiment
+      ? schemaRegiments.find(([_, r]) => r.id === unitId)
+      : schemaUnits.find(([_, u]) => u.id === unitId)
+
+    // If we can't find the unit then it's invalid
+    if (!schemaEntry) continue
+
+    const [schemaKey, schemaData] = schemaEntry
+
+    if (isUnit) {
+      ArmyMutator.addUnit(state, schemaKey, schemaData, unitCount)
+    } else {
+      continue
+    }
+
+    for (const attachStr of attachments) {
+      const [attachId, countStr] = attachStr.split('x')
+      const attachCount = countStr ? parseInt(countStr, 10) : 1
+
+      const isUpgrade = attachId.startsWith('UPG')
+      const isItem = attachId.startsWith('MI')
+      const isStand = attachId.startsWith('S')
+
+      if (isUpgrade) {
+        const [upgradeKey, upgradeData] = schemaUpgrades.find(([, u]) => u.id === attachId) || []
+        const canAdd = schemaData.upgrades?.find(name => upgradeKey === name)
+        if (!upgradeKey || !upgradeData || !canAdd) continue
+
+        for (let i = 0; i < attachCount; i++) UnitMutator.equipUpgrade(state, schemaKey, upgradeKey, upgradeData)
+        continue
+      }
+
+      if (isItem) {
+        const [itemKey, itemData] = schemaItems.find(([, i]) => i.id === attachId) || []
+        if (!itemKey || !itemData) continue
+
+        for (let i = 0; i < attachCount; i++) UnitMutator.equipItem(state, schemaKey, itemKey, itemData)
+        continue
+      }
+
+      if (isStand) {
+        const [standKey, standData] = schemaStands.find(([, s]) => s.id === attachId) || []
+        const canAdd = schemaData.extraStands?.find(name => standKey === name)
+        if (!standKey || !standData || !canAdd) continue
+
+        for (let i = 0; i < attachCount; i++) UnitMutator.addStand(state, schemaKey, standKey, standData)
+      }
+    }
+  }
 }

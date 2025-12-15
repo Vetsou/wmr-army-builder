@@ -15,10 +15,12 @@
 
   const getArmyUrlString = async (): Promise<void> => {
     const encoded = encodeArmyToUrl(units, lookup)
-    const fullUrl = `${window.location}?${encoded}`
+
+    const url = new URL(window.location.href)
+    url.search = encoded
 
     try {
-      await navigator.clipboard.writeText(fullUrl)
+      await navigator.clipboard.writeText(url.toString())
     } catch (err) {
       // HANDLE COPY ERROR
     }
