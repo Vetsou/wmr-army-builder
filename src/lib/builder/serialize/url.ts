@@ -96,11 +96,13 @@ export const decodeArmyFromUrl = (
   const schemaItems = Object.entries(state.lookup.items)
 
   for (const [unitId, value] of Object.entries(urlParams)) {
+    const parsedValue = decodeURIComponent(value)
+
     /**
      * Param entries should be like:
      *   "U1=3", "U3=2[UPG1,MI2x2]", "R1=1(U1)"
      */
-    const match = value.match(/^(\d+)(?:\(([^\/\)]*)(?:\/([^)]*))?\))?(?:\[(.*)\])?$/)
+    const match = parsedValue.match(/^(\d+)(?:\(([^\/\)]*)(?:\/([^\)]*))?\))?(?:\[([^\]]*)\])?$/)
     if (!match) continue
 
     // Regex groups
