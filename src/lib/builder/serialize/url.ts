@@ -5,6 +5,47 @@ import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
+type DecodedCountAsEntry = {
+  unitName?: string
+  upgradeName?: string
+  count: number
+}
+
+const decodeCountAsEntriesFromUrl = (
+  schemaUnits: [string, ISchemaUnit][],
+  schemaUpgrades: [string, ISchemaUpgrade][],
+  unitGroup?: string,
+  upgradeGroup?: string
+): DecodedCountAsEntry[] => {
+  const entries: DecodedCountAsEntry[] = []
+
+  if (unitGroup) {
+    for (const token of unitGroup.split(',')) {
+      const [id, countStr] = token.split('x')
+      const count = countStr ? parseInt(countStr, 10) : 1
+
+      const match = schemaUnits.find(([, u]) => u.id === id)
+      if (!match) continue
+
+      entries.push({ unitName: match[0], count })
+    }
+  }
+
+  if (upgradeGroup) {
+    for (const token of upgradeGroup.split(',')) {
+      const [id, countStr] = token.split('x')
+      const count = countStr ? parseInt(countStr, 10) : 1
+
+      const match = schemaUpgrades.find(([, u]) => u.id === id)
+      if (!match) continue
+
+      entries.push({ upgradeName: match[0], count })
+    }
+  }
+
+  return entries
+}
+
 const getEncodedAttachments = (
   unit: IArmyUnit
 ): string => {
@@ -109,8 +150,8 @@ export const decodeArmyFromUrl = (
     const unitCount = parseInt(match[1], 10)
     const attachments = match[4] ? match[4].split(',') : []
 
-    //const caUnitId = match[2]
-    //const caUpgradeId = match[3]
+    const caUnitIds = match[2]
+    const caUpgradeIds = match[3]
 
     const isRegiment = unitId.startsWith('R')
     const isUnit = unitId.startsWith('U')
@@ -130,6 +171,23 @@ export const decodeArmyFromUrl = (
     if (isUnit) {
       ArmyMutator.addUnit(state, schemaKey, schemaData, unitCount)
     } else {
+      const decodedCaEntries = decodeCountAsEntriesFromUrl(schemaUnits, schemaUpgrades, caUnitIds, caUpgradeIds)
+      if (decodedCaEntries.length <= 0) continue
+
+      for (const entry of decodedCaEntries) {
+        ArmyMutator.addRegiment(
+          state,
+          schemaKey,
+          schemaData,
+          {
+            unitName: entry.unitName,
+            upgradeName: entry.upgradeName
+          },
+          entry.count
+        )
+      }
+
+      // Regiments can't equip items/upgrades
       continue
     }
 
