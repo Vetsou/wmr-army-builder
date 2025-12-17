@@ -1,49 +1,31 @@
 import { get, type Writable } from 'svelte/store'
+import { getCountAsRuleForAdd } from '$lib/components/logic'
 import { isRegiment } from '../types/guards'
 
 import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
-type DecodedCountAsEntry = {
-  unitName?: string
-  upgradeName?: string
+type ParsedGroupEntry = {
+  key: string
   count: number
 }
 
-const decodeCountAsEntriesFromUrl = (
-  schemaUnits: [string, ISchemaUnit][],
-  schemaUpgrades: [string, ISchemaUpgrade][],
-  unitGroup?: string,
-  upgradeGroup?: string
-): DecodedCountAsEntry[] => {
-  const entries: DecodedCountAsEntry[] = []
+const parseGroup = <T extends { id: string }>(
+  group: string | undefined,
+  schema: [string, T][]
+): ParsedGroupEntry[] => {
+  if (!group) return []
 
-  if (unitGroup) {
-    for (const token of unitGroup.split(',')) {
-      const [id, countStr] = token.split('x')
-      const count = countStr ? parseInt(countStr, 10) : 1
+  return group.split(',').map(attachId => {
+    const [id, countStr] = attachId.split('x')
+    const count = countStr ? parseInt(countStr, 10) : 1
 
-      const match = schemaUnits.find(([, u]) => u.id === id)
-      if (!match) continue
+    const match = schema.find(([_, s]) => s.id === id)
+    if (!match) throw new Error(`Invalid countAs id: ${id}`)
 
-      entries.push({ unitName: match[0], count })
-    }
-  }
-
-  if (upgradeGroup) {
-    for (const token of upgradeGroup.split(',')) {
-      const [id, countStr] = token.split('x')
-      const count = countStr ? parseInt(countStr, 10) : 1
-
-      const match = schemaUpgrades.find(([, u]) => u.id === id)
-      if (!match) continue
-
-      entries.push({ upgradeName: match[0], count })
-    }
-  }
-
-  return entries
+    return { key: match[0], count }
+  })
 }
 
 const getEncodedAttachments = (
@@ -171,20 +153,62 @@ export const decodeArmyFromUrl = (
     if (isUnit) {
       ArmyMutator.addUnit(state, schemaKey, schemaData, unitCount)
     } else {
-      const decodedCaEntries = decodeCountAsEntriesFromUrl(schemaUnits, schemaUpgrades, caUnitIds, caUpgradeIds)
-      if (decodedCaEntries.length <= 0) continue
+      const allowed = getCountAsRuleForAdd(state, schemaKey)
+      const requiresUnit = allowed.units.length > 0
+      const requiresUpgrade = allowed.upgrades.length > 0
 
-      for (const entry of decodedCaEntries) {
-        ArmyMutator.addRegiment(
-          state,
-          schemaKey,
-          schemaData,
-          {
-            unitName: entry.unitName,
-            upgradeName: entry.upgradeName
-          },
-          entry.count
-        )
+      // If regiment doesn't have CA rules then just add them
+      if (!requiresUnit && !requiresUpgrade) {
+        ArmyMutator.addRegiment(state, schemaKey, schemaData, {}, unitCount)
+        continue
+      }
+
+      const units = parseGroup(caUnitIds, schemaUnits)
+      const upgrades = parseGroup(caUpgradeIds, schemaUpgrades)
+
+      // Check if regiment has the required CA data
+      if (requiresUnit && units.length === 0) continue
+      if (requiresUpgrade && upgrades.length === 0) continue
+
+      // Regiment count should be equal to CA units count
+      const caUnitCount = units.reduce((acc, u) => acc + u.count, 0)
+      if (units.length > 0 && caUnitCount !== unitCount) continue
+
+      // If there are upgrades they should be equal to CA
+      const upgradeTotal = upgrades.reduce((acc, upg) => acc + upg.count, 0)
+      if (upgrades.length > 0 && upgradeTotal !== unitCount) continue
+
+      let uIdx = 0
+      let gIdx = 0
+
+      let uLeft = units[0]?.count ?? 0
+      let gLeft = upgrades[0]?.count ?? 0
+
+      for (let i = 0; i < unitCount; i++) {
+        const countAsData: ICountAsRegimentData = {
+          unitName: units[uIdx]?.key,
+          upgradeName: upgrades[gIdx]?.key
+        }
+
+        if (units.length) {
+          countAsData.unitName = units[uIdx]?.key
+
+          if (--uLeft === 0) {
+            uIdx++
+            uLeft = units[uIdx]?.count ?? 0
+          }
+        }
+
+        if (upgrades.length) {
+          countAsData.upgradeName = upgrades[gIdx].key
+
+          if (--gLeft === 0) {
+            gIdx++
+            gLeft = upgrades[gIdx]?.count ?? 0
+          }
+        }
+
+        ArmyMutator.addRegiment(state, schemaKey, schemaData, countAsData, 1)
       }
 
       // Regiments can't equip items/upgrades

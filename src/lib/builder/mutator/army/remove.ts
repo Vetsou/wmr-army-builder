@@ -74,7 +74,7 @@ export const removeRegiment = (
     if (u[unitKey].count <= 0) delete u[unitKey]
     return u
   })
-  
+
   // Regiments don't have items/upgrades/stands
 
   // Make it a single update
