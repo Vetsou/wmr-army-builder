@@ -6,7 +6,7 @@ import * as ArmyMutator from '$builder/mutator/army'
 import * as UnitMutator from '$builder/mutator/unit'
 
 
-type ParsedGroupEntry = {
+type ParsedCaGroupEntry = {
   key: string
   count: number
 }
@@ -14,7 +14,7 @@ type ParsedGroupEntry = {
 const parseGroup = <T extends { id: string }>(
   group: string | undefined,
   schema: [string, T][]
-): ParsedGroupEntry[] => {
+): ParsedCaGroupEntry[] => {
   if (!group) return []
 
   return group.split(',').map(attachId => {
@@ -26,6 +26,30 @@ const parseGroup = <T extends { id: string }>(
 
     return { key: match[0], count }
   })
+}
+
+const hasValidCountAsRule = (
+  unitCount: number,
+  units: ParsedCaGroupEntry[],
+  upgrades: ParsedCaGroupEntry[],
+  allowedEntries: CountAsRuleResult
+): boolean => {
+  const requiresUnit = allowedEntries.units.length > 0
+  const requiresUpgrade = allowedEntries.upgrades.length > 0
+
+  // Check if regiment has the required CA data
+  if (requiresUnit && units.length === 0) return false
+  if (requiresUpgrade && upgrades.length === 0) return false
+
+  // Regiment count should be equal to CA units count
+  const caUnitCount = units.reduce((acc, u) => acc + u.count, 0)
+  if (units.length > 0 && caUnitCount !== unitCount) return false
+
+  // If there are upgrades they should be equal to CA
+  const upgradeTotal = upgrades.reduce((acc, upg) => acc + upg.count, 0)
+  if (upgrades.length > 0 && upgradeTotal !== unitCount) return false
+
+  return true
 }
 
 const getEncodedAttachments = (
@@ -166,49 +190,36 @@ export const decodeArmyFromUrl = (
       const units = parseGroup(caUnitIds, schemaUnits)
       const upgrades = parseGroup(caUpgradeIds, schemaUpgrades)
 
-      // Check if regiment has the required CA data
-      if (requiresUnit && units.length === 0) continue
-      if (requiresUpgrade && upgrades.length === 0) continue
+      if (!hasValidCountAsRule(unitCount, units, upgrades, allowed)) {
+        continue
+      }
 
-      // Regiment count should be equal to CA units count
-      const caUnitCount = units.reduce((acc, u) => acc + u.count, 0)
-      if (units.length > 0 && caUnitCount !== unitCount) continue
-
-      // If there are upgrades they should be equal to CA
-      const upgradeTotal = upgrades.reduce((acc, upg) => acc + upg.count, 0)
-      if (upgrades.length > 0 && upgradeTotal !== unitCount) continue
-
-      let uIdx = 0
-      let gIdx = 0
-
-      let uLeft = units[0]?.count ?? 0
-      let gLeft = upgrades[0]?.count ?? 0
+      let unitIdx = 0
+      let upgradeIdx = 0
+      let unitsLeft = units[0]?.count ?? 0
+      let upgradesLeft = upgrades[0]?.count ?? 0
 
       for (let i = 0; i < unitCount; i++) {
-        const countAsData: ICountAsRegimentData = {
-          unitName: units[uIdx]?.key,
-          upgradeName: upgrades[gIdx]?.key
-        }
+        let unitName: string | undefined
+        let upgradeName: string | undefined
 
         if (units.length) {
-          countAsData.unitName = units[uIdx]?.key
-
-          if (--uLeft === 0) {
-            uIdx++
-            uLeft = units[uIdx]?.count ?? 0
+          unitName = units[unitIdx].key
+          if (--unitsLeft === 0) {
+            unitIdx++
+            unitsLeft = units[unitIdx]?.count ?? 0
           }
         }
 
         if (upgrades.length) {
-          countAsData.upgradeName = upgrades[gIdx].key
-
-          if (--gLeft === 0) {
-            gIdx++
-            gLeft = upgrades[gIdx]?.count ?? 0
+          upgradeName = upgrades[upgradeIdx].key
+          if (--upgradesLeft === 0) {
+            upgradeIdx++
+            upgradesLeft = upgrades[upgradeIdx]?.count ?? 0
           }
         }
 
-        ArmyMutator.addRegiment(state, schemaKey, schemaData, countAsData, 1)
+        ArmyMutator.addRegiment(state, schemaKey, schemaData, { unitName, upgradeName }, 1)
       }
 
       // Regiments can't equip items/upgrades
