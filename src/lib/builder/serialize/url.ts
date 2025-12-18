@@ -52,6 +52,14 @@ const hasValidCountAsRule = (
   return true
 }
 
+const isAllowedCountAsEntry = <T>(
+  entries: ParsedCaGroupEntry[],
+  allowed: [string, T][]
+): boolean => {
+  const allowedKeys = new Set(allowed.map(([key]) => key))
+  return entries.every(e => allowedKeys.has(e.key))
+}
+
 const getEncodedAttachments = (
   unit: IArmyUnit
 ): string => {
@@ -191,6 +199,10 @@ export const decodeArmyFromUrl = (
       const upgrades = parseGroup(caUpgradeIds, schemaUpgrades)
 
       if (!hasValidCountAsRule(unitCount, units, upgrades, allowed)) {
+        continue
+      }
+
+      if (!isAllowedCountAsEntry(units, allowed.units) || !isAllowedCountAsEntry(upgrades, allowed.upgrades)) {
         continue
       }
 
