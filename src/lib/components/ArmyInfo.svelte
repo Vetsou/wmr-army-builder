@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { encodeArmyToUrl } from '$lib/builder/serialize/url'
+  import { encodeArmyToUrl } from '$lib/builder/serialize'
   import { route } from '@mateothegreat/svelte5-router'
   import { getContext } from 'svelte'
 

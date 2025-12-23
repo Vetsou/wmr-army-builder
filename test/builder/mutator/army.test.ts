@@ -102,7 +102,7 @@ describe('CreateState', () => {
     ArmyMutator.addUnit(store, 'UnitC', schemaUnit, 7)
 
     // Act
-    store = ArmyMutator.createState({
+    store = ArmyMutator.createDefaultState({
       name: 'Test army name',
       units: {}
     }, {}, {})
@@ -127,7 +127,7 @@ describe('CreateState', () => {
     })
 
     // Act
-    store = ArmyMutator.createState(schema, {}, {})
+    store = ArmyMutator.createDefaultState(schema, {}, {})
 
     // Assert
     const armyCost = get(store.armyCost)

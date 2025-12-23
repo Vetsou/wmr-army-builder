@@ -1,5 +1,5 @@
 import { expect, it, describe, expectTypeOf } from 'vitest'
-import { readPublicFile } from '$test/ioUtils'
+import { readPublicFile } from '$test/utils'
 
 
 const factions = await readPublicFile<IFaction[]>('/factions.json') 

@@ -1,4 +1,4 @@
-import { decodeArmyFromUrl } from '$builder/serialize/url'
+import { decodeArmyFromUrl } from '$builder/serialize'
 import { writable } from 'svelte/store'
 import { addUnit } from './add'
 
